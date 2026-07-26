@@ -1,0 +1,2927 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>C-MOVIL · Maqueta Unificada</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet" />
+  <style>
+    .switch-unico {
+      /* 1. Oculta el estilo clásico del checkbox */
+      -webkit-appearance: none;
+      appearance: none;
+
+      /* 2. Damos forma al fondo (la pastilla) */
+      width: 50px;
+      height: 28px;
+      background-color: #ccc;
+      border-radius: 28px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.4s;
+      margin: 0;
+    }
+
+    /* 3. Dibujamos la bolita blanca usando ::after */
+    .switch-unico::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.4s;
+    }
+
+    /* 4. Cambiamos el color de fondo al hacer clic (activado) */
+    .switch-unico:checked {
+      background-color: #2196F3;
+      /* Azul */
+    }
+
+    /* 5. Movemos la bolita blanca hacia la derecha al estar activado */
+    .switch-unico:checked::after {
+      transform: translateX(22px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <!-- ============ TOPBAR GLOBAL ============ -->
+    <header class="global-topbar">
+      <span class="brand-drem">DREM</span>
+      <div class="global-topbar-right">
+        <button class="icon-btn notif-btn" onclick="alert('Activando Notificaciones...')"
+          title="Notificaciones">🔔</button>
+        <span class="user-info-chip">JOSE LUIS SOLORZANO GUTIERREZ: ADMINISTRADOR — 17/07/2026</span>
+      </div>
+    </header>
+    <!-- ============ SUB-TOPBAR ============ -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn" title="Regresar">‹</button>
+        <span class="brand">C-MOVIL</span>
+      </div>
+      <div class="topbar-right">
+        <button class="pill pill-primary" id="verSolicitudTop" onclick="alert('Visualizando Solicitud...')">
+          <span class="pill-icon"><i class="fa fa-eye"></i></span> Ver Solicitud de Crédito
+        </button>
+        <button class="pill pill-ghost" onclick="alert('Mostrando Comentarios...')">💬 Comentarios</button>
+        <span class="user-chip">👤 1 Usuario</span>
+        <div class="folio-chip" id="folioTopInfo">
+          <span class="folio-label">Folio: <strong>10177</strong></span>
+          <span class="folio-name">ANA GLORIA PIÑA AGUILAR</span>
+          <span class="folio-rfc">PIAA770429BC2</span>
+        </div>
+        <button class="icon-btn" title="Más opciones">⋮⋮</button>
+      </div>
+    </header>
+    <!-- ============ TABS PRINCIPALES ============ -->
+    <nav class="tabs" id="mainTabsContainer">
+      <button class="tab" id="tabInformacionGeneral" data-stage="MESA DE CONTROL" onclick="mostrarVistaGeneral()">Vista
+        General de Prospectos</button>
+      <button class="tab" id="tabRegistroClientes" data-stage="MESA DE CONTROL"
+        onclick="mostrarRegistroClientes()">Informacion General</button>
+      <button class="tab" id="tabMesaControl" data-stage="MESA DE CONTROL"
+        onclick="mostrarMesaControlTab()">Asociaciones</button>
+      <button class="tab" id="tabOrdenPago" data-stage="ORDEN DE PAGO">Orden de Pago</button>
+      <button class="tab" data-tab="dictamen" data-stage="DECISIONES"
+        onclick="window.mostrarDictamen()">Dictamen</button>
+      <button class="tab" data-tab="dictamen-quash" data-stage="DECISIONES"
+        onclick="window.mostrarDictamenQuash()">Dictamen Quash</button>
+      <button class="tab" data-tab="receptora" data-stage="DECISIONES" onclick="window.menuActaComite()">Acta de
+        Comite</button>
+      <button class="tab" id="tabCargaDocumentos" data-stage="CARGA DE DOCUMENTOS"
+        onclick="window.mostrarCargaDocumentos()">Carga de Documentos</button>
+      <button class="tab" id="tabAplicacionPagos" data-stage="APLICACIÓN DE PAGOS"
+        onclick="window.mostrarAplicacionPagos()">Aplicación de Pagos</button>
+      <button class="tab" id="tabGarantia" data-stage="REGISTRO DE GARANTÍA Y OTROS"
+        onclick="window.mostrarRegistroGarantia()">Registro de Garantía</button>
+      <button class="tab" id="tabDocumentos" data-stage="LIBERACION"
+        onclick="mostrarDocumentosLiberacion()">Documentos</button>
+      <button class="tab" id="tabLiberaciones" data-stage="LIBERACION"
+        onclick="mostrarSolicitudesLiberacion()">Solicitudes de Liberaciones</button>
+    </nav>
+    <!-- ============ BODY GRID ============ -->
+    <div class="body-grid">
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="content">
+        <!-- ////////////////////////////////////////////////////////////////////// -->
+        <!-- SECCION MESA DE CONTROL                                                         -->
+        <!-- ////////////////////////////////////////////////////////////////////// -->
+        <section id="MesaControl">
+          <div id="vistaGeneral">
+            <table class="hc-table">
+              <thead id="vistaGeneralThead">
+                <tr>
+                  <th data-key="folioVG" onclick="sortVistaGeneral('folioVG')" style="cursor: pointer;">FOLIO <span
+                      class="sort-icon"></span></th>
+                  <th data-key="nombreVG" onclick="sortVistaGeneral('nombreVG')" style="cursor: pointer;">NOMBRE
+                    PROSPECTO <span class="sort-icon"></span></th>
+                  <th data-key="productoVG" onclick="sortVistaGeneral('productoVG')" style="cursor: pointer;">PRODUCTO
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th data-key="directorVG" onclick="sortVistaGeneral('directorVG')" style="cursor: pointer;">DIRECTOR
+                    REGIONAL <span class="sort-icon"></span></th>
+                  <th data-key="sucursalVG" onclick="sortVistaGeneral('sucursalVG')" style="cursor: pointer;">SUCURSAL
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th data-key="ejecutivoVG" onclick="sortVistaGeneral('ejecutivoVG')" style="cursor: pointer;">
+                    EJECUTIVO/CREADO POR <span class="sort-icon"></span></th>
+                  <th data-key="modalidadVG" onclick="sortVistaGeneral('modalidadVG')" style="cursor: pointer;">
+                    MODALIDAD <span class="sort-icon"></span></th>
+                  <th data-key="analistaVG" onclick="sortVistaGeneral('analistaVG')" style="cursor: pointer;">ANALISTA
+                    <span class="sort-icon"></span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="vistaGeneralTableBody" style="background-color: rgb(71, 95, 117)">
+              </tbody>
+            </table>
+          </div>
+          <!-- ================================================================ -->
+          <!--  VISTA: REGISTRO DE CLIENTES                                      -->
+          <!-- ================================================================ -->
+          <div id="vistaRegistroClientes">
+            <!-- 1. INFORMACIÓN DEL CLIENTE -->
+            <section class="card">
+              <div class="card-header">
+                <h2><span class="card-icon">👤</span> Información del Cliente</h2>
+              </div>
+              <div class="card-body">
+                <!-- Sub-bloque: Datos del Cliente -->
+                <div class="sub-block">
+                  <div class="sub-block-header">
+                    <span class="sub-block-title">Datos del Cliente</span>
+                    <!-- <button class="btn-edit">✏️ Editar</button> -->
+                  </div>
+                  <div class="field-grid cols-3">
+                    <div class="field">
+                      <label>Nombre(s)</label>
+                      <div class="value">ANA GLORIA</div>
+                    </div>
+                    <div class="field">
+                      <label>Apellido Paterno</label>
+                      <div class="value">PIÑA</div>
+                    </div>
+                    <div class="field">
+                      <label>Apellido Materno</label>
+                      <div class="value">AGUILAR</div>
+                    </div>
+                    <div class="field">
+                      <label>Fecha de Nacimiento</label>
+                      <div class="value">29/04/1977</div>
+                    </div>
+                    <div class="field">
+                      <label>Edad</label>
+                      <div class="value">49</div>
+                    </div>
+                    <div class="field">
+                      <label>Género</label>
+                      <div class="value">FEMENINO</div>
+                    </div>
+                    <div class="field">
+                      <label>CURP</label>
+                      <div class="value">PIAA770429MMSXGN05</div>
+                    </div>
+                    <div class="field">
+                      <label>RFC</label>
+                      <div class="value">PIAA770429BC2</div>
+                    </div>
+                    <div class="field">
+                      <label>Teléfono</label>
+                      <div class="value">7775032495</div>
+                    </div>
+                  </div>
+                  <!-- Consulta de Buró -->
+                  <div class="buro-panel">
+                    <div class="buro-header">
+                      <span class="buro-title">🔍 Consulta de Buró de Crédito — Cliente</span>
+                      <button class="btn-historial" onclick="toggleHistorialBuro('historialBuroCliente')">📋 Ver
+                        Historial</button>
+                      <button class="btn-historial"
+                        onclick="alert('Ver documento de consulta de buro y/o circulo de credito del aval')">🔎 Ver
+                        Consulta</button>
+                    </div>
+                    <div class="buro-details">
+                      <div class="buro-item">
+                        <span class="buro-label">Score</span>
+                        <span class="buro-value">690</span>
+                      </div>
+                      <div class="buro-item">
+                        <span class="buro-label">Fecha Consulta</span>
+                        <span class="buro-value">15/07/2026</span>
+                      </div>
+                      <div class="buro-item">
+                        <span class="buro-label">Resultado</span>
+                        <span class="buro-value buro-text-ok">Sin atrasos significativos</span>
+                      </div>
+                    </div>
+                    <div class="buro-historial" id="historialBuroCliente" style="display:none;">
+                      <div class="buro-historial-titulo">Historial de Versiones — Buró</div>
+                      <div class="hc-table-wrap" style="margin-top:10px;">
+                        <table class="hc-table">
+                          <thead>
+                            <tr>
+                              <th>Versión</th>
+                              <th>Fecha Consulta</th>
+                              <th>Score</th>
+                              <th>Resultado</th>
+                              <th>Usuario</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>V1</td>
+                              <td>01/06/2026</td>
+                              <td>695</td>
+                              <td><span class="buro-badge buro-autorizado"
+                                  style="font-size:10px; padding:3px 8px;">AUTORIZADO</span></td>
+                              <td>J. SOLORZANO</td>
+                            </tr>
+                            <tr>
+                              <td>V2</td>
+                              <td>15/07/2026</td>
+                              <td>710</td>
+                              <td><span class="buro-badge buro-autorizado"
+                                  style="font-size:10px; padding:3px 8px;">AUTORIZADO</span></td>
+                              <td>J. SOLORZANO</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Coincidencia en Listas Negras -->
+                  <div class="listas-panel">
+                    <div class="listas-header">
+                      <span class="listas-title">🛡️ Coincidencia en Listas Negras</span>
+                      <button class="btn-historial" onclick="consultarListasNegras()">
+                        <i aria-hidden="true" class="fa fa-search"></i> Consultar
+                      </button>
+                      <button class="btn-historial" disabled="" id="botonVerConsultaPLD"
+                        onclick="alert('Ver documento de consulta de listas negras, ofac y/o personas bloqueadas')">
+                        <i aria-hidden="true" class="fa fa-file"></i> Ver Consulta
+                      </button>
+                    </div>
+                    <div class="listas-details">
+                      <div class="listas-item">
+                        <span class="listas-label">LISTAS NEGRAS</span>
+                        <span class="listas-value listas-ok" id="statusListasNegras">➖ Sin consulta</span>
+                      </div>
+                      <div class="listas-item">
+                        <span class="listas-label">LISTAS INTERNAS</span>
+                        <span class="listas-value listas-ok" id="statusOFAC">➖ Sin consulta</span>
+                      </div>
+                      <div class="listas-item">
+                        <span class="listas-label">LISTA PERSONAS BLOQUEADAS</span>
+                        <span class="listas-value listas-ok" id="statusPersonasBloqueadas">➖ Sin consulta</span>
+                      </div>
+                      <div class="listas-item">
+                        <span class="listas-label">LISTA DREM</span>
+                        <span class="listas-value listas-ok" id="statusDrem">➖ Sin consulta</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 7. INE -->
+                <div class="sub-block">
+                  <div class="sub-block-header">
+                    <h2><span class="sub-block-icon">🪪</span> INE</h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="ine-grid">
+                      <div class="ine-card">
+                        <div class="ine-card-label">INE (Frontal)</div>
+                        <div class="ine-card-filename">INE FRENT ANA GLORIA.jpeg</div>
+                        <button class="btn-print" style="margin-top: 10px; width: 100%; justify-content: center;">👁
+                          Ver</button>
+                      </div>
+                      <div class="ine-card">
+                        <div class="ine-card-label">INE (Trasera)</div>
+                        <div class="ine-card-filename">INE REV ANA GLORIA.jpeg</div>
+                        <button class="btn-print" style="margin-top: 10px; width: 100%; justify-content: center;">👁
+                          Ver</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- 2. INFORMACIÓN DEL CRÉDITO -->
+            <section class="card">
+              <div class="card-header">
+                <h2><span class="card-icon">🗂️</span> Información del Crédito</h2>
+              </div>
+              <div class="card-body">
+                <div class="sub-block">
+                  <div class="sub-block-header">
+                    <span class="sub-block-title">Datos del Crédito</span>
+                    <!-- <button class="btn-edit">✏️ Editar</button> -->
+                  </div>
+                  <div class="field-grid cols-3">
+                    <div class="field">
+                      <label>Folio</label>
+                      <div class="value">10177</div>
+                    </div>
+                    <div class="field">
+                      <label>Monto Solicitado</label>
+                      <div class="value">$84,500.00</div>
+                    </div>
+                    <div class="field">
+                      <label>Plazo (Meses)</label>
+                      <div class="value">18 Meses</div>
+                    </div>
+                    <div class="field">
+                      <label>Periodicidad de Pagos</label>
+                      <div class="value">CATORCENAL</div>
+                    </div>
+                    <div class="field">
+                      <label>Régimen Fiscal</label>
+                      <div class="value">Persona Física</div>
+                    </div>
+                    <div class="field">
+                      <label>Producto</label>
+                      <div class="value">C-MOVIL MOTOTAXI</div>
+                    </div>
+                    <div class="field">
+                      <label>Tasa</label>
+                      <div class="value">36%</div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 16px;">
+                    <button class="btn-caratula" onclick="alert('Visualizando Carátula de Comité Autorizada...')">
+                      📄 Visualizar Carátula de Comité Autorizada
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- 3. APLICACIÓN DE PAGOS (vista parcial) -->
+            <section class="card">
+              <div class="card-header">
+                <h2><span class="card-icon">💳</span> Aplicación de Pagos</h2>
+              </div>
+              <div class="card-body">
+                <div class="doc-table-wrap">
+                  <table class="doc-table">
+                    <thead>
+                      <tr>
+                        <th style="min-width:180px; text-align:left;">Documento</th>
+                        <th style="min-width:220px; text-align:left;">Nombre del Archivo</th>
+                        <th style="min-width:60px; text-align:center;">Ver</th>
+                        <th style="min-width:120px; text-align:center;">Estatus</th>
+                      </tr>
+                    </thead>
+                    <tbody id="pagosParcialTableBody">
+                      <!-- Generado por JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+            <!-- 4. INFORMACIÓN DEL AVAL -->
+            <section class="card">
+              <div class="card-header">
+                <h2><span class="card-icon">🤝</span> Información del Aval</h2>
+              </div>
+              <div class="card-body">
+                <!-- Aval 1 -->
+                <div class="sub-block">
+                  <div class="sub-block-header">
+                    <span class="sub-block-title">Aval 1 — Garante</span>
+                    <!-- <button class="btn-edit">✏️ Editar</button> -->
+                  </div>
+                  <div class="field-grid cols-3">
+                    <div class="field">
+                      <label>Nombre(s)</label>
+                      <div class="value">PEDRO</div>
+                    </div>
+                    <div class="field">
+                      <label>Apellido Paterno</label>
+                      <div class="value">PIÑA</div>
+                    </div>
+                    <div class="field">
+                      <label>Apellido Materno</label>
+                      <div class="value">GUTIÉRREZ</div>
+                    </div>
+                    <div class="field">
+                      <label>Fecha de Nacimiento</label>
+                      <div class="value">10/03/1950</div>
+                    </div>
+                    <div class="field">
+                      <label>Edad</label>
+                      <div class="value">76</div>
+                    </div>
+                    <div class="field">
+                      <label>Género</label>
+                      <div class="value">MASCULINO</div>
+                    </div>
+                    <div class="field">
+                      <label>CURP</label>
+                      <div class="value">PIGG500310HMSXTR08</div>
+                    </div>
+                    <div class="field">
+                      <label>RFC</label>
+                      <div class="value">PIGG500310XY3</div>
+                    </div>
+                    <div class="field">
+                      <label>Teléfono</label>
+                      <div class="value">7771234567</div>
+                    </div>
+                  </div>
+                  <!-- Buró Aval 1 con historial de versiones -->
+                  <div class="buro-panel">
+                    <div class="buro-header">
+                      <span class="buro-title">🔍 Consulta de Buró de Crédito — Aval 1</span>
+                      <button class="btn-historial" onclick="toggleHistorialBuro('historialBuroAval1')">📋 Ver
+                        Historial</button>
+                      <!-- <span class="buro-badge buro-autorizado">AUTORIZADO</span> -->
+                      <button class="btn-historial"
+                        onclick="alert('Ver documento de consulta de buro y/o circulo de credito del aval')">🔎 Ver
+                        Consulta</button>
+                    </div>
+                    <div class="buro-details">
+                      <div class="buro-item">
+                        <span class="buro-label">Score</span>
+                        <span class="buro-value">710</span>
+                      </div>
+                      <div class="buro-item">
+                        <span class="buro-label">Fecha Consulta</span>
+                        <span class="buro-value">15/07/2026</span>
+                      </div>
+                      <!-- <div class="buro-item">
+                        <span class="buro-label">Resultado</span>
+                        <span class="buro-value buro-text-ok">Sin atrasos significativos</span>
+                      </div> -->
+                    </div>
+                    <!-- Historial de versiones Buró -->
+                    <div class="buro-historial" id="historialBuroAval1" style="display:none;">
+                      <div class="buro-historial-titulo">Historial de Versiones — Buró</div>
+                      <div class="hc-table-wrap" style="margin-top:10px;">
+                        <table class="hc-table">
+                          <thead>
+                            <tr>
+                              <th>Versión</th>
+                              <th>Fecha Consulta</th>
+                              <th>Score</th>
+                              <th>Resultado</th>
+                              <th>Usuario</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>V1</td>
+                              <td>01/06/2026</td>
+                              <td>695</td>
+                              <td><span class="buro-badge buro-autorizado"
+                                  style="font-size:10px; padding:3px 8px;">AUTORIZADO</span></td>
+                              <td>J. SOLORZANO</td>
+                            </tr>
+                            <tr>
+                              <td>V2</td>
+                              <td>15/07/2026</td>
+                              <td>710</td>
+                              <td><span class="buro-badge buro-autorizado"
+                                  style="font-size:10px; padding:3px 8px;">AUTORIZADO</span></td>
+                              <td>J. SOLORZANO</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Coincidencia en Listas Negras Aval 1 -->
+                  <div class="listas-panel">
+                    <div class="listas-header">
+                      <span class="listas-title">🛡️ Coincidencia en Listas Negras</span>
+                      <button class="btn-historial" onclick="consultarListasNegrasAval1()">
+                        <i aria-hidden="true" class="fa fa-search"></i> Consultar
+                      </button>
+                      <button class="btn-historial" disabled="" id="botonVerConsultaPLDAval1"
+                        onclick="alert('Ver documento de consulta de listas negras, ofac y/o personas bloqueadas')">
+                        <i aria-hidden="true" class="fa fa-file"></i> Ver Consulta
+                      </button>
+                    </div>
+                    <div class="listas-details">
+                      <div class="listas-item">
+                        <span class="listas-label">LISTAS NEGRAS</span>
+                        <span class="listas-value listas-ok" id="statusListasNegrasAval1">➖ Sin consulta</span>
+                      </div>
+                      <div class="listas-item">
+                        <span class="listas-label">LISTAS INTERNAS</span>
+                        <span class="listas-value listas-ok" id="statusOFACAval1">➖ Sin consulta</span>
+                      </div>
+                      <div class="listas-item">
+                        <span class="listas-label">LISTA PERSONAS BLOQUEADAS</span>
+                        <span class="listas-value listas-ok" id="statusPersonasBloqueadasAval1">➖ Sin consulta</span>
+                      </div>
+                      <div class="listas-item">
+                        <span class="listas-label">LISTAS DREM</span>
+                        <span class="listas-value listas-ok" id="statusDremAval1">➖ Sin consulta</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="divider" />
+                <!-- Botón agregar segundo aval -->
+                <!-- <div id="wrapperAgregarAval2" style="margin-bottom: 4px;">
+                  <button class="btn-agregar-aval" onclick="toggleAval2()">
+                    ➕ Agregar Segundo Aval (Aval Solidario)
+                  </button>
+                </div> -->
+                <!-- Aval 2 (oculto por defecto) -->
+                <div id="aval2Wrapper" style="display:block;">
+                  <div class="sub-block" style="margin-top: 12px;">
+                    <div class="sub-block-header">
+                      <span class="sub-block-title">Aval 2 — Solidario</span>
+                      <div style="display:flex; gap:8px;">
+                        <!-- <button class="btn-edit">✏️ Editar</button> -->
+                        <!-- <button class="btn-remove">✖ Eliminar</button> -->
+                      </div>
+                    </div>
+                    <div class="field-grid cols-3">
+                      <div class="field">
+                        <label>Nombre(s)</label>
+                        <input class="input" id="aval2Nombre" placeholder="Nombre(s)" type="text" />
+                      </div>
+                      <div class="field">
+                        <label>Apellido Paterno</label>
+                        <input class="input" id="aval2ApellidoP" placeholder="Apellido Paterno" type="text" />
+                      </div>
+                      <div class="field">
+                        <label>Apellido Materno</label>
+                        <input class="input" id="aval2ApellidoM" placeholder="Apellido Materno" type="text" />
+                      </div>
+                      <div class="field">
+                        <label>Fecha de Nacimiento</label>
+                        <input class="input" id="aval2FechaNac" type="date" />
+                      </div>
+                      <div class="field">
+                        <label>Edad</label>
+                        <input class="input" id="aval2Edad" min="0" placeholder="Edad" type="number" />
+                      </div>
+                      <div class="field">
+                        <label>Género</label>
+                        <select class="select" id="aval2Genero">
+                          <option value="">Seleccione...</option>
+                          <option value="MASCULINO">MASCULINO</option>
+                          <option value="FEMENINO">FEMENINO</option>
+                          <option value="OTRO">OTRO</option>
+                        </select>
+                      </div>
+                      <div class="field">
+                        <label>CURP</label>
+                        <input class="input" id="aval2CURP" placeholder="CURP" type="text" />
+                      </div>
+                      <div class="field">
+                        <label>RFC</label>
+                        <input class="input" id="aval2RFC" placeholder="RFC" type="text" />
+                      </div>
+                      <div class="field">
+                        <label>Teléfono</label>
+                        <input class="input" id="aval2Telefono" placeholder="Teléfono" type="tel" />
+                      </div>
+                    </div>
+                    <!-- Buró Aval 2 con historial -->
+                    <div class="buro-panel" style="margin-top:16px;">
+                      <div class="buro-header">
+                        <span class="buro-title">🔍 Consulta de Buró de Crédito — Aval 2</span>
+                        <button class="btn-historial" onclick="toggleHistorialBuro('historialBuroAval2')">📋 Ver
+                          Historial</button>
+                        <!-- <span class="buro-badge buro-pendiente">PENDIENTE</span> -->
+                        <button class="btn-historial"
+                          onclick="alert('Ver documento de consulta de buro y/o circulo de credito del aval solidario')">🔎
+                          Ver
+                          Consulta</button>
+                      </div>
+                      <div class="buro-details">
+                        <div class="buro-item">
+                          <span class="buro-label">Score</span>
+                          <span class="buro-value">695</span>
+                        </div>
+                        <div class="buro-item">
+                          <span class="buro-label">Fecha Consulta</span>
+                          <span class="buro-value">15/07/2026</span>
+                        </div>
+                        <!-- <div class="buro-item">
+                          <span class="buro-label">Resultado</span>
+                          <span class="buro-value buro-text-ok">Sin atrasos significativos</span>
+                        </div> -->
+                      </div>
+                      <div class="buro-historial" id="historialBuroAval2" style="display:none;">
+                        <div class="buro-historial-titulo">Historial de Versiones — Buró</div>
+                        <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Sin consultas registradas
+                          aún.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Coincidencia en Listas Negras Aval 2 -->
+                <div class="listas-panel">
+                  <div class="listas-header">
+                    <span class="listas-title">🛡️ Coincidencia en Listas Negras</span>
+                    <button class="btn-historial" onclick="consultarListasNegrasAval2()">
+                      <i aria-hidden="true" class="fa fa-search"></i> Consultar
+                    </button>
+                    <button class="btn-historial" disabled="" id="botonVerConsultaPLDAval2"
+                      onclick="alert('Ver documento de consulta de listas negras, ofac y/o personas bloqueadas')">
+                      <i aria-hidden="true" class="fa fa-file"></i> Ver Consulta
+                    </button>
+                  </div>
+                  <div class="listas-details">
+                    <div class="listas-item">
+                      <span class="listas-label">LISTAS NEGRAS</span>
+                      <span class="listas-value listas-ok" id="statusListasNegrasAval2">➖ Sin consulta</span>
+                    </div>
+                    <div class="listas-item">
+                      <span class="listas-label">LISTAS INTERNAS</span>
+                      <span class="listas-value listas-ok" id="statusOFACAval2">➖ Sin consulta</span>
+                    </div>
+                    <div class="listas-item">
+                      <span class="listas-label">LISTA PERSONAS BLOQUEADAS</span>
+                      <span class="listas-value listas-ok" id="statusPersonasBloqueadasAval2">➖ Sin consulta</span>
+                    </div>
+                    <div class="listas-item">
+                      <span class="listas-label">LISTAS DREM</span>
+                      <span class="listas-value listas-ok" id="statusDremAval2">➖ Sin consulta</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- 5. GARANTÍAS ADICIONALES -->
+            <section class="card">
+              <div class="card-header">
+                <h2><span class="card-icon">🏷️</span> Garantía Natural</h2>
+              </div>
+              <div class="card-body">
+                <div class="field-grid cols-2">
+                  <div class="field">
+                    <label>Tipo de documento:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="FACTURA" />
+                  </div>
+                  <div class="field">
+                    <label>Descripcion del bien:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="MOTOCARRO APE CITY GASOLINA" />
+                  </div>
+                  <div class="field">
+                    <label>Marca:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="PIAGGIO" />
+                  </div>
+                  <div class="field">
+                    <label>Modelo:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="2026" />
+                  </div>
+                  <div class="field">
+                    <label>Color:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="ROJO" />
+                  </div>
+                  <div class="field">
+                    <label>No. Serie:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="MC3B123456789" />
+                  </div>
+                  <div class="field">
+                    <label>No. de Motor:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="TBPAL123456789" />
+                  </div>
+                  <div class="field">
+                    <label>Folio:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="F150" />
+                  </div>
+                  <div class="field">
+                    <label>A nombre de:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="HOMERO SIMPSON" />
+                  </div>
+                  <div class="field">
+                    <label>Expedido por:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="EDDY FRANCISCO PENAGOS" />
+                  </div>
+                  <div class="field">
+                    <label>Valor comercial:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="$ 115,000.00" />
+                  </div>
+                </div>
+              </div>
+              <!-- <div id="wrapperGarAdicional" style="margin-bottom: 4px;">
+                <button class="btn-agregar-aval"
+                  onclick="let garAdicional = document.getElementById('garantiaBienesAdicional'); if(garAdicional.style.display === 'none') { garAdicional.style.display = 'block'; } else { garAdicional.style.display = 'none'; }">
+                  ➕ Agregar Garantía Adicional
+                </button>
+              </div> -->
+            </section>
+            <section class="card" id="garantiaBienesAdicional" style="display: block;">
+              <div class="card-header">
+                <h2><span class="card-icon">🏷️</span> Garantía Adicional</h2>
+              </div>
+              <div class="card-body">
+                <div class="field-grid cols-2">
+                  <div class="field">
+                    <label>Tipo de documento:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="FACTURA" />
+                  </div>
+                  <div class="field">
+                    <label>Descripcion del bien:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="MOTOCARRO APE CITY GASOLINA" />
+                  </div>
+                  <div class="field">
+                    <label>Marca:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="PIAGGIO" />
+                  </div>
+                  <div class="field">
+                    <label>Modelo:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="2026" />
+                  </div>
+                  <div class="field">
+                    <label>Color:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="ROJO" />
+                  </div>
+                  <div class="field">
+                    <label>No. Serie:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="MC3B123456789" />
+                  </div>
+                  <div class="field">
+                    <label>No. de Motor:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="TBPAL123456789" />
+                  </div>
+                  <div class="field">
+                    <label>Folio:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="F150" />
+                  </div>
+                  <div class="field">
+                    <label>A nombre de:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="HOMERO SIMPSON" />
+                  </div>
+                  <div class="field">
+                    <label>Expedido por:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="EDDY FRANCISCO PENAGOS" />
+                  </div>
+                  <div class="field">
+                    <label>Valor comercial:</label>
+                    <input class="input" disabled="" id="rcTipoGarantia" style="color: white !important;" type="text"
+                      value="$ 115,000.00" />
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- 6. DOMICILIOS -->
+            <section class="card">
+              <div class="card-header">
+                <h2><span class="card-icon">📍</span> Domicilios</h2>
+              </div>
+              <div class="card-body">
+                <div class="sub-block">
+                  <div class="sub-block-header">
+                    <span class="sub-block-title">Domicilio 1 — Personal</span>
+                  </div>
+                  <div class="field-grid cols-3">
+                    <div class="field span-2">
+                      <label>Calle</label>
+                      <div class="value">EL CALVARIO</div>
+                    </div>
+                    <div class="field">
+                      <label>No. Exterior</label>
+                      <div class="value">SN</div>
+                    </div>
+                    <div class="field">
+                      <label>No. Interior</label>
+                      <div class="value">SN</div>
+                    </div>
+                    <div class="field">
+                      <label>Manzana</label>
+                      <div class="value">—</div>
+                    </div>
+                    <div class="field">
+                      <label>Lote</label>
+                      <div class="value">—</div>
+                    </div>
+                    <div class="field">
+                      <label>Colonia</label>
+                      <div class="value">CENTRO ATLACHOLOAYA</div>
+                    </div>
+                    <div class="field">
+                      <label>Municipio</label>
+                      <div class="value">XOCHITEPEC</div>
+                    </div>
+                    <div class="field">
+                      <label>CP</label>
+                      <div class="value">62790</div>
+                    </div>
+                    <div class="field">
+                      <label>Estado de la República</label>
+                      <div class="value">MORELOS</div>
+                    </div>
+                    <div class="field">
+                      <label>País</label>
+                      <div class="value">MÉXICO</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div><!-- /vistaRegistroClientes -->
+          <!-- ================================================================ -->
+          <!--  VISTA: MESA DE CONTROL (tab derecho)                             -->
+          <!-- ================================================================ -->
+          <div id="vistaMesaControl" style="display:none;">
+            <div style="display: grid; gap:18px; grid-template-columns: 30% 70%">
+              <!-- Panel de resumen stats lado izquierdo 30% -->
+              <section class="card" style="width: 100%; height: fit-content;">
+                <div class="card-body" style="padding: 16px 20px;">
+                  <div>
+                    <!-- <div style="display: flex; justify-content: space-between;">
+                      <span class="mc-stat-label"
+                        style="font-size: 18px; color:white; font-weight: bold;">Solicitados:</span>
+                      <span class="mc-stat-value">30</span>
+                    </div>
+                    <br>
+                    <div style="display: flex; justify-content: space-between;">
+                      <span class="mc-stat-label"
+                        style="font-size: 18px; color:white; font-weight: bold;">Cargados:</span>
+                      <span class="mc-stat-value">27</span>
+                    </div>
+                    <br>
+                    <div style="display: flex; justify-content: space-between;">
+                      <span class="mc-stat-label"
+                        style="font-size: 18px; color:white; font-weight: bold;">Verificados:</span>
+                      <span class="mc-stat-value">14</span>
+                    </div>
+                    <br> -->
+                    <!-- <div style="display: flex; justify-content: space-between;">
+                      <span class="mc-stat-label" style="font-size: 18px; color:white; font-weight: bold;">Firmas
+                        cotejadas</span>
+                      <input type="checkbox" class="switch-unico" id="switchFirmasCotejadas">
+                    </div>
+                    <br> -->
+                    <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+                      <button class="pill pill-ghost" onclick="abrirModalAutorizacion()"
+                        style="font-size: 12px; justify-content: center;">
+                        ✅ Autorizar Crédito
+                      </button>
+                      <button class="pill pill-ghost mc-grupo-active" id="btnGrupoCliente"
+                        onclick="mostrarGrupoDocumentos('cliente')" style="font-size: 12px; justify-content: center;">
+                        Docs. Cliente y Aval(es)
+                      </button>
+                      <button class="pill pill-ghost" id="btnGrupoGarantias"
+                        onclick="mostrarGrupoDocumentos('garantias')" style="font-size: 12px; justify-content: center;">
+                        Docs. de Garantías
+                      </button>
+                      <!-- <button class="pill pill-ghost" style="font-size: 12px; justify-content: center;"
+                        onclick="alert('Visualizando Solicitud...')">
+                        👁 Visualizar Solicitud
+                      </button> -->
+                      <!-- <button class="pill pill-ghost" style="font-size: 12px; justify-content: center;"
+                        onclick="alert('Descargando formato...')">
+                        ⬇ Descargar Formato
+                      </button> -->
+                      <div style="width: 100%;">
+                        <select class="pill pill-ghost" id="etapaMover"
+                          style="font-size: 12px; justify-content: center; width: 100%;">
+                          <option disabled="" selected="" style="text-align: center;" value="">Estatus de Mesa de
+                            Control
+                          </option>
+                          <!-- <option value="Siguiente etapa por Autorizacion" style="text-align: center;">Autorizado</option> -->
+                          <option style="text-align: center;" value="Analisis">Observado Analisis</option>
+                          <option style="text-align: center;" value="Carga de Documentos">Observado Area Comercial
+                          </option>
+                          <option style="text-align: center;" value="Aplicacion de Pagos">Observado Aplicacion de Pagos
+                          </option>
+                        </select>
+                        <!-- <button class="pill pill-ghost" style="font-size: 12px; justify-content: center; width: 100%;"
+                          onclick="etapa=document.getElementById('etapaMover').value; alert('Moviendo etapa de Mesa de Control a ' + etapa + '...');">Mover
+                          Etapa</button> -->
+                      </div>
+                    </div>
+                    <!-- <label class="mc-switch-label">
+                      <span class="switch-track">
+                        <input type="checkbox" id="switchVerificacionCondiciones">
+                        <span class="switch-thumb"></span>
+                      </span>
+                      Verificación de condiciones autorizadas
+                    </label> -->
+                  </div>
+                </div>
+              </section>
+              <!-- Autorización de Crédito lado derecho 70% -->
+              <div>
+                <div class="modal-overlay" hidden="" id="modalAutorizacion">
+                  <section class="card modal-content">
+                    <div class="card-header">
+                      <h2><span class="card-icon">✅</span> Autorización de Crédito</h2>
+                      <button class="icon-btn" onclick="cerrarModalAutorizacion()"
+                        style="border: none; background: transparent; cursor: pointer; color: #fff; font-size: 16px;">❌</button>
+                    </div>
+                    <div class="card-body">
+                      <div class="field" style="margin-bottom: 16px;">
+                        <label>Comentarios de Autorización</label>
+                        <textarea class="textarea" id="comentariosAutorizacion"
+                          placeholder="Ingrese los comentarios de autorización..." rows="3"></textarea>
+                      </div>
+                      <div class="registro-autorizacion" id="registroAutorizacion" style="display:none;">
+                        <span class="registro-icon">✅</span>
+                        <div>
+                          <div class="registro-usuario" id="textoUsuarioAutorizo"></div>
+                          <div class="registro-fecha" id="textoFechaAutorizo"></div>
+                        </div>
+                      </div>
+                      <div class="actions-row" style="justify-content: flex-start; margin-top: 4px;">
+                        <button class="btn-autorizar" id="btnAutorizarCredito" onclick="autorizarCredito()">
+                          ✅ Autorizar Crédito
+                        </button>
+                      </div>
+                      <!--div con una tabla de 4 columnas, la primera con un check, la segunda con un el estatus de observado, solventado, o autorizado o cancelado, la tercera columna con la fecha de ese estatus, la cuarta con el usuario que lo determino-->
+                      <br />
+                      <div class="registros-autorizaciones">
+                        <div class="registro-autorizacion">
+                          <div class="mc-table-container">
+                            <table
+                              style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 14px; color: #333333;">
+                              <thead style="color: #ffffff; font-size: 16px; font-weight: bold;">
+                                <tr>
+                                  <th style="padding: 12px; width: 5%; text-align: center; color: #ffffff;">#</th>
+                                  <th style="padding: 12px; width: 15%; text-align: left; color: #ffffff;">Estatus
+                                  </th>
+                                  <th style="padding: 12px; width: 20%; text-align: left; color: #ffffff;">Fecha</th>
+                                  <th style="padding: 12px; width: 20%; text-align: left; color: #ffffff;">Usuario
+                                  </th>
+                                  <th style="padding: 12px; width: 40%; text-align: left; color: #ffffff;">
+                                    Comentarios</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <!-- Fila 1 (Fondo gris claro para efecto cebra) -->
+                                <tr>
+                                  <td style="padding: 10px; text-align: center; color: #ffffff;">1</td>
+                                  <td style="padding: 10px; color: #00ff73;">Autorizado</td>
+                                  <td style="padding: 10px; color: #ffffff;">2022-01-01</td>
+                                  <td style="padding: 10px; color: #ffffff;">Mesa de Control 2</td>
+                                  <td style="padding: 10px; color: #ffffff;">Autorizado para credito condicionado
+                                  </td>
+                                </tr>
+                                <!-- Fila 2 (Fondo blanco) -->
+                                <tr>
+                                  <td style="padding: 10px; text-align: center; color: #ffffff;">2</td>
+                                  <td style="padding: 10px; color: #00ff73;">Autorizado</td>
+                                  <td style="padding: 10px; color: #ffffff;">2022-01-02</td>
+                                  <td style="padding: 10px; color: #ffffff;">Mesa de Control 3</td>
+                                  <td style="padding: 10px; color: #ffffff;">Autorizado para contrato</td>
+                                </tr>
+                                <!-- Fila 3 (Fondo gris claro) -->
+                                <tr>
+                                  <td style="padding: 10px; text-align: center; color: #ffffff;">3</td>
+                                  <td style="padding: 10px; color: #00ff73;">Autorizado</td>
+                                  <td style="padding: 10px; color: #ffffff;">2022-01-03</td>
+                                  <td style="padding: 10px; color: #ffffff;">Mesa de Control 1</td>
+                                  <td style="padding: 10px; color: #ffffff;">Autorizado para desembolso</td>
+                                </tr>
+                                <!-- Fila 4 (Fondo blanco) -->
+                                <tr>
+                                  <td style="padding: 10px; text-align: center; color: #ffffff;">4</td>
+                                  <td style="padding: 10px; color: #00ff73;">Autorizado</td>
+                                  <td style="padding: 10px; color: #ffffff;">2022-01-04</td>
+                                  <td style="padding: 10px; color: #ffffff;">Mesa de Control 1</td>
+                                  <td style="padding: 10px; color: #ffffff;">Autorizado para pago</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <!-- Documentos de Asociación -->
+                <section class="card">
+                  <div class="card-body" style="padding: 20px;">
+                    <div class="mc-docs-layout">
+                      <!-- Columna izquierda: controles -->
+                      <!-- <div class="mc-left-panel">
+                        <div class="mc-doc-section-title">Documentos de Asociación</div>
+                        <div class="mc-doc-grupos">
+                          <button class="mc-grupo-btn mc-grupo-active" id="btnGrupoCliente"
+                            onclick="mostrarGrupoDocumentos('cliente')">
+                            Docs. Cliente y Aval(es)
+                          </button>
+                          <button class="mc-grupo-btn" id="btnGrupoGarantias"
+                            onclick="mostrarGrupoDocumentos('garantias')">
+                            Docs. de Garantías
+                          </button>
+                        </div>
+                        <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+                          <button class="pill pill-ghost" style="font-size: 12px; justify-content: center;"
+                            onclick="alert('Visualizando Solicitud...')">
+                            👁 Visualizar Solicitud
+                          </button>
+                          <button class="pill pill-ghost" style="font-size: 12px; justify-content: center;"
+                            onclick="alert('Descargando formato...')">
+                            ⬇ Descargar Formato
+                          </button>
+                        </div>
+                      </div> -->
+                      <!-- Tabla de documentos -->
+                      <div class="mc-doc-table-wrap">
+                        <!-- Grupo: Cliente y Aval(es) -->
+                        <div id="grupoDocCliente">
+                          <div class="mc-doc-group-title">Documentos — Cliente</div>
+                          <div class="doc-table-wrap">
+                            <table class="doc-table">
+                              <thead>
+                                <tr>
+                                  <th style="min-width:180px; text-align:left;">Documento</th>
+                                  <th style="min-width:180px; text-align:left;">Nombre</th>
+                                  <th style="min-width:60px; text-align:center;">Ver Doc.</th>
+                                  <th style="min-width:70px; text-align:center;">Verificar</th>
+                                  <th style="min-width:120px; text-align:left;">Comentarios</th>
+                                </tr>
+                              </thead>
+                              <tbody id="mcDocClienteBody">
+                                <!-- Generado por JS -->
+                              </tbody>
+                            </table>
+                          </div>
+                          <br />
+                          <div class="mc-doc-group-title">Documentos — Aval Solidario</div>
+                          <div class="doc-table-wrap">
+                            <table class="doc-table">
+                              <thead>
+                                <tr>
+                                  <th style="min-width:180px; text-align:left;">Documento</th>
+                                  <th style="min-width:180px; text-align:left;">Nombre</th>
+                                  <th style="min-width:60px; text-align:center;">Ver Doc.</th>
+                                  <th style="min-width:70px; text-align:center;">Verificar</th>
+                                  <th style="min-width:120px; text-align:left;">Comentarios</th>
+                                </tr>
+                              </thead>
+                              <tbody id="mcDocSolidarioBody">
+                                <!-- Generado por JS -->
+                              </tbody>
+                            </table>
+                          </div>
+                          <br />
+                          <div class="mc-doc-group-title">Documentos — Aval Garante</div>
+                          <div class="doc-table-wrap">
+                            <table class="doc-table">
+                              <thead>
+                                <tr>
+                                  <th style="min-width:180px; text-align:left;">Documento</th>
+                                  <th style="min-width:180px; text-align:left;">Nombre</th>
+                                  <th style="min-width:60px; text-align:center;">Ver Doc.</th>
+                                  <th style="min-width:70px; text-align:center;">Verificar</th>
+                                  <th style="min-width:120px; text-align:left;">Comentarios</th>
+                                </tr>
+                              </thead>
+                              <tbody id="mcDocGaranteBody">
+                                <!-- Generado por JS -->
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <!-- Grupo: Garantías -->
+                        <div id="grupoDocGarantias" style="display:none;">
+                          <div class="mc-doc-group-title">Documentos — Garantías</div>
+                          <div class="doc-table-wrap">
+                            <table class="doc-table">
+                              <thead>
+                                <tr>
+                                  <th style="min-width:220px; text-align:left;">Documento</th>
+                                  <th style="min-width:180px; text-align:left;">Nombre</th>
+                                  <th style="min-width:60px; text-align:center;">Ver Doc.</th>
+                                  <th style="min-width:70px; text-align:center;">Verificar</th>
+                                  <th style="min-width:120px; text-align:left;">Comentarios</th>
+                                </tr>
+                              </thead>
+                              <tbody id="mcDocGarantiasBody">
+                                <!-- Generado por JS -->
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div><!-- /vistaMesaControl -->
+        </section>
+        <section hidden="" id="vistaOrdenPago">
+          <div id="vistaOrdenPagoDiv" class="hc-table-wrap">
+            <table class="hc-table">
+              <thead id="vistaOrdenPagoThead">
+                <tr>
+                  <th data-key="credito" onclick="sortOrdenPago('credito')" style="cursor: pointer;">NO. CREDITO<span
+                      class="sort-icon"></span></th>
+                  <th data-key="nombre" onclick="sortOrdenPago('nombre')" style="cursor: pointer;">NOMBRE ACREDITADO
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th data-key="fecha" onclick="sortOrdenPago('fecha')" style="cursor: pointer;">FECHA DESEMBOLSO<span
+                      class="sort-icon"></span></th>
+                  <th data-key="liberacion" onclick="sortOrdenPago('liberacion')" style="cursor: pointer;">FECHA
+                    LIBERACION<span class="sort-icon"></span></th>
+                  <th data-key="monto" onclick="sortOrdenPago('monto')" style="cursor: pointer;">MONTO LIBERADO<span
+                      class="sort-icon"></span></th>
+                  <th data-key="accesorios" onclick="sortOrdenPago('accesorios')" style="cursor: pointer;">
+                    ACCESORIOS<span class="sort-icon"></span></th>
+                  <th data-key="totalFinal" onclick="sortOrdenPago('totalFinal')" style="cursor: pointer;">
+                    TOTAL A PAGAR<span class="sort-icon"></span></th>
+                  <th data-key="producto" onclick="sortOrdenPago('producto')" style="cursor: pointer;">PRODUCTO<span
+                      class="sort-icon"></span></th>
+                  <th data-key="distribuidor" onclick="sortOrdenPago('distribuidor')" style="cursor: pointer;">
+                    DISTRIBUIDOR<span class="sort-icon"></span></th>
+                  <th data-key="cuentaClabe" onclick="sortOrdenPago('cuentaClabe')" style="cursor: pointer;">CUENTA
+                    CLABE<span class="sort-icon"></span></th>
+                  <th data-key="institucionBancaria" onclick="sortOrdenPago('institucionBancaria')"
+                    style="cursor: pointer;">INSTITUCION BANCARIA<span class="sort-icon"></span></th>
+                  <th data-key="estatus" onclick="sortOrdenPago('estatus')" style="cursor: pointer;">ESTATUS
+                    TESORERIA<span class="sort-icon"></span></th>
+                  <th data-key="poliza" onclick="sortOrdenPago('poliza')" style="cursor: pointer;">POLIZA
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th data-key="comentario" onclick="sortOrdenPago('comentario')" style="cursor: pointer;">
+                    COMENTARIO<span class="sort-icon"></span></th>
+                </tr>
+              </thead>
+              <tbody id="vistaOrdenPagoTableBody" style="background-color: rgb(71, 95, 117)">
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card" hidden="" id="tipoActa">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Acta de Comité</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Tipo de Acta</label>
+                <div style="display: flex; gap: 24px; padding-top: 8px;">
+                  <label class="checkbox-label"
+                    style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main);">
+                    <input id="actaMenor" name="tipoActaOpcion"
+                      style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="radio" />
+                    ACTA MENOR
+                  </label>
+                  <label class="checkbox-label"
+                    style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main);">
+                    <input id="actaMayor" name="tipoActaOpcion"
+                      style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="radio" />
+                    ACTA MAYOR
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="firmas">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Firmas de Autorización</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid cols-3">
+              <!-- Vocal de comité -->
+              <div class="field">
+                <label>Vocal de Comité</label>
+                <input class="input-locked" readonly="" type="text" value="Analista que paso al modulo de decisiones" />
+              </div>
+              <!-- Presidente -->
+              <div class="field">
+                <label>Presidente</label>
+                <select class="select" id="presidenteTipo">
+                  <option value="titular">Titular</option>
+                  <option value="suplente">Suplente</option>
+                </select>
+              </div>
+              <div class="field">
+                <label> </label>
+                <select class="select" id="presidenteNombre"></select>
+              </div>
+              <!-- Secretaria -->
+              <div class="field">
+                <label>Secretaria</label>
+                <select class="select" id="secretariaTipo">
+                  <option value="titular">Titular</option>
+                  <option value="suplente">Suplente</option>
+                </select>
+              </div>
+              <div class="field">
+                <label> </label>
+                <select class="select" id="secretariaNombre"></select>
+              </div>
+              <div></div>
+              <!-- Checkboxes de Activación (debajo de secretaria) -->
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input id="requiereFirmaEspecial"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
+                  ¿Requiere Firma Especial?
+                </label>
+              </div>
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input id="requiereFirmaExtraordinaria"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
+                  ¿Requiere Firma Extraordinaria?
+                </label>
+              </div>
+              <div></div>
+              <!-- Firma Especial -->
+              <div class="field" id="wrapperFirmaEspecial" style="display: none;">
+                <label>Firma Especial</label>
+                <input class="input-locked" id="firmaEspecial" readonly="" type="text"
+                  value="VICTOR MANUEL COUTIÑO ALBORES" />
+              </div>
+              <!-- Firma Extraordinaria -->
+              <div class="field" id="wrapperFirmaExtraordinaria" style="display: none;">
+                <label>Firma Extraordinaria</label>
+                <select class="select" id="firmaExtraordinaria">
+                  <option value="">Seleccione...</option>
+                  <option value="DANIEL TREJO DOMÍNGUEZ">DANIEL TREJO DOMÍNGUEZ</option>
+                  <option value="LIZZET ALONDRA BORGES GARCIA">LIZZET ALONDRA BORGES GARCIA</option>
+                  <option value="JOSÉ AMIR ALFARO PANIAGUA">JOSÉ AMIR ALFARO PANIAGUA</option>
+                </select>
+              </div>
+              <div id="wrapperFirmaVacio" style="display: none;"></div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="firmasMenor">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Firmas de Autorización Acta Menor</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid cols-3">
+              <!-- Vocal de comité -->
+              <div class="field">
+                <label>Vocal de Comité</label>
+                <input class="input-locked" readonly="" type="text" value="Analista que paso al modulo de decisiones" />
+              </div>
+              <!-- Presidente -->
+              <div class="field">
+                <label>Presidente</label>
+                <select class="select" id="presidenteTipo">
+                  <option value="titular">Titular</option>
+                  <option value="suplente">Suplente</option>
+                </select>
+              </div>
+              <div class="field">
+                <label> </label>
+                <select class="select" id="presidenteNombre"></select>
+              </div>
+              <!-- Secretaria -->
+              <div class="field">
+                <label>Secretaria</label>
+                <select class="select" id="secretariaTipo">
+                  <option value="titular">Titular</option>
+                  <option value="suplente">Suplente</option>
+                </select>
+              </div>
+              <div class="field">
+                <label> </label>
+                <select class="select" id="secretariaNombre"></select>
+              </div>
+              <div></div>
+              <!-- Checkboxes de Activación (debajo de secretaria) -->
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input id="requiereFirmaEspecial"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
+                  ¿Requiere Firma Especial?
+                </label>
+              </div>
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input id="requiereFirmaExtraordinaria"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
+                  ¿Requiere Firma Extraordinaria?
+                </label>
+              </div>
+              <div></div>
+              <!-- Firma Especial -->
+              <div class="field" id="wrapperFirmaEspecial" style="display: none;">
+                <label>Firma Especial</label>
+                <input class="input-locked" id="firmaEspecial" readonly="" type="text"
+                  value="VICTOR MANUEL COUTIÑO ALBORES" />
+              </div>
+              <!-- Firma Extraordinaria -->
+              <div class="field" id="wrapperFirmaExtraordinaria" style="display: none;">
+                <label>Firma Extraordinaria</label>
+                <select class="select" id="firmaExtraordinaria">
+                  <option value="">Seleccione...</option>
+                  <option value="DANIEL TREJO DOMÍNGUEZ">DANIEL TREJO DOMÍNGUEZ</option>
+                  <option value="LIZZET ALONDRA BORGES GARCIA">LIZZET ALONDRA BORGES GARCIA</option>
+                  <option value="JOSÉ AMIR ALFARO PANIAGUA">JOSÉ AMIR ALFARO PANIAGUA</option>
+                </select>
+              </div>
+              <div id="wrapperFirmaVacio" style="display: none;"></div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="firmasMayor">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Firmas de Autorización Acta Mayor</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid cols-3">
+              <!-- PRESIDENTE MAYOR -->
+              <div class="field">
+                <label>PRESIDENTE DEL COMITE DE CREDITO</label>
+                <input class="input-locked-mayor" readonly="" type="text" value="C.P VICTOR MANUEL COTIÑO ALBORES" />
+              </div>
+              <!-- SECRETARIO MAYOR (PRESIDENTE MENOR) -->
+              <div class="field">
+                <label>SECRETARIO DEL COMITE DE CREDITO (PRESIDENTE DEL COMITE DE CREDITO DE
+                  MENORES)</label>
+                <input class="input-locked-mayor" readonly="" type="text" value="ING. JUAN MORENO DE LA HIGUERA" />
+              </div>
+              <!-- VOCAL DEL COMITE MAYOR (DIRECTORA OPERACIONES) -->
+              <div class="field">
+                <label>VOCAL DEL COMITE DE CREDITO (DIRECTORA DE OPERACIONES)</label>
+                <input class="input-locked-mayor" readonly="" type="text" value="CP. ONEYDA ELIDE REYES HERNANDEZ" />
+              </div>
+              <!-- VOCAL DEL COMITE MAYOR (SUB DIRECTOR JURIDICO) -->
+              <div class="field">
+                <label>VOCAL DEL COMITE DE CREDITO (SUB DIRECTOR JURIDICO)</label>
+                <input class="input-locked-mayor" readonly="" type="text"
+                  value="LIC. FELIPE DE JESUS AGUILAR RODRIGUEZ" />
+              </div>
+              <!-- VOCAL DEL COMITE MAYOR (GERENTE DE RIESGOS) -->
+              <div class="field">
+                <label>VOCAL DEL COMITE DE CREDITO (GERENTE DE RIESGOS)</label>
+                <input class="input-locked-mayor" readonly="" type="text" value="LIC. JOSE LUIS A. MORENO VAZQUEZ" />
+              </div>
+              <div></div>
+              <!-- Checkboxes de Activación (debajo de secretaria) -->
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input id="requiereFirmaEspecial"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
+                  ¿Requiere Firma Especial?
+                </label>
+              </div>
+              <div class="field">
+                <label class="checkbox-label"
+                  style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
+                  <input id="requiereFirmaExtraordinaria"
+                    style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
+                  ¿Requiere Firma Extraordinaria?
+                </label>
+              </div>
+              <div></div>
+              <!-- Firma Especial -->
+              <div class="field" id="wrapperFirmaEspecial" style="display: none;">
+                <label>Firma Especial</label>
+                <input class="input-locked" id="firmaEspecial" readonly="" type="text"
+                  value="VICTOR MANUEL COUTIÑO ALBORES" />
+              </div>
+              <!-- Firma Extraordinaria -->
+              <div class="field" id="wrapperFirmaExtraordinaria" style="display: none;">
+                <label>Firma Extraordinaria</label>
+                <select class="select" id="firmaExtraordinaria">
+                  <option value="">Seleccione...</option>
+                  <option value="DANIEL TREJO DOMÍNGUEZ">DANIEL TREJO DOMÍNGUEZ</option>
+                  <option value="LIZZET ALONDRA BORGES GARCIA">LIZZET ALONDRA BORGES GARCIA</option>
+                  <option value="JOSÉ AMIR ALFARO PANIAGUA">JOSÉ AMIR ALFARO PANIAGUA</option>
+                </select>
+              </div>
+              <div id="wrapperFirmaVacio" style="display: none;"></div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="dictamen">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Resolución de Comité de Crédito</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid cols-3">
+              <div class="field">
+                <label>Resolución</label>
+                <select class="select select-status" id="autorizacion">
+                  <option value="">Seleccione...</option>
+                  <option value="autorizado">Autorizado</option>
+                  <option value="observado">Observado</option>
+                  <option value="rechazado">Rechazado</option>
+                </select>
+              </div>
+              <div class="field" id="wrapperFechaAprobacion">
+                <label>Fecha de Aprobación</label>
+                <input class="input-locked" id="fechaAprobacion" placeholder="—" readonly="" type="text" />
+              </div>
+              <div class="field">
+                <label>Última Modificación</label>
+                <input class="input-locked" id="ultimaModificacion" readonly="" type="text" />
+              </div>
+              <div class="field">
+                <label>Monto Aprobado</label>
+                <div class="input-prefix">
+                  <span>$</span>
+                  <input class="input" id="montoAprobado" min="0" placeholder="0.00" step="0.01" type="number" />
+                </div>
+              </div>
+              <div class="field">
+                <label>Enganche A Recibir</label>
+                <div class="input-prefix">
+                  <span>$</span>
+                  <input class="input" id="engancheRecibir" min="0" placeholder="0.00" step="0.01" type="number" />
+                </div>
+              </div>
+              <div class="field">
+                <label>Plazo</label>
+                <div class="input-suffix">
+                  <input class="input" id="plazo" min="0" placeholder="0" step="1" type="number" />
+                </div>
+              </div>
+              <div class="field">
+                <label>Tasa</label>
+                <div class="input-suffix">
+                  <input class="input" id="tasa" min="0" placeholder="0.00" step="0.01" type="number" />
+                  <span>%</span>
+                </div>
+              </div>
+              <div class="field">
+                <label>Periodicidad</label>
+                <select class="select" id="periodicidad">
+                  <option value="">Seleccione...</option>
+                  <option value="28dias">28 dias</option>
+                  <option value="semanal">Semanal</option>
+                  <option value="catorcenal">Catorcenal</option>
+                  <option value="quincenal">Quincenal</option>
+                  <option value="mensual">Mensual</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Número de Pagos</label>
+                <div class="input-suffix">
+                  <input class="input" id="plazo" min="0" placeholder="0" step="1" type="number" />
+                </div>
+              </div>
+              <div class="field">
+                <label>Nivel de Riesgo</label>
+                <select class="select" id="nivelRiesgo">
+                  <option value="">Seleccione...</option>
+                  <option value="bajo">Bajo</option>
+                  <option value="medio">Medio</option>
+                  <option value="alto">Alto</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Motivo del Riesgo</label>
+                <input class="input" id="motivoRiesgo" placeholder="Motivo..." type="text" />
+              </div>
+              <div class="field">
+                <label>Fecha de Resolución</label>
+                <input class="input-locked" id="fechaResolucion" readonly="" type="text" />
+              </div>
+              <div class="field">
+                <label>Monto Aprobado en UDIS</label>
+                <input class="input" id="montoUdis" placeholder="0" readonly="" type="text" />
+              </div>
+              <div class="field">
+                <label>Enganche en UDIS</label>
+                <input class="input" id="engancheUdis" placeholder="0" readonly="" type="text" />
+              </div>
+              <div class="field">
+                <label>Valor de UDI</label>
+                <input class="input" id="input-udi" placeholder="0" readonly="" type="text" />
+                <span class="input-suffix-text" id="resultado-udi">Consultando...</span>
+              </div>
+              <div class="field span-3">
+                <label> </label>
+                <div></div>
+              </div>
+              <div class="field">
+                <label>Recurrencia del Caso</label>
+                <input class="input" id="recurrenciaCaso" placeholder="Cuantas veces a pasado a Comite..."
+                  type="text" />
+              </div>
+              <div class="field span-2" id="condicionesAutorizacion">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <label style="margin-bottom: 0;">Condiciones de Autorización</label>
+                  <button class="pill pill-ghost" id="btnLimpiarCondiciones" style="padding: 4px 12px; font-size: 11px;"
+                    type="button">Limpiar</button>
+                </div>
+                <textarea class="textarea" id="condicionesAutorizacionText" placeholder="Condiciones de autorización..."
+                  rows="4"></textarea>
+              </div>
+              <div class="field span-3">
+                <label> </label>
+                <div></div>
+              </div>
+              <div class="field span-3" id="wrapperResolucionPredefinida" style="display: none;">
+                <label>Plantilla de Resolución (Opcional)</label>
+                <select class="select" id="resolucionPredefinida">
+                  <option disabled="" selected="" value="">Seleccione una plantilla...</option>
+                </select>
+              </div>
+              <div class="field span-3" id="textoResolucion">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <label style="margin-bottom: 0;">Resolución de Comité</label>
+                  <button class="pill pill-ghost" id="btnLimpiarResolucion" style="padding: 4px 12px; font-size: 11px;"
+                    type="button">Limpiar</button>
+                </div>
+                <textarea class="textarea" id="resolucionComite"
+                  placeholder="Escriba la resolución del comité de crédito..." rows="4"></textarea>
+              </div>
+            </div>
+            <div class="actions-row">
+              <button class="btn-save" id="guardarResolucion">Guardar Resolución</button>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="dictamenQuash">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Información QUASH</h2>
+          </div>
+          <div class="card-body">
+            <!-- Resultado principal -->
+            <div class="quash-resultado">
+              <div class="quash-item quash-resultado-item">
+                <span class="quash-label">RESULTADO</span>
+                <span class="quash-value quash-autorizado" id="quashResultado">AUTORIZADO</span>
+              </div>
+              <div class="quash-item quash-resultado-item">
+                <span class="quash-label">SCORE DE APROBACIÓN</span>
+                <span class="quash-value" id="quashScore">69%</span>
+              </div>
+              <div class="quash-item quash-resultado-item">
+                <span class="quash-label">OBSERVACIONES</span>
+                <span class="quash-value" id="quashObservaciones">No aplica</span>
+              </div>
+            </div>
+            <!-- Reglas de Evaluación -->
+            <div class="quash-reglas">
+              <div class="quash-reglas-titulo">Reglas de Evaluación</div>
+              <div class="quash-reglas-grid">
+                <div class="quash-regla-item">
+                  <span class="quash-regla-nombre">Edad</span>
+                  <span class="quash-regla-valor" id="quashEdad">No aplica</span>
+                </div>
+                <div class="quash-regla-item">
+                  <span class="quash-regla-nombre">Sexo</span>
+                  <span class="quash-regla-valor" id="quashSexo">Agregar pareja como co
+                    acreditado</span>
+                </div>
+                <div class="quash-regla-item">
+                  <span class="quash-regla-nombre">Estado Civil</span>
+                  <span class="quash-regla-valor" id="quashEstadoCivil">Validar criterio estado civil
+                    femenino</span>
+                </div>
+                <div class="quash-regla-item">
+                  <span class="quash-regla-nombre">Actividad Económica</span>
+                  <span class="quash-regla-valor" id="quashActividadEconomica">No aplica</span>
+                </div>
+                <div class="quash-regla-item">
+                  <span class="quash-regla-nombre">Consulta HC</span>
+                  <span class="quash-regla-valor" id="quashConsultaHC">No aplica</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="historial">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Historial de Créditos</h2>
+          </div>
+          <div class="card-body">
+            <!-- Tabla de créditos -->
+            <div class="hc-table-wrap">
+              <table class="hc-table">
+                <thead>
+                  <tr>
+                    <th>Otorgante</th>
+                    <th>Tipo</th>
+                    <th>Saldo Actual</th>
+                    <th>Saldo Vencido</th>
+                    <th>Pago Actual</th>
+                    <th>Último Pago</th>
+                    <th>Frecuencia</th>
+                    <th>Monto a Pagar</th>
+                  </tr>
+                </thead>
+                <tbody id="hcTableBody">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+            </div>
+            <!-- Totales -->
+            <div class="hc-totals">
+              <div class="hc-total-left">
+                Total Saldo Actual: <strong class="hc-amount-green" id="hcTotalSaldoActual">$0.00</strong>
+              </div>
+              <div class="hc-total-right">
+                Total Saldo Vencido: <strong class="hc-amount-red" id="hcTotalSaldoVencido">$0.00</strong>
+              </div>
+            </div>
+            <!-- Pagos por frecuencia -->
+            <div class="hc-freq">
+              <div class="hc-freq-title">Total de Pagos por Frecuencia</div>
+              <div class="hc-freq-list" id="hcFreqList">
+                <!-- Filas generadas por JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="cargaDocumentos">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Carga de Documentos</h2>
+          </div>
+          <div class="card-body">
+            <div class="doc-table-wrap">
+              <h4>Documentos cliente</h4>
+              <table class="doc-table" id="docTableCliente">
+                <thead>
+                  <tr>
+                    <th style="min-width: 140px;">Documento</th>
+                    <th style="min-width: 180px;">Nombre del archivo</th>
+                    <th style="min-width: 60px; text-align: center;">Ver</th>
+                    <th style="min-width: 140px; text-align: center;">Guardar Documento</th>
+                    <th style="min-width: 160px;">Comentarios</th>
+                  </tr>
+                </thead>
+                <tbody id="docTableBodyCliente">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+              <h4>Documentos aval solidario</h4>
+              <table class="doc-table" id="docTableAvalSolidario">
+                <thead>
+                  <tr>
+                    <th style="min-width: 140px;">Documento</th>
+                    <th style="min-width: 180px;">Nombre del archivo</th>
+                    <th style="min-width: 60px; text-align: center;">Ver</th>
+                    <th style="min-width: 140px; text-align: center;">Guardar Documento</th>
+                    <th style="min-width: 160px;">Comentarios</th>
+                  </tr>
+                </thead>
+                <tbody id="docTableBodyAvalSolidario">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+              <h4>Documentos aval garante</h4>
+              <table class="doc-table" id="docTableAvalGarante">
+                <thead>
+                  <tr>
+                    <th style="min-width: 140px;">Documento</th>
+                    <th style="min-width: 180px;">Nombre del archivo</th>
+                    <th style="min-width: 60px; text-align: center;">Ver</th>
+                    <th style="min-width: 140px; text-align: center;">Guardar Documento</th>
+                    <th style="min-width: 160px;">Comentarios</th>
+                  </tr>
+                </thead>
+                <tbody id="docTableBodyAvalGarante">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+              <h4>Documentos adicionales</h4>
+              <table class="doc-table" id="docTableAdicionales">
+                <thead>
+                  <tr>
+                    <th style="min-width: 140px;">Documento</th>
+                    <th style="min-width: 180px;">Nombre del archivo</th>
+                    <th style="min-width: 60px; text-align: center;">Ver</th>
+                    <th style="min-width: 140px; text-align: center;">Guardar Documento</th>
+                    <th style="min-width: 160px;">Comentarios</th>
+                  </tr>
+                </thead>
+                <tbody id="docTableBodyAdicionales">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+            </div>
+            <div class="actions-row" style="margin-top: 20px;">
+              <button class="btn-save" onclick="guardarDocumentos()">Guardar Documentos</button>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="aplicacionPagos">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Aplicación de Pagos (únicamente mencionar que en la vista
+              general solo deberá mostrarse los documentos que sean autorizados por el comité.)</h2>
+          </div>
+          <div class="card-body">
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th style="min-width: 140px;">Documento</th>
+                    <th style="min-width: 180px;">Nombre del archivo</th>
+                    <th style="min-width: 60px; text-align: center;">Ver</th>
+                    <th style="min-width: 140px; text-align: center;">Guardar Documento</th>
+                    <th style="min-width: 160px;">Comentarios</th>
+                    <th style="min-width: 150px; text-align: center;">Aplicar Pago</th>
+                    <th style="min-width: 150px; text-align: center;">Cancelar Pago</th>
+                    <th style="min-width: 130px; text-align: center;">Estatus</th>
+                  </tr>
+                </thead>
+                <tbody id="pagosTableBody">
+                  <!-- Filas generadas por JS -->
+                </tbody>
+              </table>
+            </div>
+            <div class="actions-row" style="margin-top: 20px;">
+              <button class="btn-save" onclick="guardarPagos()">Guardar Pagos</button>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="registroGarantia">
+          <div class="card-header">
+            <h2><span class="card-icon"></span>Tipo Garantía</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid cols-2">
+              <div class="field">
+                <label>Tipo Garantía</label>
+                <select class="select" id="tipoGarantia">
+                  <option disabled="" selected="" value="">SELECCIONAR</option>
+                  <option value="MOBILIARIA">MOBILIARIA</option>
+                  <option value="INMOBILIARIA">INMOBILIARIA</option>
+                  <option value="GUBERNAMENTAL">GUBERNAMENTAL</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Clasificación Garantía</label>
+                <select class="select" disabled="" id="clasificacionGarantia">
+                  <option disabled="" selected="" value="">SELECCIONAR</option>
+                </select>
+              </div>
+              <div class="field span-2">
+                <label>Tipo de Documento</label>
+                <select class="select" id="tipoDocumento">
+                  <option disabled="" selected="" value="">SELECCIONAR</option>
+                  <option value="FACTURA">FACTURA</option>
+                  <option value="TESTIMONIO NOTARIAL">TESTIMONIO NOTARIAL</option>
+                  <option value="ACTA DE POSESIÓN">ACTA DE POSESIÓN</option>
+                  <option value="RECIBO SIMPLE">RECIBO SIMPLE</option>
+                  <option value="CONSTANCIA DE POSESIÓN">CONSTANCIA DE POSESIÓN</option>
+                </select>
+              </div>
+              <!-- FACTURA -->
+              <div class="span-2" hidden="" id="descripcionFactura">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>DESCRIPCIÓN DEL BIEN</label>
+                    <input class="input" id="descripcionbien" placeholder="Descripcion del bien" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>MARCA</label>
+                    <input class="input" id="marca" placeholder="Marca" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>MODELO</label>
+                    <input class="input" id="modelo" placeholder="Modelo" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>COLOR</label>
+                    <input class="input" id="color" placeholder="Color" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NO. SERIE</label>
+                    <input class="input" id="Nserie" placeholder="Serie" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NO. MOTOR</label>
+                    <input class="input" id="Nmotor" placeholder="No. de motor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FOLIO</label>
+                    <input class="input" id="folio" placeholder="No. de folio" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>A NOMBRE DE</label>
+                    <input class="input" id="nombrede" placeholder="Nombre" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>EXPEDIDO POR</label>
+                    <input class="input" id="expedidopor" placeholder="Nombre" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>VALOR COMERCIAL</label>
+                    <input class="input" id="Vcomercial" placeholder="Valor" type="text" />
+                  </div>
+                </div>
+                <br />
+                <div class="field span-2">
+                  <label>OBSERVACIONES</label>
+                  <textarea class="textarea" id="observacionesFactura" placeholder="Observaciones..."
+                    rows="3"></textarea>
+                </div>
+              </div>
+              <!-- TESTIMONIO NOTARIAL -->
+              <div class="span-2" hidden="" id="descripcionTestimonio">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>ESTADO</label>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                      <input class="input" id="entidadfederativa" placeholder="#" style="width: 20%;" type="number" />
+                      <input class="input" id="nombreEntidadFederativa" placeholder="nombreEntidadFederativa"
+                        style="width: 80%;" type="text" />
+                    </div>
+                  </div>
+                  <div class="field span-1">
+                    <label>MUNICIPIO</label>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                      <input class="input" id="claveMunicipio" placeholder="#" style="width: 20%;" type="number" />
+                      <input class="input" id="nombreMunicipio" placeholder="nombreMunicipio" style="width: 80%;"
+                        type="text" />
+                    </div>
+                  </div>
+                  <div class="field span-1">
+                    <label>CALLE</label>
+                    <input class="input" id="calle" placeholder="Calle" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NUMERO EXTERIOR</label>
+                    <input class="input" id="numeroExterior" placeholder="Numero" type="number" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NUMERO INTERIOR</label>
+                    <input class="input" id="numeroInterior" placeholder="Numero" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>COLONIA</label>
+                    <input class="input" id="colonia" placeholder="Colonia" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>LOTE</label>
+                    <input class="input" id="lote" placeholder="Lote" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>MANZANA</label>
+                    <input class="input" id="manzana" placeholder="Manzana" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>CODIGO POSTAL</label>
+                    <input class="input" id="codigoPostal" placeholder="Nombre" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>METROS CUADRADOS DE CONSTRUCCION</label>
+                    <input class="input" id="mcConstruccion" placeholder="Nombre" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>METROS CUADRADOS DE TERRENO</label>
+                    <input class="input" id="mcTerreno" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>GARANTIA ASEGURADA</label>
+                    <select class="input" id="garantiaAsegurada">
+                      <option disabled="" selected="" value="">Seleccionar</option>
+                      <option value="SI">SI</option>
+                      <option value="NO">NO</option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div hidden="" id="divGarantiaAseguradaSI"
+                  style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>ASEGURADOR</label>
+                    <input class="input" id="aseguradorPoliza" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NUMERO DE POLIZA</label>
+                    <input class="input" id="numeroPoliza" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FECHA DE VENCIMIENTO</label>
+                    <input class="input" id="fechaVencimientoPoliza" type="date" />
+                  </div>
+                </div>
+                <br />
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>FOLIO DE REGISTRO</label>
+                    <input class="input" id="folioRegistro" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NUMERO DE NOTARIO</label>
+                    <input class="input" id="numeroNotario" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FECHA DE REGISTRO</label>
+                    <input class="input" id="fechaRegistro" type="date" />
+                  </div>
+                </div>
+                <br />
+                <div class="field span-2">
+                  <label>OBSERVACIONES</label>
+                  <textarea class="textarea" id="testimonioObservaciones" placeholder="Observaciones..."
+                    rows="3"></textarea>
+                </div>
+              </div>
+              <!-- ACTA DE POSESION -->
+              <div class="span-2" hidden="" id="descripcionActaPosesion">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field">
+                    <label>Estado</label>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                      <input class="input" id="actaEntidadFederativa" placeholder="#" style="width: 20%;"
+                        type="number" />
+                      <input class="input" id="actaNombreEntidadFederativa" placeholder="nombreEntidadFederativa"
+                        style="width: 80%;" type="text" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Municipio</label>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                      <input class="input" id="actaMunicipioClave" placeholder="#" style="width: 20%;" type="number" />
+                      <input class="input" id="actaMunicipioNombre" placeholder="nombreMunicipio" style="width: 80%;"
+                        type="text" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Colonia</label>
+                    <input class="input" id="actaColonia" placeholder="Colonia" type="text" />
+                  </div>
+                  <div class="field span-2">
+                    <label>Calle</label>
+                    <input class="input" id="actaCalle" placeholder="Calle" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Código Postal</label>
+                    <input class="input" id="actaCodigoPostal" placeholder="Código Postal" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Número Exterior</label>
+                    <input class="input" id="actaNumExterior" placeholder="Número Exterior" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Número Interior</label>
+                    <input class="input" id="actaNumInterior" placeholder="Número Interior" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Lote</label>
+                    <input class="input" id="actaLote" placeholder="Lote" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Manzana</label>
+                    <input class="input" id="actaManzana" placeholder="Manzana" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Metros Cuadrados de Construcción</label>
+                    <input class="input" id="actaM2Construccion" min="0" placeholder="0.00" step="0.01" type="number" />
+                  </div>
+                  <div class="field">
+                    <label>Metros Cuadrados de Terreno</label>
+                    <input class="input" id="actaM2Terreno" min="0" placeholder="0.00" step="0.01" type="number" />
+                  </div>
+                  <div class="field">
+                    <label>Autoridad</label>
+                    <input class="input" id="actaAutoridad" placeholder="Autoridad" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Cargo de Autoridad</label>
+                    <input class="input" id="actaCargoAutoridad" placeholder="Cargo de Autoridad" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Garantía Asegurada</label>
+                    <select class="select" id="actaGarantiaAseguradaActaPosesion">
+                      <option disabled="" selected="" value="">SELECCIONAR</option>
+                      <option value="SI">SI</option>
+                      <option value="NO">NO</option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div hidden="" id="divGarantiaAseguradaSIActaPosesion"
+                  style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>ASEGURADOR</label>
+                    <input class="input" id="aseguradorPolizaActaPosesion" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NUMERO DE POLIZA</label>
+                    <input class="input" id="numeroPolizaActaPosesion" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FECHA DE VENCIMIENTO</label>
+                    <input class="input" id="fechaVencimientoPolizaActaPosesion" type="date" />
+                  </div>
+                </div>
+                <br />
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>FOLIO DE REGISTRO</label>
+                    <input class="input" id="actafolioRegistro" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FECHA DE REGISTRO</label>
+                    <input class="input" id="actafechaRegistro" type="date" />
+                  </div>
+                </div>
+                <br />
+                <div class="field span-2">
+                  <label>OBSERVACIONES</label>
+                  <textarea class="textarea" id="actaObservaciones" placeholder="Observaciones..." rows="3"></textarea>
+                </div>
+              </div>
+              <!-- RECIBO SIMPLE -->
+              <div class="span-2" hidden="" id="descripcionReciboSimple">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                  <div class="field">
+                    <label>FECHA DE COMPRA</label>
+                    <input class="input" id="reciboFechaCompra" type="date" />
+                  </div>
+                  <div class="field">
+                    <label>REFERENCIA</label>
+                    <input class="input" id="reciboReferencia" placeholder="Referencia" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>VALOR DEL RECIBO</label>
+                    <input class="input" id="valorRecibo" min="0" placeholder="0.00" step="0.01" type="number" />
+                  </div>
+                  <div class="field">
+                    <label>SERIE</label>
+                    <input class="input" id="serieReciboSimple" placeholder="Valor" type="text" />
+                  </div>
+                </div>
+                <br />
+                <div class="field span-2">
+                  <label>OBSERVACIONES</label>
+                  <textarea class="textarea" id="reciboObservaciones" placeholder="Observaciones..."
+                    rows="3"></textarea>
+                </div>
+              </div>
+              <!-- CONSTANCIA DE POSESION -->
+              <div class="span-2" hidden="" id="descripcionConstanciaPosesion">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field">
+                    <label>Estado</label>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                      <input class="input" id="constanciaEstado" placeholder="#" style="width: 20%;" type="number" />
+                      <input class="input" id="constanciaEstadoNombre" placeholder="nombreEntidadFederativa"
+                        style="width: 80%;" type="text" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Municipio</label>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                      <input class="input" id="constanciaMunicipioClave" placeholder="#" style="width: 20%;"
+                        type="number" />
+                      <input class="input" id="constanciaMunicipioNombre" placeholder="Municipio" style="width: 80%;"
+                        type="text" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Calle</label>
+                    <input class="input" id="constanciaCalle" placeholder="Calle" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Número Exterior</label>
+                    <input class="input" id="constanciaNumExterior" placeholder="Número Exterior" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Número Interior</label>
+                    <input class="input" id="constanciaNumInterior" placeholder="Número Interior" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Colonia</label>
+                    <input class="input" id="constanciaColonia" placeholder="Colonia" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Lote</label>
+                    <input class="input" id="constanciaLote" placeholder="Lote" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Manzana</label>
+                    <input class="input" id="constanciaManzana" placeholder="Manzana" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Código Postal</label>
+                    <input class="input" id="constanciaCodigoPostal" placeholder="Código Postal" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Metros Cuadrados de Construcción</label>
+                    <input class="input" id="constanciaM2Construccion" min="0" placeholder="0.00" step="0.01"
+                      type="number" />
+                  </div>
+                  <div class="field">
+                    <label>Metros Cuadrados de Terreno</label>
+                    <input class="input" id="constanciaM2Terreno" min="0" placeholder="0.00" step="0.01"
+                      type="number" />
+                  </div>
+                  <div class="field">
+                    <label>Autoridad</label>
+                    <input class="input" id="constanciaAutoridad" placeholder="Autoridad" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Cargo de Autoridad</label>
+                    <input class="input" id="constanciaCargoAutoridad" placeholder="Cargo de Autoridad" type="text" />
+                  </div>
+                  <div class="field">
+                    <label>Garantía Asegurada</label>
+                    <select class="select" id="constanciaGarantiaAseguradaConstanciaPosesion">
+                      <option disabled="" selected="" value="">SELECCIONAR</option>
+                      <option value="SI">SI</option>
+                      <option value="NO">NO</option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div hidden="" id="divGarantiaAseguradaSIConstanciaPosesion"
+                  style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>ASEGURADOR</label>
+                    <input class="input" id="aseguradorPolizaConstanciaPosesion" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>NUMERO DE POLIZA</label>
+                    <input class="input" id="numeroPolizaConstanciaPosesion" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FECHA DE VENCIMIENTO</label>
+                    <input class="input" id="fechaVencimientoPolizaConstanciaPosesion" type="date" />
+                  </div>
+                </div>
+                <br />
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div class="field span-1">
+                    <label>FOLIO DE REGISTRO</label>
+                    <input class="input" id="constanciafolioRegistro" placeholder="Valor" type="text" />
+                  </div>
+                  <div class="field span-1">
+                    <label>FECHA DE REGISTRO</label>
+                    <input class="input" id="constanciafechaRegistro" type="date" />
+                  </div>
+                </div>
+                <br />
+                <div class="field span-2">
+                  <label>OBSERVACIONES</label>
+                  <textarea class="textarea" id="constanciaObservaciones" placeholder="Observaciones..."
+                    rows="3"></textarea>
+                </div>
+              </div>
+              <!--Divisiom----------------------------------------------------------------------------------------------->
+              <div class="field span-2">
+                <label>Aplica para cálculo de Estimación Preventiva</label>
+                <div style="display:flex; gap:20px; padding-top:4px;">
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-main);">
+                    <input name="aplicaEstimacion" style="accent-color: var(--accent);" type="radio" value="Sí" /> Sí
+                  </label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-main);">
+                    <input name="aplicaEstimacion" style="accent-color: var(--accent);" type="radio" value="No" /> No
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" hidden="" id="valuacion">
+          <div class="card-header">
+            <h2><span class="card-icon"></span> Valuación</h2>
+            <div class="field span-2">
+              <label>Lleva Valuación</label>
+              <div style="display:flex; gap:20px; padding-top:4px;">
+                <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-main);">
+                  <input name="aplicaEstimacion" style="accent-color: var(--accent);" type="radio" value="Sí" /> Sí
+                </label>
+                <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-main);">
+                  <input name="aplicaEstimacion" style="accent-color: var(--accent);" type="radio" value="No" /> No
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="field-grid cols-2">
+              <div class="field">
+                <label>Fecha de la Valuación</label>
+                <input class="input" id="fechaValuacion" type="date" />
+              </div>
+              <div class="field">
+                <label>Nombre de Valuador</label>
+                <input class="input" id="nombreValuador" placeholder="Nombre del valuador" type="text" />
+              </div>
+              <div class="field">
+                <label>Garantía Verificada</label>
+                <select class="select" id="garantiaVerificada">
+                  <option value="">SELECCIONAR</option>
+                  <option value="">SI</option>
+                  <option value="">NO</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Estatus del Gravamen</label>
+                <select class="select" id="estatusCravamen">
+                  <option value="">SELECCIONAR</option>
+                  <option value="">LIBRE</option>
+                  <option value="">GRAVADO</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Valor Razonable</label>
+                <input class="input" id="valorRazonable" placeholder="Valor razonable" type="text" />
+              </div>
+              <div class="field">
+                <label>Número de Avalúo</label>
+                <input class="input" id="numeroAvaluo" placeholder="Número de avalúo" type="text" />
+              </div>
+              <div class="field">
+                <label>Monto de Avalúo</label>
+                <input class="input" id="montoAvaluo" placeholder="Monto de avalúo" type="text" />
+              </div>
+              <div class="field">
+                <label>Fecha de Verificación</label>
+                <input class="input" id="fechaVerificacion" type="date" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="kitLegal" hidden>
+          <section class="card" id="kl_garantialiquida">
+            <div class="card-header">
+              <h2><span class="card-icon"></span>Condiciones Propuestas del Credito (mandar a llamar de Analisis)</h2>
+            </div>
+
+            <div class="card-body">
+              <div class="field-grid cols-3">
+                <div class="field">
+                  <label>Tasa</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Tasa">
+                </div>
+                <div class="field">
+                  <label>Plazo</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Plazo">
+                </div>
+                <div class="field">
+                  <label>Monto</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Monto">
+                </div>
+                <div class="field">
+                  <label>Aval 1</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Aval 1">
+                </div>
+                <div class="field">
+                  <label>aval 2</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Aval 2">
+                </div>
+                <div class="field">
+                  <label>Recursos</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Recursos">
+                </div>
+                <div class="field">
+                  <label>Secuencia</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Secuencia">
+                </div>
+                <div class="field">
+                  <label>Valor de la unidad</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Valor de la unidad">
+                </div>
+                <div class="field">
+                  <label>Enganche</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Enganche">
+                </div>
+                <div class="field">
+                  <label>Porcentaje de enganche</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Porcentaje de enganche">
+                </div>
+                <div class="field">
+                  <label>Firma de Pagaré</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Firma de Pagaré">
+                </div>
+                <div class="field">
+                  <label>Garantía Líquida</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Garantía Líquida">
+                </div>
+                <div class="field">
+                  <label>GPS</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="GPS">
+                </div>
+                <div class="field">
+                  <label>Complemento de Enganche</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Complemento de Enganche">
+                </div>
+                <div class="field">
+                  <label>Cofinanciamiento</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Cofinanciamiento">
+                </div>
+                <div class="field">
+                  <label>Comisión por apertura</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Comisión por apertura">
+                </div>
+                <div class="field">
+                  <label>Fondo de garantía Liquida Contingente</label>
+                  <input type="text" id="kl_actaEstado" class="input"
+                    placeholder="Fondo de garantía Liquida Contingente">
+                </div>
+                <div class="field">
+                  <label>Garantia Natural</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Garantia Natural">
+                </div>
+                <div class="field">
+                  <label>Garantía Adicional</label>
+                  <input type="text" id="kl_actaEstado" class="input" placeholder="Garantía Adicional">
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="liberaciones">
+            <div class="card-header">
+              <h2><span class="card-icon"></span> Liberaciones por Cargar</h2>
+            </div>
+            <div class="card-body liberaciones-body">
+              <!-- Columna izquierda -->
+              <div class="liberaciones-izquierda">
+                <button class="btn-kit" onclick="mostrarListaKit()">Generar Kit Legal</button>
+                <button class="btn-kit" onclick="mostrarCargaKit()">Carga de Documentos Kit Legal</button>
+              </div>
+              <!-- Columna derecha: contenido dinámico -->
+              <div class="liberaciones-derecha">
+                <!-- Contenedor para la lista de documentos (visible por defecto) -->
+                <div id="kitListaContainer">
+                  <div class="kit-header">
+                    <h3>Documentos del Kit Legal</h3>
+                    <button class="btn-zip" onclick="descargarZipCompleto()">Descargar ZIP completo</button>
+                  </div>
+                  <div class="kit-lista">
+                    <!-- 11 documentos con ver y descargar -->
+                    <div class="kit-item"><span>Contrato</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Contrato')">Ver</button><button
+                          class="btn-descargar" onclick="descargarDocumentoKit('Contrato')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Pagare</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Pagare')">Ver</button><button
+                          class="btn-descargar" onclick="descargarDocumentoKit('Pagare')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Tabla de amortización</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Tabla de amortización')">Ver</button><button class="btn-descargar"
+                          onclick="descargarDocumentoKit('Tabla de amortización')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Caratula de comité</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Caratula de comité')">Ver</button><button
+                          class="btn-descargar" onclick="descargarDocumentoKit('Caratula de comité')">Descargar</button>
+                      </div>
+                    </div>
+                    <div class="kit-item"><span>Presentación</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Presentación')">Ver</button><button
+                          class="btn-descargar" onclick="descargarDocumentoKit('Presentación')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Solicitud de crédito</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Solicitud de crédito')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Solicitud de crédito')">Descargar</button></div>
+                    </div>
+                    <h3>Documentos Complementarios del Kit Legal</h3>
+                    <div class="kit-item"><span>Aclaración firmas por inconsistencias</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Aclaración firmas por inconsistencias')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Aclaración firmas por inconsistencias')">Descargar</button>
+                      </div>
+                    </div>
+                    <div class="kit-item"><span>Acta de supervisión de la inversión</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Acta de supervisión de la inversión')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Acta de supervisión de la inversión')">Descargar</button>
+                      </div>
+                    </div>
+                    <div class="kit-item"><span>Reporte fotográfico</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Reporte fotográfico')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Reporte fotográfico')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Autorización entrega de vehículo y resguardo de llave</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Autorización entrega de vehículo y resguardo de llave')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Autorización entrega de vehículo y resguardo de llave')">Descargar</button>
+                      </div>
+                    </div>
+                    <div class="kit-item"><span>Carta consentimiento</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Carta consentimiento')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Carta consentimiento')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Endoso jurídico (cuando aplique)</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Endoso jurídico (cuando aplique)')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Endoso jurídico (cuando aplique)')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Carta aceptación de endoso (cuando aplique)</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Carta aceptación de endoso (cuando aplique)')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Carta aceptación de endoso (cuando aplique)')">Descargar</button>
+                      </div>
+                    </div>
+                    <div class="kit-item"><span>Formato de sustitución garantía</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Formato de sustitución garantía')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Formato de sustitución garantía')">Descargar</button></div>
+                    </div>
+                    <div class="kit-item"><span>Constancia de recepción de garantía</span>
+                      <div><button class="btn-ver"
+                          onclick="verDocumentoKit('Constancia de recepción de garantía')">Ver</button><button
+                          class="btn-descargar"
+                          onclick="descargarDocumentoKit('Constancia de recepción de garantía')">Descargar</button>
+                      </div>
+                    </div>
+                    <div class="kit-item"><span>Otros</span>
+                      <div><button class="btn-ver" onclick="verDocumentoKit('Otros')">Ver</button><button
+                          class="btn-descargar" onclick="descargarDocumentoKit('Otros')">Descargar</button></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Contenedor para la tabla de carga de documentos (oculto por defecto) -->
+                <div id="kitCargaContainer" style="display: none;">
+                  <div class="kit-header">
+                    <h3>Carga de Documentos del Kit Legal</h3>
+                  </div>
+                  <!-- Tabla principal: 10 documentos del kit -->
+                  <div class="doc-table-wrap" style="margin-top: 10px;">
+                    <table class="doc-table kit-carga-table" id="tablaCargaKit">
+                      <thead>
+                        <tr>
+                          <th>Documento</th>
+                          <th style="min-width:80px;">Subir</th>
+                          <th style="min-width:60px;">Ver</th>
+                          <th style="min-width:80px;">Validar</th>
+                          <th style="min-width:140px;">Comentario</th>
+                          <th style="min-width:80px;">Histórico</th>
+                        </tr>
+                      </thead>
+                      <tbody id="kitCargaBody">
+                        <!-- Filas generadas por JS -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Complementarios Kit Legal -->
+                  <h4 style="margin-top: 30px;">Complementarios Kit Legal</h4>
+                  <div class="doc-table-wrap">
+                    <table class="doc-table kit-carga-table" id="tablaComplementarios">
+                      <thead>
+                        <tr>
+                          <th>Documento</th>
+                          <th style="min-width:80px;">Subir</th>
+                          <th style="min-width:60px;">Ver</th>
+                          <th style="min-width:80px;">Validar</th>
+                          <th style="min-width:140px;">Comentario</th>
+                          <th style="min-width:80px;">Histórico</th>
+                        </tr>
+                      </thead>
+                      <tbody id="complementariosBody"></tbody>
+                    </table>
+                  </div>
+
+                  <!-- Documentos Garantía -->
+                  <h4 style="margin-top: 30px;">Documentos Garantía</h4>
+                  <div class="doc-table-wrap">
+                    <table class="doc-table kit-carga-table" id="tablaGarantia">
+                      <thead>
+                        <tr>
+                          <th>Documento</th>
+                          <th style="min-width:80px;">Subir</th>
+                          <th style="min-width:60px;">Ver</th>
+                          <th style="min-width:80px;">Validar</th>
+                          <th style="min-width:140px;">Comentario</th>
+                          <th style="min-width:80px;">Histórico</th>
+                        </tr>
+                      </thead>
+                      <tbody id="garantiaBody"></tbody>
+                    </table>
+                  </div>
+
+                  <!-- Video Desembolso -->
+                  <h4 style="margin-top: 30px;">Video Desembolso</h4>
+                  <div class="doc-table-wrap">
+                    <table class="doc-table kit-carga-table" id="tablaVideo">
+                      <thead>
+                        <tr>
+                          <th>Documento</th>
+                          <th style="min-width:80px;">Subir</th>
+                          <th style="min-width:60px;">Ver</th>
+                          <th style="min-width:80px;">Validar</th>
+                          <th style="min-width:140px;">Comentario</th>
+                          <th style="min-width:80px;">Histórico</th>
+                        </tr>
+                      </thead>
+                      <tbody id="videoBody"></tbody>
+                    </table>
+                  </div>
+
+                  <!-- Documentos Acreditado -->
+                  <h4 style="margin-top: 30px;">Documentos Acreditado</h4>
+                  <div class="doc-table-wrap">
+                    <table class="doc-table kit-carga-table" id="tablaAcreditado">
+                      <thead>
+                        <tr>
+                          <th>Documento</th>
+                          <th style="min-width:80px;">Subir</th>
+                          <th style="min-width:60px;">Ver</th>
+                          <th style="min-width:80px;">Validar</th>
+                          <th style="min-width:140px;">Comentario</th>
+                          <th style="min-width:80px;">Histórico</th>
+                        </tr>
+                      </thead>
+                      <tbody id="acreditadoBody"></tbody>
+                    </table>
+                  </div>
+
+                  <!-- Documentos Aval -->
+                  <h4 style="margin-top: 30px;">Documentos Aval</h4>
+                  <div class="doc-table-wrap">
+                    <table class="doc-table kit-carga-table" id="tablaAval">
+                      <thead>
+                        <tr>
+                          <th>Documento</th>
+                          <th style="min-width:80px;">Subir</th>
+                          <th style="min-width:60px;">Ver</th>
+                          <th style="min-width:80px;">Validar</th>
+                          <th style="min-width:140px;">Comentario</th>
+                          <th style="min-width:80px;">Histórico</th>
+                        </tr>
+                      </thead>
+                      <tbody id="acreditadoBody1"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="liberacion" hidden>
+          <section class="card" id="lib_garantialiquida">
+            <div class="card-header">
+              <h2><span class="card-icon"></span>Condiciones Propuestas del Credito (mandar a llamar de Analisis)</h2>
+            </div>
+
+            <div class="card-body">
+              <div class="field-grid cols-3">
+                <div class="field">
+                  <label>Tasa</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Tasa">
+                </div>
+                <div class="field">
+                  <label>Plazo</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Plazo">
+                </div>
+                <div class="field">
+                  <label>Monto</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Monto">
+                </div>
+                <div class="field">
+                  <label>Aval 1</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Aval 1">
+                </div>
+                <div class="field">
+                  <label>aval 2</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Aval 2">
+                </div>
+                <div class="field">
+                  <label>Recursos</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Recursos">
+                </div>
+                <div class="field">
+                  <label>Secuencia</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Secuencia">
+                </div>
+                <div class="field">
+                  <label>Valor de la unidad</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Valor de la unidad">
+                </div>
+                <div class="field">
+                  <label>Enganche</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Enganche">
+                </div>
+                <div class="field">
+                  <label>Porcentaje de enganche</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Porcentaje de enganche">
+                </div>
+                <div class="field">
+                  <label>Firma de Pagaré</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Firma de Pagaré">
+                </div>
+                <div class="field">
+                  <label>Garantía Líquida</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Garantía Líquida">
+                </div>
+                <div class="field">
+                  <label>GPS</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="GPS">
+                </div>
+                <div class="field">
+                  <label>Complemento de Enganche</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Complemento de Enganche">
+                </div>
+                <div class="field">
+                  <label>Cofinanciamiento</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Cofinanciamiento">
+                </div>
+                <div class="field">
+                  <label>Comisión por apertura</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Comisión por apertura">
+                </div>
+                <div class="field">
+                  <label>Fondo de garantía Liquida Contingente</label>
+                  <input type="text" id="lib_actaEstado" class="input"
+                    placeholder="Fondo de garantía Liquida Contingente">
+                </div>
+                <div class="field">
+                  <label>Garantia Natural</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Garantia Natural">
+                </div>
+                <div class="field">
+                  <label>Garantía Adicional</label>
+                  <input type="text" id="lib_actaEstado" class="input" placeholder="Garantía Adicional">
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="solicitudLiberacion">
+            <div class="card-header">
+              <h2><span class="card-icon"></span> Solicitud de Liberación</h2>
+              <button class="pill pill-primary" onclick="mostrarSolicitudesLiberacion()">Solicitudes de
+                Liberaciones</button>
+            </div>
+            <div class="card-body">
+              <!-- Contenedor de documentos (visible por defecto) -->
+              <div id="solicitudDocumentosContainer">
+                <div class="solicitud-body">
+                  <div class="solicitud-izquierda">
+                    <div class="resumen-item">
+                      <span class="resumen-label">Solicitados</span>
+                      <span class="resumen-numero" id="countSolicitado">0</span>
+                    </div>
+                    <div class="resumen-item">
+                      <span class="resumen-label">Liberados</span>
+                      <span class="resumen-numero" id="countLiberado">0</span>
+                    </div>
+                    <div class="resumen-item">
+                      <span class="resumen-label">Observados</span>
+                      <span class="resumen-numero" id="countObservado">0</span>
+                    </div>
+                    <div class="resumen-item">
+                      <span class="resumen-label">Por revisar</span>
+                      <span class="resumen-numero" id="countPorRevisar">0</span>
+                    </div>
+                  </div>
+                  <div class="solicitud-derecha">
+                    <div class="kit-header">
+                      <h3>Documentos para Liberación (Debe de mandar a llamar todos los documentos que estan en la etapa
+                        de carga de documentos de Kit Legal)</h3>
+                    </div>
+                    <div class="doc-table-wrap" style="margin-top: 10px;">
+                      <table class="doc-table solicitud-table" id="tablaSolicitud">
+                        <thead>
+                          <tr>
+                            <th style="min-width:140px;">Documento</th>
+                            <th style="min-width:60px;">Ver</th>
+                            <th style="min-width:80px;">Validar</th>
+                            <th style="min-width:120px;">Estatus</th>
+                            <th style="min-width:180px;">Observaciones</th>
+                            <th style="min-width:100px;">Foto</th>
+                            <th style="min-width:140px;">Comentario</th>
+                          </tr>
+                        </thead>
+                        <tbody id="solicitudBody">
+                          <!-- Filas generadas por JS -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contenedor de solicitudes generales (oculto por defecto) -->
+              <div id="solicitudesGeneralesContainer" style="display: none;">
+                <div class="kit-header">
+                  <h3>Lista de Solicitudes de Liberación (Filtrado como boton de prospectos en la parte superior y boton
+                    de exportar en excel)</h3>
+                  <button class="pill pill-ghost" onclick="mostrarDocumentosLiberacion()">Regresar a Documentos</button>
+                </div>
+                <div class="doc-table-wrap">
+                  <table class="doc-table" id="tablaSolicitudesGenerales">
+                    <thead>
+                      <tr>
+                        <th style="min-width:60px;">Ver</th>
+                        <th style="min-width:100px;">No. Crédito</th>
+                        <th style="min-width:160px;">Nombre del Cliente</th>
+                        <th style="min-width:120px;">Fecha de Desembolso</th>
+                        <th style="min-width:140px;">Fecha de Solicitud de Liberación</th>
+                        <th style="min-width:100px;">Monto</th>
+                        <th style="min-width:80px;">Plazo</th>
+                        <th style="min-width:120px;">Producto</th>
+                        <th style="min-width:120px;">Sucursal</th>
+                        <th style="min-width:120px;">Ejecutivo</th>
+                        <th style="min-width:120px;">Distribuidor</th>
+                        <th style="min-width:110px;">Estatus</th>
+                      </tr>
+                    </thead>
+                    <tbody id="solicitudesGeneralesBody">
+                      <!-- Generado por JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+      <!-- ===== STAGE SIDEBAR ===== -->
+      <aside class="stages">
+        <button class="stage-btn" onclick="activarEtapa('SOLICITUD Y ASIGNACIÓN')">SOLICITUD Y ASIGNACIÓN</button>
+        <button class="stage-btn" onclick="activarEtapa('ANÁLISIS')">ANÁLISIS</button>
+        <button class="stage-btn" onclick="activarEtapa('DECISIONES')">DECISIONES</button>
+        <button class="stage-btn" onclick="activarEtapa('CARGA DE DOCUMENTOS')">CARGA DE DOCUMENTOS</button>
+        <button class="stage-btn" onclick="activarEtapa('APLICACIÓN DE PAGOS')">APLICACIÓN DE PAGOS</button>
+        <button class="stage-btn" onclick="activarEtapa('REGISTRO DE GARANTÍA Y OTROS')">REGISTRO DE GARANTÍA Y
+          OTROS</button>
+        <button class="stage-btn stage-active" onclick="activarEtapa('MESA DE CONTROL')">MESA DE CONTROL</button>
+        <button class="stage-btn stage-sub">MESA DE CONTROL<br /><small>(Área Comercial)</small></button>
+        <button class="stage-btn stage-sub">MESA DE CONTROL<br /><small>(Análisis)</small></button>
+        <button class="stage-btn stage-sub stage-disabled">LIBERACIONES POR CARGAR</button>
+        <button class="stage-btn stage-sub stage-disabled">SOLICITUD DE LIBERACIÓN</button>
+        <button class="stage-btn stage-sub stage-disabled">LIBERACIÓN (ÁREA COMERCIAL)</button>
+        <button class="stage-btn" onclick="activarEtapa('ORDEN DE PAGO')">ORDEN DE PAGO</button>
+        <button class="stage-btn" onclick="activarEtapa('KIT LEGAL')">KIT LEGAL</button>
+        <button class="stage-btn" onclick="activarEtapa('LIBERACIÓN')">LIBERACIÓN</button>
+        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
+        <button class="stage-btn stage-retroceder">Retroceder Etapa</button>
+        <button class="stage-btn stage-avanzar"
+          onclick="etapa=document.getElementById('etapaMover').value; alert('Moviendo etapa de Mesa de Control a ' + etapa + '...');">Avanzar
+          Etapa</button>
+        <button class="stage-btn stage-cancelar"
+          onclick="alert('Se ha cancelado la solicitud de crédito, volviendo a la etapa inicial')">Cancelar Solicitud de
+          Crédito</button>
+      </aside>
+    </div><!-- /body-grid -->
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav-icons">
+        <button class="bottom-icon-btn" title="Expediente">📋</button>
+        <button class="bottom-icon-btn" title="Documentos">📄</button>
+        <button class="bottom-icon-btn" title="Inicio">🏠</button>
+        <button class="bottom-icon-btn" title="Salir">↪</button>
+      </div>
+      <div class="bottom-nav-menu">
+        <button class="bottom-menu-btn">Bloques</button>
+        <button class="bottom-menu-btn">Cartera Activa</button>
+        <button class="bottom-menu-btn bottom-menu-active">Prospectos</button>
+        <button class="bottom-menu-btn">Esquemas de Crédito</button>
+        <button class="bottom-menu-btn">Administración</button>
+        <button class="bottom-menu-btn">Sistema</button>
+      </div>
+    </nav>
+  </div><!-- /app -->
+  <div class="modal-overlay" id="modalAplicarPago" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>Aplicar Pago</h3>
+        <button class="modal-close" onclick="cerrarModalAplicarPago()">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-doc-name" id="modalDocName">Documento: <strong>Enganche</strong></p>
+        <div class="modal-preguntas">
+          <div class="modal-pregunta">
+            <label>1. ¿Se validó el pago?</label>
+            <div class="modal-opciones">
+              <label><input name="pregunta1" type="radio" value="si" /> Sí</label>
+              <label><input name="pregunta1" type="radio" value="no" /> No</label>
+              <label><input name="pregunta1" type="radio" value="parcial" /> Parcial</label>
+            </div>
+          </div>
+          <div class="modal-pregunta">
+            <label>2. Monto autorizado por Comité</label>
+            <div class="modal-input-wrapper">
+              <span class="modal-currency-symbol">$</span>
+              <span class="modal-text-display" id="montoAplicado"
+                style="font-weight: 600; font-size: 16px; padding: 8px 0; display: inline-block;">3,300.00</span>
+            </div>
+          </div>
+          <div class="modal-pregunta">
+            <label>3. Fecha Bancaria</label>
+            <input class="modal-input" id="fechaAplicacion" type="date" />
+          </div>
+          <div class="modal-pregunta">
+            <label>4. Fecha de Operación</label>
+            <input class="modal-input" id="fechaOperacion" type="date" />
+          </div>
+          <div class="modal-pregunta">
+            <label>5. Tipo de Operación</label>
+            <select class="modal-select" id="formaPago">
+              <option value="">Seleccione...</option>
+              <option value="efectivo">Efectivo</option>
+              <option value="transferencia">Transferencia</option>
+              <option value="cheque">Deposito</option>
+            </select>
+          </div>
+          <div class="modal-pregunta">
+            <label>6. Cuenta Receptora</label>
+            <select class="modal-select" id="cuentaReceptora">
+              <option value="">Seleccione (desplegables de ejemplo)...</option>
+              <option value="bbva_001">BBVA - Folio: CTA-001</option>
+              <option value="banorte_002">Banorte - Folio: CTA-002</option>
+              <option value="santander_003">Santander - Folio: CTA-003</option>
+              <option value="banamex_004">Banamex - Folio: CTA-004</option>
+              <option value="hsbc_005">HSBC - Folio: CTA-005</option>
+              <option value="scotiabank_006">Scotiabank - Folio: CTA-006</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="modal-pregunta">
+            <label>7. Comentarios adicionales</label>
+            <textarea class="modal-textarea" id="comentariosPago" placeholder="Comentarios..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-cancel" onclick="cerrarModalAplicarPago()">Cancelar</button>
+        <button class="modal-btn modal-btn-confirm" onclick="confirmarAplicarPago()">Aplicar Pago</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modalCancelarPago" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>Cancelar Pago</h3>
+        <button class="modal-close" onclick="cerrarModalCancelarPago()">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-doc-name" id="modalCancelDocName">Documento: <strong>Enganche</strong></p>
+        <div class="modal-preguntas">
+          <div class="modal-pregunta">
+            <label>1. ¿Se canceló el pago?</label>
+            <div class="modal-opciones">
+              <label><input name="cancelPregunta1" type="radio" value="si" /> Sí</label>
+              <label><input name="cancelPregunta1" type="radio" value="no" /> No</label>
+            </div>
+          </div>
+          <div class="modal-pregunta">
+            <label>2. Motivo de cancelación</label>
+            <select class="modal-select" id="motivoCancelacion">
+              <option value="">Seleccione un motivo...</option>
+              <option value="pago_duplicado">Pago duplicado</option>
+              <option value="error_monto">Error en el monto</option>
+              <option value="error_cliente">Error en datos del cliente</option>
+              <option value="cancelacion_solicitud">Cancelación de la solicitud</option>
+              <option value="rechazo_credito">Rechazo del crédito</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="modal-pregunta">
+            <label>3. Fecha de cancelación</label>
+            <input class="modal-input" id="fechaCancelacion" type="date" />
+          </div>
+          <div class="modal-pregunta">
+            <label>4. Fecha de movimiento de origen</label>
+            <input class="modal-input" id="fechaCancelacion" type="date" />
+          </div>
+          <div class="modal-pregunta">
+            <label>5. Comentarios adicionales</label>
+            <textarea class="modal-textarea" id="comentariosCancelacion" placeholder="Comentarios..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn modal-btn-cancel" onclick="cerrarModalCancelarPago()">Cancelar</button>
+        <button class="modal-btn modal-btn-confirm" onclick="confirmarCancelarPago()">Confirmar
+          Cancelación</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
