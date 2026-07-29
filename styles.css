@@ -5489,11 +5489,11 @@ body {
    VISTA GENERAL DE PROSPECTOS - STYLES
    ========================================================= */
 #vistaGeneral.solicitud-body {
-  display: flex !important;
+  display: flex;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 0;
   align-items: flex-start;
   min-height: 500px;
 }

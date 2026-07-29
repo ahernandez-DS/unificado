@@ -3481,7 +3481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabRC = document.getElementById('tabRegistroClientes');
     const tabMC = document.getElementById('tabMesaControl');
 
-    if (vistaVG) vistaVG.style.display = 'block';
+    if (vistaVG) vistaVG.style.display = 'flex';
     if (vistaRC) vistaRC.style.display = 'none';
     if (vistaMC) vistaMC.style.display = 'none';
 
