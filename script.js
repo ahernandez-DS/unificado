@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const todasLasSecciones = [
-      'MesaControl', 'vistaOrdenPagoDiv', 'vistaOrdenPago', 
+      'MesaControl', 'vistaOrdenPagoDiv', 'vistaOrdenPago',
       'dictamen', 'dictamenQuash', 'historial', 'tipoActa', 'generarActa', 'firmas',
       'cargaDocumentos', 'aplicacionPagos', 'registroGarantia', 'valuacion',
       'firmasMayor', 'firmasMenor', 'kitLegal', 'liberacion'
@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof window.mostrarCargaDocumentos === 'function') window.mostrarCargaDocumentos();
         break;
 
-      case 'APLICACIÓN DE PAGOS':
+      case 'APLICACION DE PAGOS':
         if (typeof window.mostrarAplicacionPagos === 'function') window.mostrarAplicacionPagos();
         break;
 
-      case 'REGISTRO DE GARANTÍA Y OTROS':
+      case 'REGISTRO DE GARANTIA Y OTROS':
         if (typeof window.mostrarRegistroGarantia === 'function') window.mostrarRegistroGarantia();
         break;
     }
@@ -1284,7 +1284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalUdis = monto / currentUdiValue;
         montoUdisInput.value = totalUdis.toLocaleString('en-US', { minimumFractionDigits: 5, maximumFractionDigits: 5 });
       }
-      
+
       if (engancheRecibirInput && engancheUdisInput) {
         const enganche = parseFloat(engancheRecibirInput.value) || 0;
         const totalEngancheUdis = enganche / currentUdiValue;
@@ -3827,16 +3827,16 @@ window.seccionOrdenPago = function () {
 */}
 
 window.ORDEN_PAGO = [
-  { credito: '10051', nombre: 'Alejandro Mendoza Ortiz', fecha: '2026-07-01', liberacion: '02-07-2026', monto: '$15,200.00', accesorios: '$500.00', totalFinal: '$15,700.00', producto: 'Crédito Personal', distribuidor: 'TechDist SA de CV', cuentaClabe: '012345678901234567', institucionBancaria: 'BBVA', estatus: 'Aprobado', poliza: 'POL-1001', comentario: 'Pago programado' },
-  { credito: '10052', nombre: 'Sofía Castillo Rivas', fecha: '2026-07-03', liberacion: '02-07-2026', monto: '$8,450.00', accesorios: '$250.00', totalFinal: '$8,700.00', producto: 'Crédito Nómina', distribuidor: 'Global Ventas', cuentaClabe: '123456789012345678', institucionBancaria: 'Santander', estatus: 'Pendiente', poliza: 'POL-1002', comentario: 'En espera de firma' },
-  { credito: '10053', nombre: 'Fernando Ruiz Gómez', fecha: '2026-07-05', liberacion: '02-07-2026', monto: '$22,100.00', accesorios: '$1,100.00', totalFinal: '$23,200.00', producto: 'Crédito Automotriz', distribuidor: 'Comercializadora MX', cuentaClabe: '987654321098765432', institucionBancaria: 'Banamex', estatus: 'Pagado', poliza: 'POL-1003', comentario: 'Liquidado' },
-  { credito: '10054', nombre: 'Camila Vega Blancas', fecha: '2026-07-08', liberacion: '02-07-2026', monto: '$10,500.00', accesorios: '$0.00', totalFinal: '$10,500.00', producto: 'Crédito Personal', distribuidor: 'Mega Red Nacional', cuentaClabe: '456789012345678901', institucionBancaria: 'Banorte', estatus: 'Rechazado', poliza: '-', comentario: 'Falta documentación' },
-  { credito: '10055', nombre: 'Roberto Pineda Sánchez', fecha: '2026-07-10', liberacion: '02-07-2026', monto: '$5,300.00', accesorios: '$100.00', totalFinal: '$5,400.00', producto: 'Microcrédito', distribuidor: 'Distribuidora del Valle', cuentaClabe: '345678901234567890', institucionBancaria: 'HSBC', estatus: 'Aprobado', poliza: 'POL-1005', comentario: 'Todo en orden' },
-  { credito: '10056', nombre: 'Diana Miranda Castro', fecha: '2026-07-12', liberacion: '02-07-2026', monto: '$45,000.00', accesorios: '$2,500.00', totalFinal: '$47,500.00', producto: 'Crédito Hipotecario', distribuidor: 'TechDist SA de CV', cuentaClabe: '234567890123456789', institucionBancaria: 'Scotiabank', estatus: 'Pagado', poliza: 'POL-1006', comentario: 'Sin incidencias' },
-  { credito: '10057', nombre: 'Héctor Salgado López', fecha: '2026-07-15', liberacion: '02-07-2026', monto: '$18,900.00', accesorios: '$800.00', totalFinal: '$19,700.00', producto: 'Crédito PyME', distribuidor: 'Global Ventas', cuentaClabe: '567890123456789012', institucionBancaria: 'Inbursa', estatus: 'Pendiente', poliza: 'POL-1007', comentario: 'Revisión final' },
-  { credito: '10058', nombre: 'Gabriela Ortiz Luna', fecha: '2026-07-18', liberacion: '02-07-2026', monto: '$12,750.00', accesorios: '$450.00', totalFinal: '$13,200.00', producto: 'Crédito Personal', distribuidor: 'Comercializadora MX', cuentaClabe: '678901234567890123', institucionBancaria: 'BBVA', estatus: 'Aprobado', poliza: 'POL-1008', comentario: 'Listo para pago' },
-  { credito: '10059', nombre: 'Javier Cárdenas Reyes', fecha: '2026-07-20', liberacion: '02-07-2026', monto: '$33,400.00', accesorios: '$1,800.00', totalFinal: '$35,200.00', producto: 'Crédito Automotriz', distribuidor: 'Mega Red Nacional', cuentaClabe: '789012345678901234', institucionBancaria: 'Santander', estatus: 'Pagado', poliza: 'POL-1009', comentario: 'Completado' },
-  { credito: '10060', nombre: 'Lorena Montes Cota', fecha: '2026-07-23', liberacion: '02-07-2026', monto: '$7,250.00', accesorios: '$150.00', totalFinal: '$7,400.00', producto: 'Crédito Nómina', distribuidor: 'Distribuidora del Valle', cuentaClabe: '890123456789012345', institucionBancaria: 'Banamex', estatus: 'En revisión', poliza: '-', comentario: 'Firma pendiente' },
+  { credito: '10051', nombre: 'Alejandro Mendoza Ortiz', fecha: '2026-07-01', liberacion: '02-07-2026', monto: '$15,200.00', accesorios: '$500.00', totalFinal: '$15,700.00', producto: 'Crédito Personal', distribuidor: 'TechDist SA de CV', cuentaClabe: '012345678901234567', institucionBancaria: 'BBVA', estatus: 'Aprobado', poliza: 'POL-1001', comentario: 'Pago programado', fecha_pago: '2026-07-02' },
+  { credito: '10052', nombre: 'Sofía Castillo Rivas', fecha: '2026-07-03', liberacion: '02-07-2026', monto: '$8,450.00', accesorios: '$250.00', totalFinal: '$8,700.00', producto: 'Crédito Nómina', distribuidor: 'Global Ventas', cuentaClabe: '123456789012345678', institucionBancaria: 'Santander', estatus: 'Pendiente', poliza: 'POL-1002', comentario: 'En espera de firma', fecha_pago: '' },
+  { credito: '10053', nombre: 'Fernando Ruiz Gómez', fecha: '2026-07-05', liberacion: '02-07-2026', monto: '$22,100.00', accesorios: '$1,100.00', totalFinal: '$23,200.00', producto: 'Crédito Automotriz', distribuidor: 'Comercializadora MX', cuentaClabe: '987654321098765432', institucionBancaria: 'Banamex', estatus: 'Pagado', poliza: 'POL-1003', comentario: 'Liquidado', fecha_pago: '2026-07-05' },
+  { credito: '10054', nombre: 'Camila Vega Blancas', fecha: '2026-07-08', liberacion: '02-07-2026', monto: '$10,500.00', accesorios: '$0.00', totalFinal: '$10,500.00', producto: 'Crédito Personal', distribuidor: 'Mega Red Nacional', cuentaClabe: '456789012345678901', institucionBancaria: 'Banorte', estatus: 'Rechazado', poliza: '-', comentario: 'Falta documentación', fecha_pago: '' },
+  { credito: '10055', nombre: 'Roberto Pineda Sánchez', fecha: '2026-07-10', liberacion: '02-07-2026', monto: '$5,300.00', accesorios: '$100.00', totalFinal: '$5,400.00', producto: 'Microcrédito', distribuidor: 'Distribuidora del Valle', cuentaClabe: '345678901234567890', institucionBancaria: 'HSBC', estatus: 'Aprobado', poliza: 'POL-1005', comentario: 'Todo en orden', fecha_pago: '2026-07-10' },
+  { credito: '10056', nombre: 'Diana Miranda Castro', fecha: '2026-07-12', liberacion: '02-07-2026', monto: '$45,000.00', accesorios: '$2,500.00', totalFinal: '$47,500.00', producto: 'Crédito Hipotecario', distribuidor: 'TechDist SA de CV', cuentaClabe: '234567890123456789', institucionBancaria: 'Scotiabank', estatus: 'Pagado', poliza: 'POL-1006', comentario: 'Sin incidencias', fecha_pago: '2026-07-12' },
+  { credito: '10057', nombre: 'Héctor Salgado López', fecha: '2026-07-15', liberacion: '02-07-2026', monto: '$18,900.00', accesorios: '$800.00', totalFinal: '$19,700.00', producto: 'Crédito PyME', distribuidor: 'Global Ventas', cuentaClabe: '567890123456789012', institucionBancaria: 'Inbursa', estatus: 'Pendiente', poliza: 'POL-1007', comentario: 'Revisión final', fecha_pago: '' },
+  { credito: '10058', nombre: 'Gabriela Ortiz Luna', fecha: '2026-07-18', liberacion: '02-07-2026', monto: '$12,750.00', accesorios: '$450.00', totalFinal: '$13,200.00', producto: 'Crédito Personal', distribuidor: 'Comercializadora MX', cuentaClabe: '678901234567890123', institucionBancaria: 'BBVA', estatus: 'Aprobado', poliza: 'POL-1008', comentario: 'Listo para pago', fecha_pago: '2026-07-18' },
+  { credito: '10059', nombre: 'Javier Cárdenas Reyes', fecha: '2026-07-20', liberacion: '02-07-2026', monto: '$33,400.00', accesorios: '$1,800.00', totalFinal: '$35,200.00', producto: 'Crédito Automotriz', distribuidor: 'Mega Red Nacional', cuentaClabe: '789012345678901234', institucionBancaria: 'Santander', estatus: 'Pagado', poliza: 'POL-1009', comentario: 'Completado', fecha_pago: '2026-07-20' },
+  { credito: '10060', nombre: 'Lorena Montes Cota', fecha: '2026-07-23', liberacion: '02-07-2026', monto: '$7,250.00', accesorios: '$150.00', totalFinal: '$7,400.00', producto: 'Crédito Nómina', distribuidor: 'Distribuidora del Valle', cuentaClabe: '890123456789012345', institucionBancaria: 'Banamex', estatus: 'En revisión', poliza: '-', comentario: 'Firma pendiente', fecha_pago: '' },
 ];
 
 window.renderOrdenPago = function () {
@@ -3858,9 +3858,14 @@ window.renderOrdenPago = function () {
         <td>${p.distribuidor}</td>
         <td>${p.cuentaClabe}</td>
         <td>${p.institucionBancaria}</td>
-        <td>${p.estatus}</td>
-        <td>${p.poliza}</td>
+        <td><select><option selected disabled>SELECCIONAR</option><option>PENDIENTE</option><option>PAGADO</option><option>RECHAZADO</option></select></td>
+        <td><input type="checkbox" class="switch-unico" 
+          onchange="if(this.checked) { setTimeout(() => alert('Generando movimientos contables, y PDF...'), 300); }">
+        </td>
+        <td>${p.poliza} <button title="Documento PDF" onclick="setTimeout(() => alert('Mostrando PDF Poliza ${p.poliza}...'), 300)"><i class="fa fa-file-pdf"></i></button>
+        </td>
         <td>${p.comentario}</td>
+        <td>${p.fecha_pago}</td>
       `;
     tbody.appendChild(tr);
   });
@@ -3977,7 +3982,7 @@ window.addEventListener('load', () => {
     const radioMenor = document.getElementById('actaMenor');
     const firmasMayor = document.getElementById('firmasMayor');
     const firmasMenor = document.getElementById('firmasMenor');
-    
+
     if (radioMayor && radioMayor.checked) {
       if (firmasMayor) { firmasMayor.hidden = false; firmasMayor.style.display = 'block'; }
       if (firmasMenor) { firmasMenor.hidden = true; firmasMenor.style.display = 'none'; }
@@ -3999,16 +4004,16 @@ window.addEventListener('load', () => {
     const ta = document.getElementById('tipoActa');
     const ga = document.getElementById('generarActa');
     const fir = document.getElementById('firmas');
-    
+
     if (dic) { dic.hidden = true; dic.style.display = 'none'; }
     if (dq) { dq.hidden = true; dq.style.display = 'none'; }
     if (hist) { hist.hidden = true; hist.style.display = 'none'; }
     if (fir) { fir.hidden = true; fir.style.display = 'none'; }
     if (ta) { ta.hidden = false; ta.style.display = 'block'; }
     if (ga) { ga.hidden = false; ga.style.display = 'block'; }
-    
+
     if (typeof window.actualizarFirmasActa === 'function') window.actualizarFirmasActa();
-    
+
     document.querySelectorAll('.tab[data-stage="DECISIONES"]').forEach(t => t.classList.remove('active'));
     const t = document.querySelector('.tab[data-tab="receptora"]');
     if (t) t.classList.add('active');
@@ -4024,7 +4029,7 @@ window.addEventListener('load', () => {
     const fir = document.getElementById('firmas');
     const firmasMayor = document.getElementById('firmasMayor');
     const firmasMenor = document.getElementById('firmasMenor');
-    
+
     if (dic) { dic.hidden = false; dic.style.display = 'block'; }
     if (dq) { dq.hidden = true; dq.style.display = 'none'; }
     if (hist) { hist.hidden = false; hist.style.display = 'block'; }
@@ -4033,7 +4038,7 @@ window.addEventListener('load', () => {
     if (fir) { fir.hidden = false; fir.style.display = 'block'; }
     if (firmasMayor) { firmasMayor.hidden = true; firmasMayor.style.display = 'none'; }
     if (firmasMenor) { firmasMenor.hidden = true; firmasMenor.style.display = 'none'; }
-    
+
     document.querySelectorAll('.tab[data-stage="DECISIONES"]').forEach(t => t.classList.remove('active'));
     const t = document.querySelector('.tab[data-tab="dictamen"]');
     if (t) t.classList.add('active');
@@ -4047,14 +4052,14 @@ window.addEventListener('load', () => {
     const ta = document.getElementById('tipoActa');
     const ga = document.getElementById('generarActa');
     const fir = document.getElementById('firmas');
-    
+
     if (dic) { dic.hidden = true; dic.style.display = 'none'; }
     if (dq) { dq.hidden = false; dq.style.display = 'block'; }
     if (hist) { hist.hidden = true; hist.style.display = 'none'; }
     if (ta) { ta.hidden = true; ta.style.display = 'none'; }
     if (ga) { ga.hidden = true; ga.style.display = 'none'; }
     if (fir) { fir.hidden = false; fir.style.display = 'block'; }
-    
+
     document.querySelectorAll('.tab[data-stage="DECISIONES"]').forEach(t => t.classList.remove('active'));
     const t = document.querySelector('.tab[data-tab="dictamen-quash"]');
     if (t) t.classList.add('active');
@@ -4065,7 +4070,7 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.tab[data-stage="CARGA DE DOCUMENTOS"]').forEach(t => t.classList.remove('active'));
     const t = document.getElementById('tabCargaDocumentos');
     if (t) t.classList.add('active');
-    
+
     const cd = document.getElementById('cargaDocumentos');
     if (cd) { cd.hidden = false; cd.style.display = 'block'; }
   };
@@ -4075,7 +4080,7 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.tab[data-stage="APLICACIÓN DE PAGOS"]').forEach(t => t.classList.remove('active'));
     const t = document.getElementById('tabAplicacionPagos');
     if (t) t.classList.add('active');
-    
+
     const ap = document.getElementById('aplicacionPagos');
     if (ap) { ap.hidden = false; ap.style.display = 'block'; }
     if (typeof window.renderAplicacionPagos === 'function') window.renderAplicacionPagos();
@@ -4086,7 +4091,7 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.tab[data-stage="REGISTRO DE GARANTÍA Y OTROS"]').forEach(t => t.classList.remove('active'));
     const t = document.getElementById('tabGarantia');
     if (t) t.classList.add('active');
-    
+
     const rg = document.getElementById('registroGarantia');
     const va = document.getElementById('valuacion');
     if (rg) { rg.hidden = false; rg.style.display = 'block'; }
@@ -4095,37 +4100,37 @@ window.addEventListener('load', () => {
 });
 
 // --- KITLEGAL AND LIBERACION STAGES --- 
-(function() {
-// ============================================================
-// C-MOVIL · Módulo Mesa de Control
-// ============================================================
+(function () {
+  // ============================================================
+  // C-MOVIL · Módulo Mesa de Control
+  // ============================================================
 
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------------------------------------------------------
-     0. DATOS DE PROSPECTOS (Vista General)
-  --------------------------------------------------------- */
-  window.KITLEGAL_PROSPECTOS_DATA = [
-    { folio: '10177', nombre: 'ANA GLORIA PIÑA AGUILAR', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'OAXACA', ejecutivo: 'MARIA LOPEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
-    { folio: '10178', nombre: 'CARLOS RUIZ MARTINEZ', producto: 'C-AUTO', director: 'JUAN PEREZ', sucursal: 'OAXACA', ejecutivo: 'MARIA LOPEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
-    { folio: '10179', nombre: 'LAURA SANCHEZ VILLA', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'PUEBLA', ejecutivo: 'LUIS FERNANDEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
-    { folio: '10180', nombre: 'MIGUEL ANGEL FLORES', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'PUEBLA', ejecutivo: 'LUIS FERNANDEZ', modalidad: 'SUCURSAL', analista: 'ANA HERNANDEZ' },
-    { folio: '10181', nombre: 'SOFIA RAMIREZ CRUZ', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'VERACRUZ', ejecutivo: 'JOSE DIAZ', modalidad: 'SUCURSAL', analista: 'ANA HERNANDEZ' },
-    { folio: '10182', nombre: 'ROBERTO HERRERA LARA', producto: 'C-AUTO', director: 'ALBERTO GOMEZ', sucursal: 'CDMX SUR', ejecutivo: 'DISTRIBUIDOR 1', modalidad: 'DISTRIBUIDOR', analista: 'ANA HERNANDEZ' },
-    { folio: '10183', nombre: 'CARMEN LUNA PEREZ', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX SUR', ejecutivo: 'DISTRIBUIDOR 1', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
-    { folio: '10184', nombre: 'JORGE ORTEGA SALINAS', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX NORTE', ejecutivo: 'DISTRIBUIDOR 2', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
-    { folio: '10185', nombre: 'PATRICIA REYES VACA', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX NORTE', ejecutivo: 'DISTRIBUIDOR 2', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
-    { folio: '10186', nombre: 'EDUARDO VARGAS PINO', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'TOLUCA', ejecutivo: 'DISTRIBUIDOR 3', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' }
-  ];
+    /* ---------------------------------------------------------
+       0. DATOS DE PROSPECTOS (Vista General)
+    --------------------------------------------------------- */
+    window.KITLEGAL_PROSPECTOS_DATA = [
+      { folio: '10177', nombre: 'ANA GLORIA PIÑA AGUILAR', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'OAXACA', ejecutivo: 'MARIA LOPEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
+      { folio: '10178', nombre: 'CARLOS RUIZ MARTINEZ', producto: 'C-AUTO', director: 'JUAN PEREZ', sucursal: 'OAXACA', ejecutivo: 'MARIA LOPEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
+      { folio: '10179', nombre: 'LAURA SANCHEZ VILLA', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'PUEBLA', ejecutivo: 'LUIS FERNANDEZ', modalidad: 'SUCURSAL', analista: 'PEDRO GOMEZ' },
+      { folio: '10180', nombre: 'MIGUEL ANGEL FLORES', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'PUEBLA', ejecutivo: 'LUIS FERNANDEZ', modalidad: 'SUCURSAL', analista: 'ANA HERNANDEZ' },
+      { folio: '10181', nombre: 'SOFIA RAMIREZ CRUZ', producto: 'C-MOVIL', director: 'JUAN PEREZ', sucursal: 'VERACRUZ', ejecutivo: 'JOSE DIAZ', modalidad: 'SUCURSAL', analista: 'ANA HERNANDEZ' },
+      { folio: '10182', nombre: 'ROBERTO HERRERA LARA', producto: 'C-AUTO', director: 'ALBERTO GOMEZ', sucursal: 'CDMX SUR', ejecutivo: 'DISTRIBUIDOR 1', modalidad: 'DISTRIBUIDOR', analista: 'ANA HERNANDEZ' },
+      { folio: '10183', nombre: 'CARMEN LUNA PEREZ', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX SUR', ejecutivo: 'DISTRIBUIDOR 1', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
+      { folio: '10184', nombre: 'JORGE ORTEGA SALINAS', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX NORTE', ejecutivo: 'DISTRIBUIDOR 2', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
+      { folio: '10185', nombre: 'PATRICIA REYES VACA', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'CDMX NORTE', ejecutivo: 'DISTRIBUIDOR 2', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' },
+      { folio: '10186', nombre: 'EDUARDO VARGAS PINO', producto: 'C-MOVIL', director: 'ALBERTO GOMEZ', sucursal: 'TOLUCA', ejecutivo: 'DISTRIBUIDOR 3', modalidad: 'DISTRIBUIDOR', analista: 'CARLOS SLIM' }
+    ];
 
-  window.renderKitLegalVistaGeneral = function() {
-    const tbody = document.getElementById('kitLegalVistaGeneralTableBody');
-    if (!tbody) return;
-    tbody.innerHTML = '';
+    window.renderKitLegalVistaGeneral = function () {
+      const tbody = document.getElementById('kitLegalVistaGeneralTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
 
-    KITLEGAL_PROSPECTOS_DATA.forEach(p => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
+      KITLEGAL_PROSPECTOS_DATA.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
         <td><strong>${p.folio}</strong></td>
         <td>${p.nombre}</td>
         <td>${p.producto}</td>
@@ -4135,45 +4140,45 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${p.modalidad}</td>
         <td>${p.analista}</td>
       `;
-      tbody.appendChild(tr);
-    });
-  }
+        tbody.appendChild(tr);
+      });
+    }
 
-  window.renderKitLegalVistaGeneral();
+    window.renderKitLegalVistaGeneral();
 
-  /* ---------------------------------------------------------
-     1. DATOS DE PAGOS (para vista parcial en Registro de Clientes)
-  --------------------------------------------------------- */
-  const PAGOS_DATA = [
-    { id: 1, nombre: 'Enganche', archivo: './ENGANCHE_ANA_GLORIA.pdf', estatus: 'aplicado' },
-    { id: 2, nombre: 'Garantía Líquida', archivo: '', estatus: 'pendiente' },
-    { id: 3, nombre: 'Comisión por Apertura', archivo: './COMISION_ANA_GLORIA.pdf', estatus: 'aplicado' },
-    { id: 4, nombre: 'Co Financiamiento', archivo: '', estatus: 'pendiente' },
-    { id: 5, nombre: 'Complemento de Enganche', archivo: '', estatus: 'pendiente' },
-    { id: 6, nombre: 'Enganche GPS', archivo: '', estatus: 'pendiente' },
-    { id: 7, nombre: 'Garantía Líquida Enganche Diferido', archivo: '', estatus: 'pendiente' }
-  ];
+    /* ---------------------------------------------------------
+       1. DATOS DE PAGOS (para vista parcial en Registro de Clientes)
+    --------------------------------------------------------- */
+    const PAGOS_DATA = [
+      { id: 1, nombre: 'Enganche', archivo: './ENGANCHE_ANA_GLORIA.pdf', estatus: 'aplicado' },
+      { id: 2, nombre: 'Garantía Líquida', archivo: '', estatus: 'pendiente' },
+      { id: 3, nombre: 'Comisión por Apertura', archivo: './COMISION_ANA_GLORIA.pdf', estatus: 'aplicado' },
+      { id: 4, nombre: 'Co Financiamiento', archivo: '', estatus: 'pendiente' },
+      { id: 5, nombre: 'Complemento de Enganche', archivo: '', estatus: 'pendiente' },
+      { id: 6, nombre: 'Enganche GPS', archivo: '', estatus: 'pendiente' },
+      { id: 7, nombre: 'Garantía Líquida Enganche Diferido', archivo: '', estatus: 'pendiente' }
+    ];
 
-  /* ---------------------------------------------------------
-     2. RENDER: Aplicación de Pagos (Vista Parcial — solo 4 columnas)
-  --------------------------------------------------------- */
-  function renderKitLegalPagosParcial() {
-    const tbody = document.getElementById('pagosParcialTableBody');
-    if (!tbody) return;
-    tbody.innerHTML = '';
+    /* ---------------------------------------------------------
+       2. RENDER: Aplicación de Pagos (Vista Parcial — solo 4 columnas)
+    --------------------------------------------------------- */
+    function renderKitLegalPagosParcial() {
+      const tbody = document.getElementById('pagosParcialTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
 
-    PAGOS_DATA.forEach(pago => {
-      const tr = document.createElement('tr');
+      PAGOS_DATA.forEach(pago => {
+        const tr = document.createElement('tr');
 
-      const estatusMap = {
-        pendiente: { label: 'Pendiente', cls: 'estatus-pill estatus-pendiente' },
-        aplicado: { label: 'Aplicado', cls: 'estatus-pill estatus-aplicado' },
-        cancelado: { label: 'Cancelado', cls: 'estatus-pill estatus-cancelado' },
-        revision: { label: 'En Revisión', cls: 'estatus-pill estatus-revision' }
-      };
-      const est = estatusMap[pago.estatus] || { label: pago.estatus, cls: 'estatus-pill' };
+        const estatusMap = {
+          pendiente: { label: 'Pendiente', cls: 'estatus-pill estatus-pendiente' },
+          aplicado: { label: 'Aplicado', cls: 'estatus-pill estatus-aplicado' },
+          cancelado: { label: 'Cancelado', cls: 'estatus-pill estatus-cancelado' },
+          revision: { label: 'En Revisión', cls: 'estatus-pill estatus-revision' }
+        };
+        const est = estatusMap[pago.estatus] || { label: pago.estatus, cls: 'estatus-pill' };
 
-      tr.innerHTML = `
+        tr.innerHTML = `
         <td style="text-align:left;"><strong>${pago.nombre}</strong></td>
         <td style="text-align:left; color: var(--text-dim); font-size:12.5px;">
           ${pago.archivo ? pago.archivo : '<em>Sin archivo</em>'}
@@ -4185,116 +4190,116 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="${est.cls}">${est.label}</span>
         </td>
       `;
-      tbody.appendChild(tr);
-    });
-  }
+        tbody.appendChild(tr);
+      });
+    }
 
-  renderKitLegalPagosParcial();
+    renderKitLegalPagosParcial();
 
-  /* ---------------------------------------------------------
-     3. DATOS DE DOCUMENTOS — Mesa de Control
-  --------------------------------------------------------- */
+    /* ---------------------------------------------------------
+       3. DATOS DE DOCUMENTOS — Mesa de Control
+    --------------------------------------------------------- */
 
-  // Documentos Cliente y Aval(es) — en el orden requerido
-  const MC_DOCS_CLIENTE = [
-    { id: 'c01', nombre: 'Identificacion Oficial', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'c02', nombre: 'CURP', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'c03', nombre: 'RFC', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c04', nombre: 'Acta de Nacimiento', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c05', nombre: 'Comprobante de Domicilio', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'c06', nombre: 'Comprobante de Domicilio Alterno', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c07', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c08', nombre: 'Arraigo', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c09', nombre: 'Fotos del Domicilio', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c10', nombre: 'Fotos de la Actividad', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c11', nombre: 'Comprobante de Ingresos', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c12', nombre: 'Autorización de Consulta de Buró', archivo: './AUTH_BURO_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'c13', nombre: 'Carta de Excepción a la Norma', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c14', nombre: 'Enganche', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c15', nombre: 'Garantia Liquida', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c16', nombre: 'Comisión por Apertura', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c17', nombre: 'Co Financiamiento', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c18', nombre: 'Complemento de Enganche', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c19', nombre: 'Garantia Liquida Enganche Diferido', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c20', nombre: 'Factura', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c21', nombre: 'Carta Factura', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c22', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'c23', nombre: 'Enganche GPS', archivo: '', verificado: false, comentario: '', opcional: false }
-  ];
+    // Documentos Cliente y Aval(es) — en el orden requerido
+    const MC_DOCS_CLIENTE = [
+      { id: 'c01', nombre: 'Identificacion Oficial', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'c02', nombre: 'CURP', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'c03', nombre: 'RFC', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c04', nombre: 'Acta de Nacimiento', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c05', nombre: 'Comprobante de Domicilio', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'c06', nombre: 'Comprobante de Domicilio Alterno', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c07', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c08', nombre: 'Arraigo', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c09', nombre: 'Fotos del Domicilio', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c10', nombre: 'Fotos de la Actividad', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c11', nombre: 'Comprobante de Ingresos', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c12', nombre: 'Autorización de Consulta de Buró', archivo: './AUTH_BURO_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'c13', nombre: 'Carta de Excepción a la Norma', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c14', nombre: 'Enganche', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c15', nombre: 'Garantia Liquida', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c16', nombre: 'Comisión por Apertura', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c17', nombre: 'Co Financiamiento', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c18', nombre: 'Complemento de Enganche', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c19', nombre: 'Garantia Liquida Enganche Diferido', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c20', nombre: 'Factura', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c21', nombre: 'Carta Factura', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c22', nombre: 'Permiso', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'c23', nombre: 'Enganche GPS', archivo: '', verificado: false, comentario: '', opcional: false }
+    ];
 
-  const MC_DOCS_SOLIDARIO = [
-    { id: 's01', nombre: 'Identificacion Oficial Aval', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's02', nombre: 'CURP Aval', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's03', nombre: 'RFC Aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's04', nombre: 'Acta nacimiento aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's05', nombre: 'Comprobante domicilio aval', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 's06', nombre: 'Comprobante de Ingresos Aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's07', nombre: 'Garantia Liquida Enganche Diferido', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's08', nombre: 'Factura Aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's09', nombre: 'Carta Factura Aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's10', nombre: 'Permiso Aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's11', nombre: 'Enganche GPS Aval', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's12', nombre: 'Comprobante Domicilio Alterno Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's13', nombre: 'Arraigo Domiciliar Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's14', nombre: 'Fotos del Domicilio Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's15', nombre: 'Fotos de la Actividad Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's16', nombre: 'Comprobante de Ingresos Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 's17', nombre: 'Otros Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false }
-  ];
+    const MC_DOCS_SOLIDARIO = [
+      { id: 's01', nombre: 'Identificacion Oficial Aval', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 's02', nombre: 'CURP Aval', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 's03', nombre: 'RFC Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's04', nombre: 'Acta nacimiento aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's05', nombre: 'Comprobante domicilio aval', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 's06', nombre: 'Comprobante de Ingresos Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's07', nombre: 'Garantia Liquida Enganche Diferido', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's08', nombre: 'Factura Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's09', nombre: 'Carta Factura Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's10', nombre: 'Permiso Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's11', nombre: 'Enganche GPS Aval', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's12', nombre: 'Comprobante Domicilio Alterno Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's13', nombre: 'Arraigo Domiciliar Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's14', nombre: 'Fotos del Domicilio Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's15', nombre: 'Fotos de la Actividad Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's16', nombre: 'Comprobante de Ingresos Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 's17', nombre: 'Otros Aval Solidario', archivo: '', verificado: false, comentario: '', opcional: false }
+    ];
 
-  const MC_DOCS_GARANTE = [
-    { id: 'a01', nombre: 'Identificacion oficial garante', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a02', nombre: 'CURP garante', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a03', nombre: 'RFC garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a04', nombre: 'Acta nacimiento garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a05', nombre: 'Enganche Garante', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
-    { id: 'a06', nombre: 'Garantia Liquida Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a07', nombre: 'Comisión por Apertura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a08', nombre: 'Co Financiamiento Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a09', nombre: 'Complemento de Enganche Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a10', nombre: 'Garantia Liquida Enganche Diferido Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a11', nombre: 'Factura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a12', nombre: 'Carta Factura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a13', nombre: 'Permiso Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a14', nombre: 'Enganche GPS Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a15', nombre: 'Comprobante Domicilio Alterno Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a16', nombre: 'Arraigo Domiciliar Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a17', nombre: 'Fotos del Domicilio Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a18', nombre: 'Fotos de la Actividad Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a19', nombre: 'Comprobante de Ingresos Garante', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'a20', nombre: 'Otros Garante', archivo: '', verificado: false, comentario: '', opcional: false }
-  ];
+    const MC_DOCS_GARANTE = [
+      { id: 'a01', nombre: 'Identificacion oficial garante', archivo: './INES_ANA_GLORIA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'a02', nombre: 'CURP garante', archivo: './CURP_PIAA770429MMSXGN05.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'a03', nombre: 'RFC garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a04', nombre: 'Acta nacimiento garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a05', nombre: 'Enganche Garante', archivo: './COMP DE DOM CTA.pdf', verificado: false, comentario: '', opcional: false },
+      { id: 'a06', nombre: 'Garantia Liquida Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a07', nombre: 'Comisión por Apertura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a08', nombre: 'Co Financiamiento Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a09', nombre: 'Complemento de Enganche Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a10', nombre: 'Garantia Liquida Enganche Diferido Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a11', nombre: 'Factura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a12', nombre: 'Carta Factura Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a13', nombre: 'Permiso Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a14', nombre: 'Enganche GPS Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a15', nombre: 'Comprobante Domicilio Alterno Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a16', nombre: 'Arraigo Domiciliar Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a17', nombre: 'Fotos del Domicilio Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a18', nombre: 'Fotos de la Actividad Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a19', nombre: 'Comprobante de Ingresos Garante', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'a20', nombre: 'Otros Garante', archivo: '', verificado: false, comentario: '', opcional: false }
+    ];
 
-  // Documentos de Garantías — en el orden requerido
-  // (Este array lo mantuve sin modificaciones porque sus atributos base difieren
-  // de DOCUMENTOS_ADICIONALES, que contiene 36 elementos de tipo distinto).
-  const MC_DOCS_GARANTIAS = [
-    { id: 'g01', nombre: 'Factura', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'g02', nombre: 'Carta Factura', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'g03', nombre: 'Carta de Aceptación de Endoso', archivo: '', verificado: false, comentario: '', opcional: false },
-    { id: 'g04', nombre: 'Garantía Adicional 1', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g05', nombre: 'Garantía Adicional 2', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g06', nombre: 'Pagaré de Distribuidor', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g07', nombre: 'Cotización del Seguro', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g08', nombre: 'Póliza del Seguro', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g09', nombre: 'Comprobante de Pago del Seguro', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g10', nombre: 'Solicitud de Instalación del GPS', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g11', nombre: 'Validación de Factura SAT', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g12', nombre: 'Estado de Cuenta', archivo: '', verificado: false, comentario: '', opcional: true },
-    { id: 'g13', nombre: 'Otros', archivo: '', verificado: false, comentario: '', opcional: true }
-  ];
+    // Documentos de Garantías — en el orden requerido
+    // (Este array lo mantuve sin modificaciones porque sus atributos base difieren
+    // de DOCUMENTOS_ADICIONALES, que contiene 36 elementos de tipo distinto).
+    const MC_DOCS_GARANTIAS = [
+      { id: 'g01', nombre: 'Factura', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'g02', nombre: 'Carta Factura', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'g03', nombre: 'Carta de Aceptación de Endoso', archivo: '', verificado: false, comentario: '', opcional: false },
+      { id: 'g04', nombre: 'Garantía Adicional 1', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g05', nombre: 'Garantía Adicional 2', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g06', nombre: 'Pagaré de Distribuidor', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g07', nombre: 'Cotización del Seguro', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g08', nombre: 'Póliza del Seguro', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g09', nombre: 'Comprobante de Pago del Seguro', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g10', nombre: 'Solicitud de Instalación del GPS', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g11', nombre: 'Validación de Factura SAT', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g12', nombre: 'Estado de Cuenta', archivo: '', verificado: false, comentario: '', opcional: true },
+      { id: 'g13', nombre: 'Otros', archivo: '', verificado: false, comentario: '', opcional: true }
+    ];
 
-  /* ---------------------------------------------------------
-     4. RENDER: Tabla de documentos Mesa de Control
-  --------------------------------------------------------- */
-  function renderKitLegalMCDocumentos(datos, tbodyId) {
-    const tbody = document.getElementById(tbodyId);
-    if (!tbody) return;
-    tbody.innerHTML = '';
+    /* ---------------------------------------------------------
+       4. RENDER: Tabla de documentos Mesa de Control
+    --------------------------------------------------------- */
+    function renderKitLegalMCDocumentos(datos, tbodyId) {
+      const tbody = document.getElementById(tbodyId);
+      if (!tbody) return;
+      tbody.innerHTML = '';
 
-    datos.forEach(doc => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
+      datos.forEach(doc => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
         <td style="text-align:left;">
           <strong>${doc.nombre}</strong>
           ${doc.opcional ? '<span class="opcional-badge">Opcional</span>' : ''}
@@ -4319,396 +4324,396 @@ document.addEventListener('DOMContentLoaded', () => {
             onchange="guardarKitLegalComentarioMC('${doc.id}', this.value)">
         </td>
       `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  function renderKitLegalTodosDocumentosMC() {
-    renderKitLegalMCDocumentos(MC_DOCS_CLIENTE, 'mcDocClienteBody');
-    renderKitLegalMCDocumentos(MC_DOCS_SOLIDARIO, 'mcDocSolidarioBody');
-    renderKitLegalMCDocumentos(MC_DOCS_GARANTE, 'mcDocGaranteBody');
-    renderKitLegalMCDocumentos(MC_DOCS_GARANTIAS, 'mcDocGarantiasBody');
-  }
-
-  /* ---------------------------------------------------------
-     5. TOGGLE Verificado
-  --------------------------------------------------------- */
-  window.toggleKitLegalVerificado = function (id, checked) {
-    const todos = [...MC_DOCS_CLIENTE, ...MC_DOCS_SOLIDARIO, ...MC_DOCS_GARANTE, ...MC_DOCS_GARANTIAS];
-    const doc = todos.find(d => d.id === id);
-    if (doc) doc.verificado = checked;
-  };
-
-  /* ---------------------------------------------------------
-     6. Guardar comentario MC
-  --------------------------------------------------------- */
-  window.guardarKitLegalComentarioMC = function (id, valor) {
-    const todos = [...MC_DOCS_CLIENTE, ...MC_DOCS_SOLIDARIO, ...MC_DOCS_GARANTE, ...MC_DOCS_GARANTIAS];
-    const doc = todos.find(d => d.id === id);
-    if (doc) doc.comentario = valor;
-  };
-
-  /* ---------------------------------------------------------
-     7. Mostrar/ocultar grupos de documentos
-  --------------------------------------------------------- */
-  window.mostrarKitLegalGrupoDocumentos = function (grupo) {
-    const grupoCliente = document.getElementById('grupoDocCliente');
-    const grupoGarantias = document.getElementById('grupoDocGarantias');
-    const btnCliente = document.getElementById('btnGrupoCliente');
-    const btnGarantias = document.getElementById('btnGrupoGarantias');
-
-    if (grupo === 'cliente') {
-      if (grupoCliente) grupoCliente.style.display = 'block';
-      if (grupoGarantias) grupoGarantias.style.display = 'none';
-      if (btnCliente) btnCliente.classList.add('mc-grupo-active');
-      if (btnGarantias) btnGarantias.classList.remove('mc-grupo-active');
-    } else {
-      if (grupoCliente) grupoCliente.style.display = 'none';
-      if (grupoGarantias) grupoGarantias.style.display = 'block';
-      if (btnGarantias) btnGarantias.classList.add('mc-grupo-active');
-      if (btnCliente) btnCliente.classList.remove('mc-grupo-active');
-    }
-  };
-
-  /* ---------------------------------------------------------
-     8. TABS PRINCIPALES — Registro de Clientes / Mesa de Control
-  --------------------------------------------------------- */
-  window.mostrarKitLegalVistaGeneral = function () {
-    const vistaVG = document.getElementById('kitLegalVistaGeneral');
-    const vistaRC = document.getElementById('kitLegalVistaRegistroClientes');
-    const vistaMC = document.getElementById('kitLegalVistaMesaControl');
-
-    const tabVG = document.getElementById('tabKitLegalVistaGeneral');
-    const tabRC = document.getElementById('tabKitLegalRegistroClientes');
-    const tabMC = document.getElementById('tabKitLegalMesaControl');
-
-    if (vistaVG) vistaVG.style.display = 'block';
-    if (vistaRC) vistaRC.style.display = 'none';
-    if (vistaMC) vistaMC.style.display = 'none';
-
-    if (tabVG) tabVG.classList.add('active');
-    if (tabRC) tabRC.classList.remove('active');
-    if (tabMC) tabMC.classList.remove('active');
-  };
-
-  window.mostrarKitLegalRegistroClientes = function () {
-    const vistaVG = document.getElementById('kitLegalVistaGeneral');
-    const vistaRC = document.getElementById('kitLegalVistaRegistroClientes');
-    const vistaMC = document.getElementById('kitLegalVistaMesaControl');
-
-    const tabVG = document.getElementById('tabKitLegalVistaGeneral');
-    const tabRC = document.getElementById('tabKitLegalRegistroClientes');
-    const tabMC = document.getElementById('tabKitLegalMesaControl');
-
-    if (vistaVG) vistaVG.style.display = 'none';
-    if (vistaRC) vistaRC.style.display = 'block';
-    if (vistaMC) vistaMC.style.display = 'none';
-
-    if (tabVG) tabVG.classList.remove('active');
-    if (tabRC) tabRC.classList.add('active');
-    if (tabMC) tabMC.classList.remove('active');
-  };
-
-  window.mostrarKitLegalMesaControlTab = function () {
-    const vistaVG = document.getElementById('kitLegalVistaGeneral');
-    const vistaRC = document.getElementById('kitLegalVistaRegistroClientes');
-    const vistaMC = document.getElementById('kitLegalVistaMesaControl');
-
-    const tabVG = document.getElementById('tabKitLegalVistaGeneral');
-    const tabRC = document.getElementById('tabKitLegalRegistroClientes');
-    const tabMC = document.getElementById('tabKitLegalMesaControl');
-
-    if (vistaVG) vistaVG.style.display = 'none';
-    if (vistaRC) vistaRC.style.display = 'none';
-    if (vistaMC) vistaMC.style.display = 'block';
-
-    if (tabVG) tabVG.classList.remove('active');
-    if (tabRC) tabRC.classList.remove('active');
-    if (tabMC) tabMC.classList.add('active');
-
-    renderKitLegalTodosDocumentosMC();
-  };
-
-  /* ---------------------------------------------------------
-     9. SEGUNDO AVAL — toggle mostrar/ocultar
-  --------------------------------------------------------- */
-  window.toggleKitLegalAval2 = function () {
-    const wrapper = document.getElementById('aval2Wrapper');
-    if (!wrapper) return;
-    const isHidden = wrapper.style.display === 'none' || wrapper.style.display === '';
-    wrapper.style.display = isHidden ? 'block' : 'none';
-
-    const btnAgregar = document.getElementById('wrapperAgregarAval2');
-    if (btnAgregar) {
-      btnAgregar.style.display = isHidden ? 'none' : 'block';
-    }
-  };
-
-  /* ---------------------------------------------------------
-     10. HISTORIAL BURÓ — toggle mostrar/ocultar
-  --------------------------------------------------------- */
-  window.toggleKitLegalHistorialBuro = function (id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const isHidden = el.style.display === 'none' || el.style.display === '';
-    el.style.display = isHidden ? 'block' : 'none';
-
-    // Cambiar texto del botón
-    const buroPanel = el.closest('.buro-panel');
-    if (buroPanel) {
-      const btn = buroPanel.querySelector('.btn-historial');
-      if (btn) btn.textContent = isHidden ? '📋 Ocultar Historial' : '📋 Ver Historial';
-    }
-  };
-
-  /* ---------------------------------------------------------
-     11. AUTORIZAR CRÉDITO
-  --------------------------------------------------------- */
-  window.autorizarKitLegalCredito = function () {
-    const comentarios = document.getElementById('comentariosAutorizacion');
-    const btn = document.getElementById('btnAutorizarCredito');
-    const registro = document.getElementById('registroAutorizacion');
-    const textoUsuario = document.getElementById('textoUsuarioAutorizo');
-    const textoFecha = document.getElementById('textoFechaAutorizo');
-
-    const comentarioValor = comentarios ? comentarios.value.trim() : '';
-
-    if (!comentarioValor) {
-      alert('Por favor ingrese comentarios de autorización antes de autorizar.');
-      return;
-    }
-
-    const ahora = new Date();
-    const fechaStr = ahora.toLocaleString('es-MX', {
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit'
-    });
-
-    const USUARIO_ACTUAL = 'JOSE LUIS SOLORZANO GUTIERREZ';
-
-    if (textoUsuario) textoUsuario.textContent = `Autorizado por: ${USUARIO_ACTUAL}`;
-    if (textoFecha) textoFecha.textContent = `Fecha y hora: ${fechaStr}`;
-    if (registro) registro.style.display = 'flex';
-
-    if (btn) {
-      btn.textContent = '✅ Crédito Autorizado';
-      btn.classList.add('btn-autorizar-done');
-      btn.disabled = true;
-    }
-    if (comentarios) comentarios.readOnly = true;
-  };
-
-  window.consultarKitLegalListasNegras = async function () {
-    const statusListasNegras = document.getElementById('statusListasNegras');
-    const statusOFAC = document.getElementById('statusOFAC');
-    const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadas');
-    const statusDrem = document.getElementById('statusDrem');
-
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-    statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-
-    await sleep(2000);
-    statusListasNegras.textContent = '✔️ Sin coincidencia';
-
-    await sleep(2000);
-    statusOFAC.textContent = '✔️ Sin coincidencia';
-
-    await sleep(2000);
-    statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
-
-    await sleep(2000);
-    statusDrem.textContent = '✔️ Sin coincidencia';
-
-    document.getElementById('botonVerConsultaPLD').disabled = false;
-  };
-
-  window.consultarKitLegalListasNegrasAval1 = async function () {
-    const statusListasNegras = document.getElementById('statusListasNegrasAval1');
-    const statusOFAC = document.getElementById('statusOFACAval1');
-    const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval1');
-    const statusDrem = document.getElementById('statusDremAval1');
-
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-    statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-
-    await sleep(2000);
-    statusListasNegras.textContent = '✔️ Sin coincidencia';
-
-    await sleep(2000);
-    statusOFAC.textContent = '✔️ Sin coincidencia';
-
-    await sleep(2000);
-    statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
-
-    await sleep(2000);
-    statusDrem.textContent = '✔️ Sin coincidencia';
-
-    document.getElementById('botonVerConsultaPLDAval1').disabled = false;
-  };
-
-  window.consultarKitLegalListasNegrasAval2 = async function () {
-    const statusListasNegras = document.getElementById('statusListasNegrasAval2');
-    const statusOFAC = document.getElementById('statusOFACAval2');
-    const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval2');
-    const statusDrem = document.getElementById('statusDremAval2');
-
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-    statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-    statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
-
-    await sleep(2000);
-    statusListasNegras.textContent = '✔️ Sin coincidencia';
-
-    await sleep(2000);
-    statusOFAC.textContent = '✔️ Sin coincidencia';
-
-    await sleep(2000);
-    statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
-
-    await sleep(2000);
-    statusDrem.textContent = '✔️ Sin coincidencia';
-
-    document.getElementById('botonVerConsultaPLDAval2').disabled = false;
-  };
-
-
-
-  /* ---------------------------------------------------------
-     12. CLASIFICACIONES — Garantías Adicionales (Registro de Clientes)
-  --------------------------------------------------------- */
-  const CLASIFICACIONES_RC = {
-    MOBILIARIA: [
-      'MAQUINARIA Y EQUIPO',
-      'VEHÍCULOS TERRESTRES DE MOTOR',
-      'PRODUCTOS MANUFACTURADOS DISTINTOS A MAQUINARIA',
-      'TITULOS DE DEUDA EMITIDOS POR EL GOBIERNO FEDERAL',
-      'TITULOS DE DEUDA EMITIDOS POR ENTIDADES DISTINTAS AL GF',
-      'ACCIONES REPRESENTATIVAS DE CAPITAL',
-      'DERECHOS, INCLUYENDO DERECHOS DE COBRO',
-      'BIENES DE CONSUMO',
-      'FIDEICOMISO',
-      'OTROS'
-    ],
-    INMOBILIARIA: [
-      'CASA HABITACION UNIFAMILIAR',
-      'CONDOMINIO MULTIFAMILIAR',
-      'UNIDAD INDUSTRIAL',
-      'TERRENO EN ZONA RURAL',
-      'TERRENO EN ZONA URBANA'
-    ],
-    GUBERNAMENTAL: [
-      'GARANTIA FEGA',
-      'GARANTIA FONAGA'
-    ]
-  };
-
-  window.actualizarKitLegalRCClasificacion = function () {
-    const tipoGarantia = document.getElementById('rcTipoGarantia');
-    const clasificacion = document.getElementById('rcClasificacionGarantia');
-    if (!tipoGarantia || !clasificacion) return;
-
-    const tipo = tipoGarantia.value;
-    clasificacion.innerHTML = '';
-    clasificacion.disabled = true;
-
-    if (tipo && CLASIFICACIONES_RC[tipo]) {
-      const optDef = document.createElement('option');
-      optDef.value = '';
-      optDef.textContent = 'SELECCIONAR';
-      clasificacion.appendChild(optDef);
-
-      CLASIFICACIONES_RC[tipo].forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item;
-        opt.textContent = item;
-        clasificacion.appendChild(opt);
+        tbody.appendChild(tr);
       });
-      clasificacion.disabled = false;
-    } else {
-      const optDef = document.createElement('option');
-      optDef.value = '';
-      optDef.textContent = 'SELECCIONAR';
-      clasificacion.appendChild(optDef);
+    }
+
+    function renderKitLegalTodosDocumentosMC() {
+      renderKitLegalMCDocumentos(MC_DOCS_CLIENTE, 'mcDocClienteBody');
+      renderKitLegalMCDocumentos(MC_DOCS_SOLIDARIO, 'mcDocSolidarioBody');
+      renderKitLegalMCDocumentos(MC_DOCS_GARANTE, 'mcDocGaranteBody');
+      renderKitLegalMCDocumentos(MC_DOCS_GARANTIAS, 'mcDocGarantiasBody');
+    }
+
+    /* ---------------------------------------------------------
+       5. TOGGLE Verificado
+    --------------------------------------------------------- */
+    window.toggleKitLegalVerificado = function (id, checked) {
+      const todos = [...MC_DOCS_CLIENTE, ...MC_DOCS_SOLIDARIO, ...MC_DOCS_GARANTE, ...MC_DOCS_GARANTIAS];
+      const doc = todos.find(d => d.id === id);
+      if (doc) doc.verificado = checked;
+    };
+
+    /* ---------------------------------------------------------
+       6. Guardar comentario MC
+    --------------------------------------------------------- */
+    window.guardarKitLegalComentarioMC = function (id, valor) {
+      const todos = [...MC_DOCS_CLIENTE, ...MC_DOCS_SOLIDARIO, ...MC_DOCS_GARANTE, ...MC_DOCS_GARANTIAS];
+      const doc = todos.find(d => d.id === id);
+      if (doc) doc.comentario = valor;
+    };
+
+    /* ---------------------------------------------------------
+       7. Mostrar/ocultar grupos de documentos
+    --------------------------------------------------------- */
+    window.mostrarKitLegalGrupoDocumentos = function (grupo) {
+      const grupoCliente = document.getElementById('grupoDocCliente');
+      const grupoGarantias = document.getElementById('grupoDocGarantias');
+      const btnCliente = document.getElementById('btnGrupoCliente');
+      const btnGarantias = document.getElementById('btnGrupoGarantias');
+
+      if (grupo === 'cliente') {
+        if (grupoCliente) grupoCliente.style.display = 'block';
+        if (grupoGarantias) grupoGarantias.style.display = 'none';
+        if (btnCliente) btnCliente.classList.add('mc-grupo-active');
+        if (btnGarantias) btnGarantias.classList.remove('mc-grupo-active');
+      } else {
+        if (grupoCliente) grupoCliente.style.display = 'none';
+        if (grupoGarantias) grupoGarantias.style.display = 'block';
+        if (btnGarantias) btnGarantias.classList.add('mc-grupo-active');
+        if (btnCliente) btnCliente.classList.remove('mc-grupo-active');
+      }
+    };
+
+    /* ---------------------------------------------------------
+       8. TABS PRINCIPALES — Registro de Clientes / Mesa de Control
+    --------------------------------------------------------- */
+    window.mostrarKitLegalVistaGeneral = function () {
+      const vistaVG = document.getElementById('kitLegalVistaGeneral');
+      const vistaRC = document.getElementById('kitLegalVistaRegistroClientes');
+      const vistaMC = document.getElementById('kitLegalVistaMesaControl');
+
+      const tabVG = document.getElementById('tabKitLegalVistaGeneral');
+      const tabRC = document.getElementById('tabKitLegalRegistroClientes');
+      const tabMC = document.getElementById('tabKitLegalMesaControl');
+
+      if (vistaVG) vistaVG.style.display = 'block';
+      if (vistaRC) vistaRC.style.display = 'none';
+      if (vistaMC) vistaMC.style.display = 'none';
+
+      if (tabVG) tabVG.classList.add('active');
+      if (tabRC) tabRC.classList.remove('active');
+      if (tabMC) tabMC.classList.remove('active');
+    };
+
+    window.mostrarKitLegalRegistroClientes = function () {
+      const vistaVG = document.getElementById('kitLegalVistaGeneral');
+      const vistaRC = document.getElementById('kitLegalVistaRegistroClientes');
+      const vistaMC = document.getElementById('kitLegalVistaMesaControl');
+
+      const tabVG = document.getElementById('tabKitLegalVistaGeneral');
+      const tabRC = document.getElementById('tabKitLegalRegistroClientes');
+      const tabMC = document.getElementById('tabKitLegalMesaControl');
+
+      if (vistaVG) vistaVG.style.display = 'none';
+      if (vistaRC) vistaRC.style.display = 'block';
+      if (vistaMC) vistaMC.style.display = 'none';
+
+      if (tabVG) tabVG.classList.remove('active');
+      if (tabRC) tabRC.classList.add('active');
+      if (tabMC) tabMC.classList.remove('active');
+    };
+
+    window.mostrarKitLegalMesaControlTab = function () {
+      const vistaVG = document.getElementById('kitLegalVistaGeneral');
+      const vistaRC = document.getElementById('kitLegalVistaRegistroClientes');
+      const vistaMC = document.getElementById('kitLegalVistaMesaControl');
+
+      const tabVG = document.getElementById('tabKitLegalVistaGeneral');
+      const tabRC = document.getElementById('tabKitLegalRegistroClientes');
+      const tabMC = document.getElementById('tabKitLegalMesaControl');
+
+      if (vistaVG) vistaVG.style.display = 'none';
+      if (vistaRC) vistaRC.style.display = 'none';
+      if (vistaMC) vistaMC.style.display = 'block';
+
+      if (tabVG) tabVG.classList.remove('active');
+      if (tabRC) tabRC.classList.remove('active');
+      if (tabMC) tabMC.classList.add('active');
+
+      renderKitLegalTodosDocumentosMC();
+    };
+
+    /* ---------------------------------------------------------
+       9. SEGUNDO AVAL — toggle mostrar/ocultar
+    --------------------------------------------------------- */
+    window.toggleKitLegalAval2 = function () {
+      const wrapper = document.getElementById('aval2Wrapper');
+      if (!wrapper) return;
+      const isHidden = wrapper.style.display === 'none' || wrapper.style.display === '';
+      wrapper.style.display = isHidden ? 'block' : 'none';
+
+      const btnAgregar = document.getElementById('wrapperAgregarAval2');
+      if (btnAgregar) {
+        btnAgregar.style.display = isHidden ? 'none' : 'block';
+      }
+    };
+
+    /* ---------------------------------------------------------
+       10. HISTORIAL BURÓ — toggle mostrar/ocultar
+    --------------------------------------------------------- */
+    window.toggleKitLegalHistorialBuro = function (id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const isHidden = el.style.display === 'none' || el.style.display === '';
+      el.style.display = isHidden ? 'block' : 'none';
+
+      // Cambiar texto del botón
+      const buroPanel = el.closest('.buro-panel');
+      if (buroPanel) {
+        const btn = buroPanel.querySelector('.btn-historial');
+        if (btn) btn.textContent = isHidden ? '📋 Ocultar Historial' : '📋 Ver Historial';
+      }
+    };
+
+    /* ---------------------------------------------------------
+       11. AUTORIZAR CRÉDITO
+    --------------------------------------------------------- */
+    window.autorizarKitLegalCredito = function () {
+      const comentarios = document.getElementById('comentariosAutorizacion');
+      const btn = document.getElementById('btnAutorizarCredito');
+      const registro = document.getElementById('registroAutorizacion');
+      const textoUsuario = document.getElementById('textoUsuarioAutorizo');
+      const textoFecha = document.getElementById('textoFechaAutorizo');
+
+      const comentarioValor = comentarios ? comentarios.value.trim() : '';
+
+      if (!comentarioValor) {
+        alert('Por favor ingrese comentarios de autorización antes de autorizar.');
+        return;
+      }
+
+      const ahora = new Date();
+      const fechaStr = ahora.toLocaleString('es-MX', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+
+      const USUARIO_ACTUAL = 'JOSE LUIS SOLORZANO GUTIERREZ';
+
+      if (textoUsuario) textoUsuario.textContent = `Autorizado por: ${USUARIO_ACTUAL}`;
+      if (textoFecha) textoFecha.textContent = `Fecha y hora: ${fechaStr}`;
+      if (registro) registro.style.display = 'flex';
+
+      if (btn) {
+        btn.textContent = '✅ Crédito Autorizado';
+        btn.classList.add('btn-autorizar-done');
+        btn.disabled = true;
+      }
+      if (comentarios) comentarios.readOnly = true;
+    };
+
+    window.consultarKitLegalListasNegras = async function () {
+      const statusListasNegras = document.getElementById('statusListasNegras');
+      const statusOFAC = document.getElementById('statusOFAC');
+      const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadas');
+      const statusDrem = document.getElementById('statusDrem');
+
+      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+      statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+
+      await sleep(2000);
+      statusListasNegras.textContent = '✔️ Sin coincidencia';
+
+      await sleep(2000);
+      statusOFAC.textContent = '✔️ Sin coincidencia';
+
+      await sleep(2000);
+      statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+      await sleep(2000);
+      statusDrem.textContent = '✔️ Sin coincidencia';
+
+      document.getElementById('botonVerConsultaPLD').disabled = false;
+    };
+
+    window.consultarKitLegalListasNegrasAval1 = async function () {
+      const statusListasNegras = document.getElementById('statusListasNegrasAval1');
+      const statusOFAC = document.getElementById('statusOFACAval1');
+      const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval1');
+      const statusDrem = document.getElementById('statusDremAval1');
+
+      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+      statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+
+      await sleep(2000);
+      statusListasNegras.textContent = '✔️ Sin coincidencia';
+
+      await sleep(2000);
+      statusOFAC.textContent = '✔️ Sin coincidencia';
+
+      await sleep(2000);
+      statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+      await sleep(2000);
+      statusDrem.textContent = '✔️ Sin coincidencia';
+
+      document.getElementById('botonVerConsultaPLDAval1').disabled = false;
+    };
+
+    window.consultarKitLegalListasNegrasAval2 = async function () {
+      const statusListasNegras = document.getElementById('statusListasNegrasAval2');
+      const statusOFAC = document.getElementById('statusOFACAval2');
+      const statusPersonasBloqueadas = document.getElementById('statusPersonasBloqueadasAval2');
+      const statusDrem = document.getElementById('statusDremAval2');
+
+      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+      statusListasNegras.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusOFAC.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusPersonasBloqueadas.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+      statusDrem.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Consultando...';
+
+      await sleep(2000);
+      statusListasNegras.textContent = '✔️ Sin coincidencia';
+
+      await sleep(2000);
+      statusOFAC.textContent = '✔️ Sin coincidencia';
+
+      await sleep(2000);
+      statusPersonasBloqueadas.textContent = '❌ Con coincidencia';
+
+      await sleep(2000);
+      statusDrem.textContent = '✔️ Sin coincidencia';
+
+      document.getElementById('botonVerConsultaPLDAval2').disabled = false;
+    };
+
+
+
+    /* ---------------------------------------------------------
+       12. CLASIFICACIONES — Garantías Adicionales (Registro de Clientes)
+    --------------------------------------------------------- */
+    const CLASIFICACIONES_RC = {
+      MOBILIARIA: [
+        'MAQUINARIA Y EQUIPO',
+        'VEHÍCULOS TERRESTRES DE MOTOR',
+        'PRODUCTOS MANUFACTURADOS DISTINTOS A MAQUINARIA',
+        'TITULOS DE DEUDA EMITIDOS POR EL GOBIERNO FEDERAL',
+        'TITULOS DE DEUDA EMITIDOS POR ENTIDADES DISTINTAS AL GF',
+        'ACCIONES REPRESENTATIVAS DE CAPITAL',
+        'DERECHOS, INCLUYENDO DERECHOS DE COBRO',
+        'BIENES DE CONSUMO',
+        'FIDEICOMISO',
+        'OTROS'
+      ],
+      INMOBILIARIA: [
+        'CASA HABITACION UNIFAMILIAR',
+        'CONDOMINIO MULTIFAMILIAR',
+        'UNIDAD INDUSTRIAL',
+        'TERRENO EN ZONA RURAL',
+        'TERRENO EN ZONA URBANA'
+      ],
+      GUBERNAMENTAL: [
+        'GARANTIA FEGA',
+        'GARANTIA FONAGA'
+      ]
+    };
+
+    window.actualizarKitLegalRCClasificacion = function () {
+      const tipoGarantia = document.getElementById('rcTipoGarantia');
+      const clasificacion = document.getElementById('rcClasificacionGarantia');
+      if (!tipoGarantia || !clasificacion) return;
+
+      const tipo = tipoGarantia.value;
+      clasificacion.innerHTML = '';
+      clasificacion.disabled = true;
+
+      if (tipo && CLASIFICACIONES_RC[tipo]) {
+        const optDef = document.createElement('option');
+        optDef.value = '';
+        optDef.textContent = 'SELECCIONAR';
+        clasificacion.appendChild(optDef);
+
+        CLASIFICACIONES_RC[tipo].forEach(item => {
+          const opt = document.createElement('option');
+          opt.value = item;
+          opt.textContent = item;
+          clasificacion.appendChild(opt);
+        });
+        clasificacion.disabled = false;
+      } else {
+        const optDef = document.createElement('option');
+        optDef.value = '';
+        optDef.textContent = 'SELECCIONAR';
+        clasificacion.appendChild(optDef);
+      }
+    };
+
+    /* ---------------------------------------------------------
+       13. INICIALIZACIÓN
+    --------------------------------------------------------- */
+    // Mostrar Vista General por defecto
+    mostrarKitLegalVistaGeneral();
+
+  });
+
+  // ============================================================
+  // Funciones globales de Modal Autorizacion
+  // ============================================================
+  window.abrirKitLegalModalAutorizacion = function () {
+    const modal = document.getElementById('modalAutorizacion');
+    if (modal) {
+      modal.removeAttribute('hidden');
+      modal.style.display = 'flex';
     }
   };
 
-  /* ---------------------------------------------------------
-     13. INICIALIZACIÓN
-  --------------------------------------------------------- */
-  // Mostrar Vista General por defecto
-  mostrarKitLegalVistaGeneral();
+  window.cerrarKitLegalModalAutorizacion = function () {
+    const modal = document.getElementById('modalAutorizacion');
+    if (modal) {
+      modal.setAttribute('hidden', 'true');
+      modal.style.display = 'none';
+    }
+  };
 
-});
+  window.seccionKitLegalMesaControl = function () {
+    const mesaControl = document.getElementById('MesaControl');
+    const ordenPago = document.getElementById('vistaOrdenPago');
+    const tabInformacionGeneral = document.getElementById('tabKitLegalVistaGeneral');
+    const tabRegistroClientes = document.getElementById('tabKitLegalRegistroClientes');
+    const tabMesaControl = document.getElementById('tabKitLegalMesaControl');
+    const tabOrdenPago = document.getElementById('tabOrdenPago');
 
-// ============================================================
-// Funciones globales de Modal Autorizacion
-// ============================================================
-window.abrirKitLegalModalAutorizacion = function () {
-  const modal = document.getElementById('modalAutorizacion');
-  if (modal) {
-    modal.removeAttribute('hidden');
-    modal.style.display = 'flex';
+    mesaControl.removeAttribute('hidden');
+    tabInformacionGeneral.removeAttribute('hidden');
+    tabRegistroClientes.removeAttribute('hidden');
+    tabMesaControl.removeAttribute('hidden');
+
+    ordenPago.setAttribute('hidden', 'true');
+    tabOrdenPago.setAttribute('hidden', 'true');
   }
-};
 
-window.cerrarKitLegalModalAutorizacion = function () {
-  const modal = document.getElementById('modalAutorizacion');
-  if (modal) {
-    modal.setAttribute('hidden', 'true');
-    modal.style.display = 'none';
+  window.seccionLiberacionOrdenPago = function () {
+    const mesaControl = document.getElementById('MesaControl');
+    const ordenPago = document.getElementById('vistaOrdenPago');
+    const tabInformacionGeneral = document.getElementById('tabKitLegalVistaGeneral');
+    const tabRegistroClientes = document.getElementById('tabKitLegalRegistroClientes');
+    const tabMesaControl = document.getElementById('tabKitLegalMesaControl');
+    const tabOrdenPago = document.getElementById('tabOrdenPago');
+
+    mesaControl.setAttribute('hidden', 'true');
+    tabInformacionGeneral.setAttribute('hidden', true);
+    tabRegistroClientes.setAttribute('hidden', true);
+    tabMesaControl.setAttribute('hidden', true);
+
+    ordenPago.removeAttribute('hidden');
+    tabOrdenPago.removeAttribute('hidden');
   }
-};
 
-window.seccionKitLegalMesaControl = function () {
-  const mesaControl = document.getElementById('MesaControl');
-  const ordenPago = document.getElementById('vistaOrdenPago');
-  const tabInformacionGeneral = document.getElementById('tabKitLegalVistaGeneral');
-  const tabRegistroClientes = document.getElementById('tabKitLegalRegistroClientes');
-  const tabMesaControl = document.getElementById('tabKitLegalMesaControl');
-  const tabOrdenPago = document.getElementById('tabOrdenPago');
+  // ============================================================
+  // TABLA DE ORDEN DE PAGO
+  // ============================================================
 
-  mesaControl.removeAttribute('hidden');
-  tabInformacionGeneral.removeAttribute('hidden');
-  tabRegistroClientes.removeAttribute('hidden');
-  tabMesaControl.removeAttribute('hidden');
-
-  ordenPago.setAttribute('hidden', 'true');
-  tabOrdenPago.setAttribute('hidden', 'true');
-}
-
-window.seccionLiberacionOrdenPago = function () {
-  const mesaControl = document.getElementById('MesaControl');
-  const ordenPago = document.getElementById('vistaOrdenPago');
-  const tabInformacionGeneral = document.getElementById('tabKitLegalVistaGeneral');
-  const tabRegistroClientes = document.getElementById('tabKitLegalRegistroClientes');
-  const tabMesaControl = document.getElementById('tabKitLegalMesaControl');
-  const tabOrdenPago = document.getElementById('tabOrdenPago');
-
-  mesaControl.setAttribute('hidden', 'true');
-  tabInformacionGeneral.setAttribute('hidden', true);
-  tabRegistroClientes.setAttribute('hidden', true);
-  tabMesaControl.setAttribute('hidden', true);
-
-  ordenPago.removeAttribute('hidden');
-  tabOrdenPago.removeAttribute('hidden');
-}
-
-// ============================================================
-// TABLA DE ORDEN DE PAGO
-// ============================================================
-
-{/*
+  {/*
 <th>NO. CREDITO</th>
 <th>NOMBRE ACREDITADO</th>
 <th>FECHA DESEMBOLSO</th>
@@ -4722,27 +4727,27 @@ window.seccionLiberacionOrdenPago = function () {
 <th>CREADOR</th>
 */}
 
-window.LIBERACION_DATA = [
-  { credito: '10051', nombre: 'Alejandro Mendoza Ortiz', fecha: '2026-07-01', liberacion: '02-07-2026', monto: '$15,200.00', distribuidor: 'TechDist SA de CV', cuenta: '1651898', banco: 'BBVA', estatus: 'Aprobado', producto: 'C-MOVIL'},
-  { credito: '10052', nombre: 'Sofía Castillo Rivas', fecha: '2026-07-03', liberacion: '02-07-2026', monto: '$8,450.00', distribuidor: 'Global Ventas', cuenta: '1651898', banco: 'Banorte', estatus: 'Pendiente', producto: 'C-MOVIL'},
-  { credito: '10053', nombre: 'Fernando Ruiz Gómez', fecha: '2026-07-05', liberacion: '02-07-2026', monto: '$22,100.00', distribuidor: 'Comercializadora MX', cuenta: '1651898', banco: 'BBVA', estatus: 'Pagado', producto: 'C-MOVIL'},
-  { credito: '10054', nombre: 'Camila Vega Blancas', fecha: '2026-07-08', liberacion: '02-07-2026', monto: '$10,500.00', distribuidor: 'Mega Red Nacional', cuenta: '1651898', banco: 'BBVA', estatus: 'Rechazado', producto: 'C-MOVIL'},
-  { credito: '10055', nombre: 'Roberto Pineda Sánchez', fecha: '2026-07-10', liberacion: '02-07-2026', monto: '$5,300.00', distribuidor: 'Distribuidora del Valle', cuenta: '1651898', banco: 'Scotiabank', estatus: 'Aprobado', producto: 'C-MOVIL'},
-  { credito: '10056', nombre: 'Diana Miranda Castro', fecha: '2026-07-12', liberacion: '02-07-2026', monto: '$45,000.00', distribuidor: 'TechDist SA de CV', cuenta: '1651898', banco: 'BanCoppel', estatus: 'Pagado', producto: 'C-MOVIL'},
-  { credito: '10057', nombre: 'Héctor Salgado López', fecha: '2026-07-15', liberacion: '02-07-2026', monto: '$18,900.00', distribuidor: 'Global Ventas', cuenta: '1651898', banco: 'BanCoppel', estatus: 'Pendiente', producto: 'C-MOVIL'},
-  { credito: '10058', nombre: 'Gabriela Ortiz Luna', fecha: '2026-07-18', liberacion: '02-07-2026', monto: '$12,750.00', distribuidor: 'Comercializadora MX', cuenta: '1651898', banco: 'Banorte', estatus: 'Aprobado', producto: 'C-MOVIL'},
-  { credito: '10059', nombre: 'Javier Cárdenas Reyes', fecha: '2026-07-20', liberacion: '02-07-2026', monto: '$33,400.00', distribuidor: 'Mega Red Nacional', cuenta: '1651898', banco: 'Banorte', estatus: 'Pagado', producto: 'C-MOVIL'},
-  { credito: '10060', nombre: 'Lorena Montes Cota', fecha: '2026-07-23', liberacion: '02-07-2026', monto: '$7,250.00', distribuidor: 'Distribuidora del Valle', cuenta: '1651898', banco: 'Scotiabank', estatus: 'En revisión', producto: 'C-MOVIL'},
-];
+  window.LIBERACION_DATA = [
+    { credito: '10051', nombre: 'Alejandro Mendoza Ortiz', fecha: '2026-07-01', liberacion: '02-07-2026', monto: '$15,200.00', distribuidor: 'TechDist SA de CV', cuenta: '1651898', banco: 'BBVA', estatus: 'Aprobado', producto: 'C-MOVIL' },
+    { credito: '10052', nombre: 'Sofía Castillo Rivas', fecha: '2026-07-03', liberacion: '02-07-2026', monto: '$8,450.00', distribuidor: 'Global Ventas', cuenta: '1651898', banco: 'Banorte', estatus: 'Pendiente', producto: 'C-MOVIL' },
+    { credito: '10053', nombre: 'Fernando Ruiz Gómez', fecha: '2026-07-05', liberacion: '02-07-2026', monto: '$22,100.00', distribuidor: 'Comercializadora MX', cuenta: '1651898', banco: 'BBVA', estatus: 'Pagado', producto: 'C-MOVIL' },
+    { credito: '10054', nombre: 'Camila Vega Blancas', fecha: '2026-07-08', liberacion: '02-07-2026', monto: '$10,500.00', distribuidor: 'Mega Red Nacional', cuenta: '1651898', banco: 'BBVA', estatus: 'Rechazado', producto: 'C-MOVIL' },
+    { credito: '10055', nombre: 'Roberto Pineda Sánchez', fecha: '2026-07-10', liberacion: '02-07-2026', monto: '$5,300.00', distribuidor: 'Distribuidora del Valle', cuenta: '1651898', banco: 'Scotiabank', estatus: 'Aprobado', producto: 'C-MOVIL' },
+    { credito: '10056', nombre: 'Diana Miranda Castro', fecha: '2026-07-12', liberacion: '02-07-2026', monto: '$45,000.00', distribuidor: 'TechDist SA de CV', cuenta: '1651898', banco: 'BanCoppel', estatus: 'Pagado', producto: 'C-MOVIL' },
+    { credito: '10057', nombre: 'Héctor Salgado López', fecha: '2026-07-15', liberacion: '02-07-2026', monto: '$18,900.00', distribuidor: 'Global Ventas', cuenta: '1651898', banco: 'BanCoppel', estatus: 'Pendiente', producto: 'C-MOVIL' },
+    { credito: '10058', nombre: 'Gabriela Ortiz Luna', fecha: '2026-07-18', liberacion: '02-07-2026', monto: '$12,750.00', distribuidor: 'Comercializadora MX', cuenta: '1651898', banco: 'Banorte', estatus: 'Aprobado', producto: 'C-MOVIL' },
+    { credito: '10059', nombre: 'Javier Cárdenas Reyes', fecha: '2026-07-20', liberacion: '02-07-2026', monto: '$33,400.00', distribuidor: 'Mega Red Nacional', cuenta: '1651898', banco: 'Banorte', estatus: 'Pagado', producto: 'C-MOVIL' },
+    { credito: '10060', nombre: 'Lorena Montes Cota', fecha: '2026-07-23', liberacion: '02-07-2026', monto: '$7,250.00', distribuidor: 'Distribuidora del Valle', cuenta: '1651898', banco: 'Scotiabank', estatus: 'En revisión', producto: 'C-MOVIL' },
+  ];
 
-window.renderLiberacionOrdenPago = function() {
-  const tbody = document.getElementById('liberacionTableBody');
-  if (!tbody) return;
-  tbody.innerHTML = '';
+  window.renderLiberacionOrdenPago = function () {
+    const tbody = document.getElementById('liberacionTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
 
-  LIBERACION_DATA.forEach(p => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
+    LIBERACION_DATA.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
         <td><strong>${p.credito}</strong></td>
         <td>${p.nombre}</td>
         <td>${p.fecha}</td>
@@ -4754,141 +4759,141 @@ window.renderLiberacionOrdenPago = function() {
         <td>${p.estatus}</td>
         <td>${p.producto}</td>
       `;
-    tbody.appendChild(tr);
-  });
-}
-
-window.renderLiberacionOrdenPago();
-
-/* ---------------------------------------------------------
-   X. LÓGICA DE ORDENAMIENTO (FILTROS EN TABLAS)
---------------------------------------------------------- */
-let sortColGeneral = '';
-let sortAscGeneral = true;
-
-window.sortKitLegalVistaGeneral = function(key) {
-  if (sortColGeneral === key) {
-    sortAscGeneral = !sortAscGeneral;
-  } else {
-    sortColGeneral = key;
-    sortAscGeneral = true;
+      tbody.appendChild(tr);
+    });
   }
-  
-  // Remover sufijo VG si existe para mapear con las propiedades del objeto (folio, nombre, etc.)
-  const dataKey = key.replace(/VG$/, '');
-  
-  KITLEGAL_PROSPECTOS_DATA.sort((a, b) => {
-    let valA = a[dataKey];
-    let valB = b[dataKey];
-    
-    if (dataKey === 'folio') {
-       valA = parseInt(valA) || 0;
-       valB = parseInt(valB) || 0;
-    } else {
-       valA = valA ? valA.toString().toLowerCase() : '';
-       valB = valB ? valB.toString().toLowerCase() : '';
-    }
-    
-    if (valA < valB) return sortAscGeneral ? -1 : 1;
-    if (valA > valB) return sortAscGeneral ? 1 : -1;
-    return 0;
-  });
-  
-  renderKitLegalVistaGeneral();
-  updateHeadersIcons('kitLegalVistaGeneralThead', key, sortAscGeneral);
-};
 
-let sortColOrden = '';
-let sortAscOrden = true;
+  window.renderLiberacionOrdenPago();
 
-window.sortLiberacionOrdenPago = function(key) {
-  if (sortColOrden === key) {
-    sortAscOrden = !sortAscOrden;
-  } else {
-    sortColOrden = key;
-    sortAscOrden = true;
-  }
-  
-  LIBERACION_DATA.sort((a, b) => {
-    let valA = a[key];
-    let valB = b[key];
-    
-    if (key === 'credito') {
-      valA = parseInt(valA) || 0;
-      valB = parseInt(valB) || 0;
-    } else if (key === 'monto') {
-      valA = valA ? parseFloat(valA.replace(/[\$,]/g, '')) : 0;
-      valB = valB ? parseFloat(valB.replace(/[\$,]/g, '')) : 0;
-    } else if (key === 'fecha') {
-      valA = valA ? new Date(valA).getTime() : 0;
-      valB = valB ? new Date(valB).getTime() : 0;
-    } else if (key === 'liberacion') {
-      const partsA = valA ? valA.split('-') : [];
-      const partsB = valB ? valB.split('-') : [];
-      valA = partsA.length === 3 ? new Date(`${partsA[2]}-${partsA[1]}-${partsA[0]}`).getTime() : 0;
-      valB = partsB.length === 3 ? new Date(`${partsB[2]}-${partsB[1]}-${partsB[0]}`).getTime() : 0;
+  /* ---------------------------------------------------------
+     X. LÓGICA DE ORDENAMIENTO (FILTROS EN TABLAS)
+  --------------------------------------------------------- */
+  let sortColGeneral = '';
+  let sortAscGeneral = true;
+
+  window.sortKitLegalVistaGeneral = function (key) {
+    if (sortColGeneral === key) {
+      sortAscGeneral = !sortAscGeneral;
     } else {
-      valA = valA ? valA.toString().toLowerCase() : '';
-      valB = valB ? valB.toString().toLowerCase() : '';
+      sortColGeneral = key;
+      sortAscGeneral = true;
     }
 
-    if (valA < valB) return sortAscOrden ? -1 : 1;
-    if (valA > valB) return sortAscOrden ? 1 : -1;
-    return 0;
-  });
-  
-  renderLiberacionOrdenPago();
-  updateHeadersIcons('liberacionThead', key, sortAscOrden);
-};
+    // Remover sufijo VG si existe para mapear con las propiedades del objeto (folio, nombre, etc.)
+    const dataKey = key.replace(/VG$/, '');
 
-function updateHeadersIcons(theadId, activeKey, isAsc) {
-  const thead = document.getElementById(theadId);
-  if (!thead) return;
-  
-  const ths = thead.querySelectorAll('th');
-  ths.forEach(th => {
-    const iconSpan = th.querySelector('.sort-icon');
-    if (iconSpan) {
-      if (th.getAttribute('data-key') === activeKey) {
-        iconSpan.innerHTML = isAsc ? ' &uarr;' : ' &darr;';
+    KITLEGAL_PROSPECTOS_DATA.sort((a, b) => {
+      let valA = a[dataKey];
+      let valB = b[dataKey];
+
+      if (dataKey === 'folio') {
+        valA = parseInt(valA) || 0;
+        valB = parseInt(valB) || 0;
       } else {
-        iconSpan.innerHTML = '';
+        valA = valA ? valA.toString().toLowerCase() : '';
+        valB = valB ? valB.toString().toLowerCase() : '';
       }
+
+      if (valA < valB) return sortAscGeneral ? -1 : 1;
+      if (valA > valB) return sortAscGeneral ? 1 : -1;
+      return 0;
+    });
+
+    renderKitLegalVistaGeneral();
+    updateHeadersIcons('kitLegalVistaGeneralThead', key, sortAscGeneral);
+  };
+
+  let sortColOrden = '';
+  let sortAscOrden = true;
+
+  window.sortLiberacionOrdenPago = function (key) {
+    if (sortColOrden === key) {
+      sortAscOrden = !sortAscOrden;
+    } else {
+      sortColOrden = key;
+      sortAscOrden = true;
     }
-  });
-}
 
-// ============================================================
-// LOGICA KIT LEGAL Y LIBERACIONES
-// ============================================================
-var KIT_DOCUMENTOS = ['Contrato', 'Pagare', 'Tabla de amortización', 'Caratula de comite', 'Presentación', 'Solicitud de crédito'];
-var COMPLEMENTARIOS = ['Aclaración firmas por inconsistencias', 'Acta de supervisión de la inversión', 'Reporte fotográfico', 'Autorización entrega de vehículo y resguardo de llave', 'Carta consentimiento', 'Endoso jurídico (cuando aplique)', 'Carta aceptación de endoso (cuando aplique)', 'Formato de sustitución garantia', 'Constancia de recepción de garantía', 'Otros'];
-var DOCUMENTOS_ACREDITADO = ['Identificacion Oficial', 'CURP', 'RFC', 'Acta de Nacimiento', 'Comprobante de Domicilio', 'Comprobante de Domicilio Alterno', 'Permiso', 'Arraigo'];
-var DOCUMENTOS_AVAL = ['Identificacion Oficial Aval (inhabilitar / mandar a llamar)', 'CURP Aval (inhabilitar / mandar a llamar)', 'RFC Aval (inhabilitar / mandar a llamar)', 'Acta nacimiento aval (inhabilitar / mandar a llamar)', 'Comprobante domicilio aval (inhabilitar / mandar a llamar)', 'Arraigo Domiciliar Aval (inhabilitar / mandar a llamar)', 'Otros Aval'];
-var VIDEO_DESEMBOLSO = ['VIDEO'];
-var DOCUMENTOS_GARANTIA = ['Factura', 'Carta Factura', 'Garantía Adicional 1', 'Garantía Adicional 2', 'Póliza del Seguro', 'Comprobante de Pago del Seguro', 'Pagaré de Distribuidor (cuando aplique)', 'Evidencia de instalación del GPS', 'Otros'];
+    LIBERACION_DATA.sort((a, b) => {
+      let valA = a[key];
+      let valB = b[key];
 
-var kitEstado = {};
+      if (key === 'credito') {
+        valA = parseInt(valA) || 0;
+        valB = parseInt(valB) || 0;
+      } else if (key === 'monto') {
+        valA = valA ? parseFloat(valA.replace(/[\$,]/g, '')) : 0;
+        valB = valB ? parseFloat(valB.replace(/[\$,]/g, '')) : 0;
+      } else if (key === 'fecha') {
+        valA = valA ? new Date(valA).getTime() : 0;
+        valB = valB ? new Date(valB).getTime() : 0;
+      } else if (key === 'liberacion') {
+        const partsA = valA ? valA.split('-') : [];
+        const partsB = valB ? valB.split('-') : [];
+        valA = partsA.length === 3 ? new Date(`${partsA[2]}-${partsA[1]}-${partsA[0]}`).getTime() : 0;
+        valB = partsB.length === 3 ? new Date(`${partsB[2]}-${partsB[1]}-${partsB[0]}`).getTime() : 0;
+      } else {
+        valA = valA ? valA.toString().toLowerCase() : '';
+        valB = valB ? valB.toString().toLowerCase() : '';
+      }
 
-function inicializarKitEstado() {
+      if (valA < valB) return sortAscOrden ? -1 : 1;
+      if (valA > valB) return sortAscOrden ? 1 : -1;
+      return 0;
+    });
+
+    renderLiberacionOrdenPago();
+    updateHeadersIcons('liberacionThead', key, sortAscOrden);
+  };
+
+  function updateHeadersIcons(theadId, activeKey, isAsc) {
+    const thead = document.getElementById(theadId);
+    if (!thead) return;
+
+    const ths = thead.querySelectorAll('th');
+    ths.forEach(th => {
+      const iconSpan = th.querySelector('.sort-icon');
+      if (iconSpan) {
+        if (th.getAttribute('data-key') === activeKey) {
+          iconSpan.innerHTML = isAsc ? ' &uarr;' : ' &darr;';
+        } else {
+          iconSpan.innerHTML = '';
+        }
+      }
+    });
+  }
+
+  // ============================================================
+  // LOGICA KIT LEGAL Y LIBERACIONES
+  // ============================================================
+  var KIT_DOCUMENTOS = ['Contrato', 'Pagare', 'Tabla de amortización', 'Caratula de comite', 'Presentación', 'Solicitud de crédito'];
+  var COMPLEMENTARIOS = ['Aclaración firmas por inconsistencias', 'Acta de supervisión de la inversión', 'Reporte fotográfico', 'Autorización entrega de vehículo y resguardo de llave', 'Carta consentimiento', 'Endoso jurídico (cuando aplique)', 'Carta aceptación de endoso (cuando aplique)', 'Formato de sustitución garantia', 'Constancia de recepción de garantía', 'Otros'];
+  var DOCUMENTOS_ACREDITADO = ['Identificacion Oficial', 'CURP', 'RFC', 'Acta de Nacimiento', 'Comprobante de Domicilio', 'Comprobante de Domicilio Alterno', 'Permiso', 'Arraigo'];
+  var DOCUMENTOS_AVAL = ['Identificacion Oficial Aval (inhabilitar / mandar a llamar)', 'CURP Aval (inhabilitar / mandar a llamar)', 'RFC Aval (inhabilitar / mandar a llamar)', 'Acta nacimiento aval (inhabilitar / mandar a llamar)', 'Comprobante domicilio aval (inhabilitar / mandar a llamar)', 'Arraigo Domiciliar Aval (inhabilitar / mandar a llamar)', 'Otros Aval'];
+  var VIDEO_DESEMBOLSO = ['VIDEO'];
+  var DOCUMENTOS_GARANTIA = ['Factura', 'Carta Factura', 'Garantía Adicional 1', 'Garantía Adicional 2', 'Póliza del Seguro', 'Comprobante de Pago del Seguro', 'Pagaré de Distribuidor (cuando aplique)', 'Evidencia de instalación del GPS', 'Otros'];
+
+  var kitEstado = {};
+
+  function inicializarKitEstado() {
     var todos = KIT_DOCUMENTOS.concat(COMPLEMENTARIOS, DOCUMENTOS_ACREDITADO, DOCUMENTOS_AVAL, VIDEO_DESEMBOLSO, DOCUMENTOS_GARANTIA);
     todos.forEach(function (nom) {
-        if (!kitEstado[nom]) {
-            kitEstado[nom] = { archivo: null, validado: false, comentario: '', historial: [] };
-        }
+      if (!kitEstado[nom]) {
+        kitEstado[nom] = { archivo: null, validado: false, comentario: '', historial: [] };
+      }
     });
-}
-inicializarKitEstado();
+  }
+  inicializarKitEstado();
 
-function renderKitTabla(tbodyId, listaDocs) {
+  function renderKitTabla(tbodyId, listaDocs) {
     var tbody = document.getElementById(tbodyId);
     if (!tbody) return;
     tbody.innerHTML = '';
     listaDocs.forEach(function (nom) {
-        var estado = kitEstado[nom] || { archivo: null, validado: false, comentario: '', historial: [] };
-        var tr = document.createElement('tr');
-        var fileId = 'kitFile_' + nom.replace(/\s/g, '_');
-        tr.innerHTML = `
+      var estado = kitEstado[nom] || { archivo: null, validado: false, comentario: '', historial: [] };
+      var tr = document.createElement('tr');
+      var fileId = 'kitFile_' + nom.replace(/\s/g, '_');
+      tr.innerHTML = `
             <td style="text-align: left;"><strong>${nom}</strong></td>
             <td>
                 <label class="file-label-kit" for="${fileId}">
@@ -4912,54 +4917,54 @@ function renderKitTabla(tbodyId, listaDocs) {
                 <button class="btn-historico" onclick="verHistoricoKit('${nom}')">🔄</button>
             </td>
         `;
-        tbody.appendChild(tr);
+      tbody.appendChild(tr);
     });
-}
+  }
 
-window.renderAllKitTables = function() {
+  window.renderAllKitTables = function () {
     renderKitTabla('kitCargaBody', KIT_DOCUMENTOS);
     renderKitTabla('complementariosBody', COMPLEMENTARIOS);
     renderKitTabla('acreditadoBody', DOCUMENTOS_ACREDITADO);
     renderKitTabla('acreditadoBody1', DOCUMENTOS_AVAL); // Modificado a DOCUMENTOS_AVAL
     renderKitTabla('videoBody', VIDEO_DESEMBOLSO);
     renderKitTabla('garantiaBody', DOCUMENTOS_GARANTIA);
-};
+  };
 
-window.subirArchivoKit = function (nombre, input) {
+  window.subirArchivoKit = function (nombre, input) {
     var file = input.files[0];
     if (file) {
-        if (!kitEstado[nombre]) kitEstado[nombre] = { archivo: null, validado: false, comentario: '', historial: [] };
-        kitEstado[nombre].archivo = file.name;
-        kitEstado[nombre].historial.push(new Date().toLocaleString() + ' - Archivo subido: ' + file.name);
-        window.renderAllKitTables();
+      if (!kitEstado[nombre]) kitEstado[nombre] = { archivo: null, validado: false, comentario: '', historial: [] };
+      kitEstado[nombre].archivo = file.name;
+      kitEstado[nombre].historial.push(new Date().toLocaleString() + ' - Archivo subido: ' + file.name);
+      window.renderAllKitTables();
     }
-};
+  };
 
-window.verArchivoKit = function (nombre) {
+  window.verArchivoKit = function (nombre) {
     var estado = kitEstado[nombre];
     if (estado && estado.archivo) alert('Visualizando archivo: ' + estado.archivo + '\\n(Simulación)');
     else alert('No hay archivo subido.');
-};
+  };
 
-window.toggleValidarKit = function (nombre, checked) {
+  window.toggleValidarKit = function (nombre, checked) {
     if (!kitEstado[nombre]) kitEstado[nombre] = { archivo: null, validado: false, comentario: '', historial: [] };
     kitEstado[nombre].validado = checked;
     kitEstado[nombre].historial.push(new Date().toLocaleString() + ' - Documento ' + (checked ? 'validado' : 'desvalidado'));
-};
+  };
 
-window.guardarComentarioKit = function (nombre, valor) {
+  window.guardarComentarioKit = function (nombre, valor) {
     if (!kitEstado[nombre]) kitEstado[nombre] = { archivo: null, validado: false, comentario: '', historial: [] };
     kitEstado[nombre].comentario = valor;
     kitEstado[nombre].historial.push(new Date().toLocaleString() + ' - Comentario actualizado: ' + valor);
-};
+  };
 
-window.verHistoricoKit = function (nombre) {
+  window.verHistoricoKit = function (nombre) {
     var estado = kitEstado[nombre];
     if (!estado || estado.historial.length === 0) alert('No hay historial para "' + nombre + '".');
     else alert('Historial de "' + nombre + '":\\n\\n' + estado.historial.join('\\n'));
-};
+  };
 
-window.mostrarListaKit = function () {
+  window.mostrarListaKit = function () {
     var lista = document.getElementById('kitListaContainer');
     var carga = document.getElementById('kitCargaContainer');
     if (lista) lista.style.display = 'block';
@@ -4968,9 +4973,9 @@ window.mostrarListaKit = function () {
     btns.forEach(btn => { btn.style.background = 'var(--bg-panel-2)'; btn.style.borderColor = 'var(--border)'; });
     var btnGen = document.querySelector('.liberaciones-izquierda .btn-kit:first-child');
     if (btnGen) { btnGen.style.background = 'var(--bg-card-header)'; btnGen.style.borderColor = 'var(--accent)'; }
-};
+  };
 
-window.mostrarCargaKit = function () {
+  window.mostrarCargaKit = function () {
     var lista = document.getElementById('kitListaContainer');
     var carga = document.getElementById('kitCargaContainer');
     if (lista) lista.style.display = 'none';
@@ -4980,25 +4985,25 @@ window.mostrarCargaKit = function () {
     var btnCarga = document.querySelector('.liberaciones-izquierda .btn-kit:last-child');
     if (btnCarga) { btnCarga.style.background = 'var(--bg-card-header)'; btnCarga.style.borderColor = 'var(--accent)'; }
     window.renderAllKitTables();
-};
+  };
 
-/* SOLICITUD DE LIBERACIÓN */
-var SOLICITUD_DOCUMENTOS = ['Pagare', 'Tabla de amortización', 'Contrato', 'Caratula de comite', 'Presentación', 'Aclaración firmas por inconsistencias', 'Resguardo de llaves', 'Acta de supervisión', 'Reporte fotográfico', 'Aceptación de endoso', 'Fotos del Domicilio', 'Fotos de la Actividad', 'Comprobante de Ingresos', 'Carta de Excepción a la Norma', 'Autorización de Consulta de Buró', 'Identificacion Oficial Aval', 'CURP Aval', 'RFC Aval', 'Acta nacimiento aval', 'Comprobante domicilio aval', 'Arraigo Domiciliar Aval', 'Estado de cuenta', 'Cotización de seguro'];
+  /* SOLICITUD DE LIBERACIÓN */
+  var SOLICITUD_DOCUMENTOS = ['Pagare', 'Tabla de amortización', 'Contrato', 'Caratula de comite', 'Presentación', 'Aclaración firmas por inconsistencias', 'Resguardo de llaves', 'Acta de supervisión', 'Reporte fotográfico', 'Aceptación de endoso', 'Fotos del Domicilio', 'Fotos de la Actividad', 'Comprobante de Ingresos', 'Carta de Excepción a la Norma', 'Autorización de Consulta de Buró', 'Identificacion Oficial Aval', 'CURP Aval', 'RFC Aval', 'Acta nacimiento aval', 'Comprobante domicilio aval', 'Arraigo Domiciliar Aval', 'Estado de cuenta', 'Cotización de seguro'];
 
-var solicitudEstado = {};
+  var solicitudEstado = {};
 
-function inicializarSolicitud() {
+  function inicializarSolicitud() {
     SOLICITUD_DOCUMENTOS.forEach(function (nom) {
-        solicitudEstado[nom] = { estado: 'solicitado', validado: false, observaciones: [], foto: null, comentario: '' };
+      solicitudEstado[nom] = { estado: 'solicitado', validado: false, observaciones: [], foto: null, comentario: '' };
     });
-}
-inicializarSolicitud();
+  }
+  inicializarSolicitud();
 
-function actualizarConteos() {
+  function actualizarConteos() {
     var conteos = { solicitado: 0, liberado: 0, observado: 0, porrevisar: 0 };
     SOLICITUD_DOCUMENTOS.forEach(nom => {
-        var est = solicitudEstado[nom].estado;
-        if (conteos[est] !== undefined) conteos[est]++;
+      var est = solicitudEstado[nom].estado;
+      if (conteos[est] !== undefined) conteos[est]++;
     });
     var el1 = document.getElementById('countSolicitado');
     var el2 = document.getElementById('countLiberado');
@@ -5008,23 +5013,23 @@ function actualizarConteos() {
     if (el2) el2.textContent = conteos.liberado;
     if (el3) el3.textContent = conteos.observado;
     if (el4) el4.textContent = conteos.porrevisar;
-}
+  }
 
-window.renderSolicitud = function() {
+  window.renderSolicitud = function () {
     var tbody = document.getElementById('solicitudBody');
     if (!tbody) return;
     tbody.innerHTML = '';
     SOLICITUD_DOCUMENTOS.forEach(function (nom) {
-        var estado = solicitudEstado[nom];
-        var tr = document.createElement('tr');
-        var fileId = 'solFoto_' + nom.replace(/\s/g, '_');
-        var opcionesObs = ['Datos Incongruentes Formato', 'Documento Ilegible o Dañado', 'Documento sin vigencia', 'Documento no valido', 'Documento desactualizado', 'Firmas incongruentes Formato', 'Video', 'Otro', 'Documento no cargado', 'Documento sin cotejos'];
-        var obsOptionsHtml = '';
-        opcionesObs.forEach(function (obs) {
-            var selected = estado.observaciones.includes(obs) ? 'selected' : '';
-            obsOptionsHtml += `<option value="${obs}" ${selected}>${obs}</option>`;
-        });
-        tr.innerHTML = `
+      var estado = solicitudEstado[nom];
+      var tr = document.createElement('tr');
+      var fileId = 'solFoto_' + nom.replace(/\s/g, '_');
+      var opcionesObs = ['Datos Incongruentes Formato', 'Documento Ilegible o Dañado', 'Documento sin vigencia', 'Documento no valido', 'Documento desactualizado', 'Firmas incongruentes Formato', 'Video', 'Otro', 'Documento no cargado', 'Documento sin cotejos'];
+      var obsOptionsHtml = '';
+      opcionesObs.forEach(function (obs) {
+        var selected = estado.observaciones.includes(obs) ? 'selected' : '';
+        obsOptionsHtml += `<option value="${obs}" ${selected}>${obs}</option>`;
+      });
+      tr.innerHTML = `
             <td style="text-align: left;"><strong>${nom}</strong></td>
             <td><button class="btn-icon-sol" onclick="verSolicitudDocumento('${nom}')" title="Ver documento">👁️</button></td>
             <td>
@@ -5050,27 +5055,27 @@ window.renderSolicitud = function() {
             </td>
             <td><input type="text" class="comentario-sol" placeholder="Comentario..." value="${estado.comentario || ''}" onchange="guardarComentarioSolicitud('${nom}', this.value)"></td>
         `;
-        tbody.appendChild(tr);
+      tbody.appendChild(tr);
     });
     actualizarConteos();
-};
+  };
 
-window.toggleValidarSolicitud = function (nombre, checked) { solicitudEstado[nombre].validado = checked; window.renderSolicitud(); };
-window.cambiarEstadoSolicitud = function (nombre, nuevoEstado) { solicitudEstado[nombre].estado = nuevoEstado; window.renderSolicitud(); };
-window.cambiarObservacionesSolicitud = function (nombre, select) {
+  window.toggleValidarSolicitud = function (nombre, checked) { solicitudEstado[nombre].validado = checked; window.renderSolicitud(); };
+  window.cambiarEstadoSolicitud = function (nombre, nuevoEstado) { solicitudEstado[nombre].estado = nuevoEstado; window.renderSolicitud(); };
+  window.cambiarObservacionesSolicitud = function (nombre, select) {
     var seleccionadas = [];
     for (var i = 0; i < select.options.length; i++) if (select.options[i].selected) seleccionadas.push(select.options[i].value);
     solicitudEstado[nombre].observaciones = seleccionadas;
     window.renderSolicitud();
-};
-window.subirFotoSolicitud = function (nombre, input) { var file = input.files[0]; if (file) { solicitudEstado[nombre].foto = file.name; window.renderSolicitud(); } };
-window.guardarComentarioSolicitud = function (nombre, valor) { solicitudEstado[nombre].comentario = valor; };
-window.verSolicitudDocumento = function (nombre) {
+  };
+  window.subirFotoSolicitud = function (nombre, input) { var file = input.files[0]; if (file) { solicitudEstado[nombre].foto = file.name; window.renderSolicitud(); } };
+  window.guardarComentarioSolicitud = function (nombre, valor) { solicitudEstado[nombre].comentario = valor; };
+  window.verSolicitudDocumento = function (nombre) {
     var doc = solicitudEstado[nombre];
     alert('Visualizando documento: ' + nombre + '\\nEstado: ' + doc.estado + '\\nValidado: ' + (doc.validado ? 'Sí' : 'No') + '\\nObservaciones: ' + (doc.observaciones.join(', ') || 'Ninguna') + '\\nFoto: ' + (doc.foto || 'Sin foto') + '\\nComentario: ' + (doc.comentario || 'Sin comentario'));
-};
+  };
 
-window.mostrarDocumentosLiberacion = function () {
+  window.mostrarDocumentosLiberacion = function () {
     var docsContainer = document.getElementById('solicitudDocumentosContainer');
     var generalContainer = document.getElementById('solicitudesGeneralesContainer');
     var tabDocs = document.getElementById('tabDocumentos');
@@ -5083,9 +5088,9 @@ window.mostrarDocumentosLiberacion = function () {
     if (tabLibs) tabLibs.classList.remove('active');
 
     if (typeof window.renderSolicitud === 'function') window.renderSolicitud();
-};
+  };
 
-window.mostrarSolicitudesLiberacion = function () {
+  window.mostrarSolicitudesLiberacion = function () {
     var docsContainer = document.getElementById('solicitudDocumentosContainer');
     var generalContainer = document.getElementById('solicitudesGeneralesContainer');
     var tabDocs = document.getElementById('tabDocumentos');
@@ -5098,32 +5103,32 @@ window.mostrarSolicitudesLiberacion = function () {
     if (tabLibs) tabLibs.classList.add('active');
 
     if (typeof window.renderSolicitudesGenerales === 'function') window.renderSolicitudesGenerales();
-};
+  };
 
-window.toggleSolicitudesGenerales = function () {
+  window.toggleSolicitudesGenerales = function () {
     var generalContainer = document.getElementById('solicitudesGeneralesContainer');
     if (generalContainer && (generalContainer.style.display === 'none' || generalContainer.style.display === '')) {
-        window.mostrarSolicitudesLiberacion();
+      window.mostrarSolicitudesLiberacion();
     } else {
-        window.mostrarDocumentosLiberacion();
+      window.mostrarDocumentosLiberacion();
     }
-};
+  };
 
-var SOLICITUDES_GENERALES = [
+  var SOLICITUDES_GENERALES = [
     { credito: '10001', cliente: 'Juan Pérez', fechaDesembolso: '2025-01-15', fechaSolicitud: '2025-01-10', monto: 150000, plazo: 12, producto: 'Crédito Auto', sucursal: 'Sucursal Norte', ejecutivo: 'Carlos García', distribuidor: 'Distribuidor A', estatus: 'Liberado' },
     { credito: '10002', cliente: 'María Gómez', fechaDesembolso: '2025-01-20', fechaSolicitud: '2025-01-18', monto: 200000, plazo: 18, producto: 'Crédito Hipotecario', sucursal: 'Sucursal Sur', ejecutivo: 'Laura Martínez', distribuidor: 'Distribuidor B', estatus: 'En proceso' },
     { credito: '10003', cliente: 'Pedro Fernández', fechaDesembolso: '2025-02-01', fechaSolicitud: '2025-01-28', monto: 80000, plazo: 9, producto: 'Crédito Personal', sucursal: 'Sucursal Este', ejecutivo: 'Roberto López', distribuidor: 'Distribuidor C', estatus: 'Observado' },
     { credito: '10004', cliente: 'Ana Torres', fechaDesembolso: '2025-02-10', fechaSolicitud: '2025-02-05', monto: 300000, plazo: 24, producto: 'Crédito Empresarial', sucursal: 'Sucursal Oeste', ejecutivo: 'Marta Reyes', distribuidor: 'Distribuidor D', estatus: 'Liberado' },
     { credito: '10005', cliente: 'Luis Ramírez', fechaDesembolso: '2025-02-20', fechaSolicitud: '2025-02-15', monto: 120000, plazo: 15, producto: 'Crédito Auto', sucursal: 'Sucursal Norte', ejecutivo: 'Carlos García', distribuidor: 'Distribuidor A', estatus: 'Pendiente' }
-];
+  ];
 
-window.renderSolicitudesGenerales = function() {
+  window.renderSolicitudesGenerales = function () {
     var tbody = document.getElementById('solicitudesGeneralesBody');
     if (!tbody) return;
     tbody.innerHTML = '';
     SOLICITUDES_GENERALES.forEach(function (solicitud) {
-        var tr = document.createElement('tr');
-        tr.innerHTML = `
+      var tr = document.createElement('tr');
+      tr.innerHTML = `
             <td><button class="btn-icon" onclick="alert('Ver detalle de la solicitud con No. Crédito: ${solicitud.credito}')">👁️</button></td>
             <td>${solicitud.credito}</td>
             <td>${solicitud.cliente}</td>
@@ -5137,12 +5142,12 @@ window.renderSolicitudesGenerales = function() {
             <td>${solicitud.distribuidor}</td>
             <td><span style="font-weight:600; color: ${solicitud.estatus === 'Liberado' ? 'var(--green)' : solicitud.estatus === 'Observado' ? 'var(--orange)' : 'var(--accent)'};">${solicitud.estatus}</span></td>
         `;
-        tbody.appendChild(tr);
+      tbody.appendChild(tr);
     });
-};
+  };
 
-window.descargarZipCompleto = function() { alert('Descargando ZIP completo (simulación)'); };
-window.verDocumentoKit = function(nombre) { alert('Visualizando documento: "' + nombre + '" (simulación)'); };
-window.descargarDocumentoKit = function(nombre) { alert('Descargando documento: "' + nombre + '" (simulación)'); };
+  window.descargarZipCompleto = function () { alert('Descargando ZIP completo (simulación)'); };
+  window.verDocumentoKit = function (nombre) { alert('Visualizando documento: "' + nombre + '" (simulación)'); };
+  window.descargarDocumentoKit = function (nombre) { alert('Descargando documento: "' + nombre + '" (simulación)'); };
 
 })();

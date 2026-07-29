@@ -1162,11 +1162,15 @@
                     style="cursor: pointer;">INSTITUCION BANCARIA<span class="sort-icon"></span></th>
                   <th data-key="estatus" onclick="sortOrdenPago('estatus')" style="cursor: pointer;">ESTATUS
                     TESORERIA<span class="sort-icon"></span></th>
+                  <th data-key="checkPoliza" style="cursor: pointer;">GENERAR POLIZA</th>
                   <th data-key="poliza" onclick="sortOrdenPago('poliza')" style="cursor: pointer;">POLIZA
                     <span class="sort-icon"></span>
                   </th>
                   <th data-key="comentario" onclick="sortOrdenPago('comentario')" style="cursor: pointer;">
                     COMENTARIO<span class="sort-icon"></span></th>
+                  <th data-key="fecha_pago" onclick="sortOrdenPago('fecha_pago')" style="cursor: pointer;">FECHA DE PAGO
+                    <span class="sort-icon"></span>
+                  </th>
                 </tr>
               </thead>
               <tbody id="vistaOrdenPagoTableBody" style="background-color: rgb(71, 95, 117)">
@@ -2259,7 +2263,7 @@
         </section>
 
         <section id="kitLegal" hidden>
-          <section class="card" id="kl_garantialiquida">
+          <!-- <section class="card" id="kl_garantialiquida">
             <div class="card-header">
               <h2><span class="card-icon"></span>Condiciones Propuestas del Credito (mandar a llamar de Analisis)</h2>
             </div>
@@ -2346,7 +2350,7 @@
 
               </div>
             </div>
-          </section>
+          </section> -->
 
           <section class="card" id="liberaciones">
             <div class="card-header">
@@ -2580,7 +2584,7 @@
         </section>
 
         <section id="liberacion" hidden>
-          <section class="card" id="lib_garantialiquida">
+          <!-- <section class="card" id="lib_garantialiquida">
             <div class="card-header">
               <h2><span class="card-icon"></span>Condiciones Propuestas del Credito (mandar a llamar de Analisis)</h2>
             </div>
@@ -2667,13 +2671,13 @@
 
               </div>
             </div>
-          </section>
+          </section> -->
 
           <section class="card" id="solicitudLiberacion">
             <div class="card-header">
               <h2><span class="card-icon"></span> Solicitud de Liberación</h2>
-              <button class="pill pill-primary" onclick="mostrarSolicitudesLiberacion()">Solicitudes de
-                Liberaciones</button>
+              <!-- <button class="pill pill-primary" onclick="mostrarSolicitudesLiberacion()">Solicitudes de
+                Liberaciones</button> -->
             </div>
             <div class="card-body">
               <!-- Contenedor de documentos (visible por defecto) -->
@@ -2769,14 +2773,15 @@
         <button class="stage-btn" onclick="activarEtapa('REGISTRO DE GARANTÍA Y OTROS')">REGISTRO DE GARANTÍA Y
           OTROS</button>
         <button class="stage-btn stage-active" onclick="activarEtapa('MESA DE CONTROL')">MESA DE CONTROL</button>
-        <button class="stage-btn stage-sub">MESA DE CONTROL<br /><small>(Área Comercial)</small></button>
+        <!-- <button class="stage-btn stage-sub">MESA DE CONTROL<br /><small>(Área Comercial)</small></button>
         <button class="stage-btn stage-sub">MESA DE CONTROL<br /><small>(Análisis)</small></button>
         <button class="stage-btn stage-sub stage-disabled">LIBERACIONES POR CARGAR</button>
         <button class="stage-btn stage-sub stage-disabled">SOLICITUD DE LIBERACIÓN</button>
-        <button class="stage-btn stage-sub stage-disabled">LIBERACIÓN (ÁREA COMERCIAL)</button>
-        <button class="stage-btn" onclick="activarEtapa('ORDEN DE PAGO')">ORDEN DE PAGO</button>
+        <button class="stage-btn stage-sub stage-disabled">LIBERACIÓN (ÁREA COMERCIAL)</button> -->
         <button class="stage-btn" onclick="activarEtapa('KIT LEGAL')">KIT LEGAL</button>
         <button class="stage-btn" onclick="activarEtapa('LIBERACIÓN')">LIBERACIÓN</button>
+        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
+        <button class="stage-btn" onclick="activarEtapa('ORDEN DE PAGO')">ORDEN DE PAGO</button>
         <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
         <button class="stage-btn stage-retroceder">Retroceder Etapa</button>
         <button class="stage-btn stage-avanzar"
@@ -2819,20 +2824,16 @@
             <div class="modal-opciones">
               <label><input name="pregunta1" type="radio" value="si" /> Sí</label>
               <label><input name="pregunta1" type="radio" value="no" /> No</label>
-              <label><input name="pregunta1" type="radio" value="parcial" /> Parcial</label>
+              <!-- <label><input name="pregunta1" type="radio" value="parcial" /> Parcial</label> -->
             </div>
           </div>
           <div class="modal-pregunta">
             <label>2. Monto autorizado por Comité</label>
-            <div class="modal-input-wrapper">
-              <span class="modal-currency-symbol">$</span>
-              <span class="modal-text-display" id="montoAplicado"
-                style="font-weight: 600; font-size: 16px; padding: 8px 0; display: inline-block;">3,300.00</span>
-            </div>
+            <input type="number" class="modal-input" id="montoAplicado" step="1" min="0" />
           </div>
           <div class="modal-pregunta">
             <label>3. Fecha Bancaria</label>
-            <input class="modal-input" id="fechaAplicacion" type="date" />
+            <input type="date" class="modal-input" id="fechaAplicacion" />
           </div>
           <div class="modal-pregunta">
             <label>4. Fecha de Operación</label>
