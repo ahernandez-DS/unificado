@@ -903,7 +903,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const montoInput = document.getElementById('montoAplicado');
     if (montoInput) {
-      montoInput.value = '';
+      montoInput.value = '3300';
       inicializarCampoMoneda();
     }
 
@@ -1370,8 +1370,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const presidenteTipo = document.getElementById('presidenteTipo');
-  const presidenteNombre = document.getElementById('presidenteNombre');
+  const presidenteTipo = document.getElementById('presidenteTipoMenor');
+  const presidenteNombre = document.getElementById('presidenteNombreMenor');
 
   if (presidenteTipo && presidenteNombre) {
     poblarNombres(presidenteNombre, presidenteTipo.value, TITULAR_PRESIDENTE, SUPLENTES_PRESIDENTE);
@@ -1380,8 +1380,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const secretariaTipo = document.getElementById('secretariaTipo');
-  const secretariaNombre = document.getElementById('secretariaNombre');
+  const secretariaTipo = document.getElementById('secretariaTipoMenor');
+  const secretariaNombre = document.getElementById('secretariaNombreMenor');
 
   if (secretariaTipo && secretariaNombre) {
     poblarNombres(secretariaNombre, secretariaTipo.value, TITULAR_SECRETARIA, SUPLENTES_SECRETARIA);
@@ -2400,7 +2400,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const montoInput = document.getElementById('montoAplicado');
     if (montoInput) {
-      montoInput.value = '';
+      montoInput.value = '3,300';
       inicializarCampoMoneda();
     }
 
@@ -2408,6 +2408,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fechaInput) {
       const hoy = new Date().toISOString().split('T')[0];
       fechaInput.value = hoy;
+    }
+
+    const fechaInputOp = document.getElementById('fechaOperacion');
+    if (fechaInputOp) {
+      const hoy = new Date().toISOString().split('T')[0];
+      fechaInputOp.value = hoy;
     }
 
     const formaPago = document.getElementById('formaPago');

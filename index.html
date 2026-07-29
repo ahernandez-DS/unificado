@@ -117,34 +117,57 @@
         <!-- SECCION MESA DE CONTROL                                                         -->
         <!-- ////////////////////////////////////////////////////////////////////// -->
         <section id="MesaControl">
-          <div id="vistaGeneral">
-            <table class="hc-table">
-              <thead id="vistaGeneralThead">
-                <tr>
-                  <th data-key="folioVG" onclick="sortVistaGeneral('folioVG')" style="cursor: pointer;">FOLIO <span
-                      class="sort-icon"></span></th>
-                  <th data-key="nombreVG" onclick="sortVistaGeneral('nombreVG')" style="cursor: pointer;">NOMBRE
-                    PROSPECTO <span class="sort-icon"></span></th>
-                  <th data-key="productoVG" onclick="sortVistaGeneral('productoVG')" style="cursor: pointer;">PRODUCTO
-                    <span class="sort-icon"></span>
-                  </th>
-                  <th data-key="directorVG" onclick="sortVistaGeneral('directorVG')" style="cursor: pointer;">DIRECTOR
-                    REGIONAL <span class="sort-icon"></span></th>
-                  <th data-key="sucursalVG" onclick="sortVistaGeneral('sucursalVG')" style="cursor: pointer;">SUCURSAL
-                    <span class="sort-icon"></span>
-                  </th>
-                  <th data-key="ejecutivoVG" onclick="sortVistaGeneral('ejecutivoVG')" style="cursor: pointer;">
-                    EJECUTIVO/CREADO POR <span class="sort-icon"></span></th>
-                  <th data-key="modalidadVG" onclick="sortVistaGeneral('modalidadVG')" style="cursor: pointer;">
-                    MODALIDAD <span class="sort-icon"></span></th>
-                  <th data-key="analistaVG" onclick="sortVistaGeneral('analistaVG')" style="cursor: pointer;">ANALISTA
-                    <span class="sort-icon"></span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody id="vistaGeneralTableBody" style="background-color: rgb(71, 95, 117)">
-              </tbody>
-            </table>
+          <div id="vistaGeneral" class="solicitud-body">
+            <div class="solicitud-izquierda">
+              <div class="resumen-item">
+                <span class="resumen-label">Solicitados</span>
+                <span class="resumen-numero" id="countSolicitadoMG">23</span>
+              </div>
+              <div class="resumen-item">
+                <span class="resumen-label">Liberados</span>
+                <span class="resumen-numero" id="countLiberadoMG">0</span>
+              </div>
+              <div class="resumen-item">
+                <span class="resumen-label">Observados</span>
+                <span class="resumen-numero" id="countObservadoMG">0</span>
+              </div>
+              <div class="resumen-item">
+                <span class="resumen-label">Por revisar</span>
+                <span class="resumen-numero" id="countPorRevisarMG">0</span>
+              </div>
+            </div>
+            <div class="solicitud-derecha">
+              <div class="kit-header">
+                <h3>VISTA GENERAL DE PROSPECTOS</h3>
+              </div>
+              <table class="hc-table">
+                <thead id="vistaGeneralThead">
+                  <tr>
+                    <th data-key="folioVG" onclick="sortVistaGeneral('folioVG')" style="cursor: pointer;">FOLIO <span
+                        class="sort-icon"></span></th>
+                    <th data-key="nombreVG" onclick="sortVistaGeneral('nombreVG')" style="cursor: pointer;">NOMBRE
+                      PROSPECTO <span class="sort-icon"></span></th>
+                    <th data-key="productoVG" onclick="sortVistaGeneral('productoVG')" style="cursor: pointer;">PRODUCTO
+                      <span class="sort-icon"></span>
+                    </th>
+                    <th data-key="directorVG" onclick="sortVistaGeneral('directorVG')" style="cursor: pointer;">DIRECTOR
+                      REGIONAL <span class="sort-icon"></span></th>
+                    <th data-key="sucursalVG" onclick="sortVistaGeneral('sucursalVG')" style="cursor: pointer;">SUCURSAL
+                      <span class="sort-icon"></span>
+                    </th>
+                    <th data-key="ejecutivoVG" onclick="sortVistaGeneral('ejecutivoVG')" style="cursor: pointer;">
+                      EJECUTIVO/CREADO POR <span class="sort-icon"></span></th>
+                    <th data-key="modalidadVG" onclick="sortVistaGeneral('modalidadVG')" style="cursor: pointer;">
+                      MODALIDAD <span class="sort-icon"></span></th>
+                    <th data-key="analistaVG" onclick="sortVistaGeneral('analistaVG')" style="cursor: pointer;">ANALISTA
+                      <span class="sort-icon"></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="vistaGeneralTableBody" style="background-color: rgb(71, 95, 117)">
+                </tbody>
+              </table>
+            </div>
           </div>
           <!-- ================================================================ -->
           <!--  VISTA: REGISTRO DE CLIENTES                                      -->
@@ -1292,33 +1315,33 @@
               <!-- Presidente -->
               <div class="field">
                 <label>Presidente</label>
-                <select class="select" id="presidenteTipo">
+                <select class="select" id="presidenteTipoMenor">
                   <option value="titular">Titular</option>
                   <option value="suplente">Suplente</option>
                 </select>
               </div>
               <div class="field">
                 <label> </label>
-                <select class="select" id="presidenteNombre"></select>
+                <select class="select" id="presidenteNombreMenor"></select>
               </div>
               <!-- Secretaria -->
               <div class="field">
                 <label>Secretaria</label>
-                <select class="select" id="secretariaTipo">
+                <select class="select" id="secretariaTipoMenor">
                   <option value="titular">Titular</option>
                   <option value="suplente">Suplente</option>
                 </select>
               </div>
               <div class="field">
                 <label> </label>
-                <select class="select" id="secretariaNombre"></select>
+                <select class="select" id="secretariaNombreMenor"></select>
               </div>
               <div></div>
               <!-- Checkboxes de Activación (debajo de secretaria) -->
               <div class="field">
                 <label class="checkbox-label"
                   style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
-                  <input id="requiereFirmaEspecial"
+                  <input id="requiereFirmaEspecialMenor"
                     style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
                   ¿Requiere Firma Especial?
                 </label>
@@ -1326,22 +1349,22 @@
               <div class="field">
                 <label class="checkbox-label"
                   style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text-main); height: 100%; padding-top: 14px;">
-                  <input id="requiereFirmaExtraordinaria"
+                  <input id="requiereFirmaExtraordinariaMenor"
                     style="width: 17px; height: 17px; cursor: pointer; accent-color: var(--accent);" type="checkbox" />
                   ¿Requiere Firma Extraordinaria?
                 </label>
               </div>
               <div></div>
               <!-- Firma Especial -->
-              <div class="field" id="wrapperFirmaEspecial" style="display: none;">
+              <div class="field" id="wrapperFirmaEspecialMenor" style="display: none;">
                 <label>Firma Especial</label>
-                <input class="input-locked" id="firmaEspecial" readonly="" type="text"
+                <input class="input-locked" id="firmaEspecialMenor" readonly="" type="text"
                   value="VICTOR MANUEL COUTIÑO ALBORES" />
               </div>
               <!-- Firma Extraordinaria -->
-              <div class="field" id="wrapperFirmaExtraordinaria" style="display: none;">
+              <div class="field" id="wrapperFirmaExtraordinariaMenor" style="display: none;">
                 <label>Firma Extraordinaria</label>
-                <select class="select" id="firmaExtraordinaria">
+                <select class="select" id="firmaExtraordinariaMenor">
                   <option value="">Seleccione...</option>
                   <option value="DANIEL TREJO DOMÍNGUEZ">DANIEL TREJO DOMÍNGUEZ</option>
                   <option value="LIZZET ALONDRA BORGES GARCIA">LIZZET ALONDRA BORGES GARCIA</option>
@@ -2208,10 +2231,11 @@
               <label>Lleva Valuación</label>
               <div style="display:flex; gap:20px; padding-top:4px;">
                 <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-main);">
-                  <input name="aplicaEstimacion" style="accent-color: var(--accent);" type="radio" value="Sí" /> Sí
+                  NO
                 </label>
+                <input type="checkbox" class="switch-unico">
                 <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--text-main);">
-                  <input name="aplicaEstimacion" style="accent-color: var(--accent);" type="radio" value="No" /> No
+                  SI
                 </label>
               </div>
             </div>
@@ -2360,7 +2384,7 @@
               <!-- Columna izquierda -->
               <div class="liberaciones-izquierda">
                 <button class="btn-kit" onclick="mostrarListaKit()">Generar Kit Legal</button>
-                <button class="btn-kit" onclick="mostrarCargaKit()">Carga de Documentos Kit Legal</button>
+                <!-- <button class="btn-kit" onclick="mostrarCargaKit()">Carga de Documentos Kit Legal</button> -->
               </div>
               <!-- Columna derecha: contenido dinámico -->
               <div class="liberaciones-derecha">
@@ -2836,7 +2860,7 @@
           </div>
           <div class="modal-pregunta">
             <label>2. Monto autorizado por Comité</label>
-            <input type="number" class="modal-input" id="montoAplicado" step="1" min="0" />
+            <input type="text" class="modal-input" id="montoAplicado" />
           </div>
           <div class="modal-pregunta">
             <label>3. Fecha Bancaria</label>
