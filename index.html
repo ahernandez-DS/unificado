@@ -2779,10 +2779,10 @@
         <button class="stage-btn stage-sub stage-disabled">SOLICITUD DE LIBERACIÓN</button>
         <button class="stage-btn stage-sub stage-disabled">LIBERACIÓN (ÁREA COMERCIAL)</button> -->
         <button class="stage-btn" onclick="activarEtapa('KIT LEGAL')">KIT LEGAL</button>
-        <button class="stage-btn" onclick="activarEtapa('LIBERACIÓN')">LIBERACIÓN</button>
+        <!-- <button class="stage-btn" onclick="activarEtapa('LIBERACIÓN')">LIBERACIÓN</button>
         <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
         <button class="stage-btn" onclick="activarEtapa('ORDEN DE PAGO')">ORDEN DE PAGO</button>
-        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
+        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" /> -->
         <button class="stage-btn stage-retroceder">Retroceder Etapa</button>
         <button class="stage-btn stage-avanzar"
           onclick="etapa=document.getElementById('etapaMover').value; alert('Moviendo etapa de Mesa de Control a ' + etapa + '...');">Avanzar
@@ -2790,6 +2790,13 @@
         <button class="stage-btn stage-cancelar"
           onclick="alert('Se ha cancelado la solicitud de crédito, volviendo a la etapa inicial')">Cancelar Solicitud de
           Crédito</button>
+        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
+        <h3 style="margin-bottom: 0;">BLOQUE MESA DE CONTROL</h3>
+        <button class="stage-btn" onclick="activarEtapa('LIBERACIÓN')">LIBERACIÓN</button>
+        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
+        <h3 style="margin-bottom: 0;">BLOQUE MINISTRACIONES</h3>
+        <button class="stage-btn" onclick="activarEtapa('ORDEN DE PAGO')">ORDEN DE PAGO</button>
+        <hr class="divider" style="margin: 6px 0; border-color: var(--border);" />
       </aside>
     </div><!-- /body-grid -->
     <!-- ===== BOTTOM NAV ===== -->
