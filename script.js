@@ -1390,40 +1390,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const chkFirmaEspecial = document.getElementById('requiereFirmaEspecial');
-  const chkFirmaExtraordinaria = document.getElementById('requiereFirmaExtraordinaria');
-  const wrapperFirmaEspecial = document.getElementById('wrapperFirmaEspecial');
-  const wrapperFirmaExtraordinaria = document.getElementById('wrapperFirmaExtraordinaria');
-  const wrapperFirmaVacio = document.getElementById('wrapperFirmaVacio');
-  const firmaExtraordinaria = document.getElementById('firmaExtraordinaria');
+  const chkFirmaEspecialMenor = document.getElementById('requiereFirmaEspecialMenor');
+  const chkFirmaExtraordinariaMenor = document.getElementById('requiereFirmaExtraordinariaMenor');
+  const wrapperFirmaEspecialMenor = document.getElementById('wrapperFirmaEspecialMenor');
+  const wrapperFirmaExtraordinariaMenor = document.getElementById('wrapperFirmaExtraordinariaMenor');
+  const wrapperFirmaVacioMenor = document.getElementById('wrapperFirmaVacioMenor');
+  const firmaExtraordinariaMenor = document.getElementById('firmaExtraordinariaMenor');
 
-  function actualizarVisibilidadFirmas() {
-    const mostrarEspecial = chkFirmaEspecial ? chkFirmaEspecial.checked : false;
-    const mostrarExtraordinaria = chkFirmaExtraordinaria ? chkFirmaExtraordinaria.checked : false;
+  function actualizarVisibilidadFirmasMenor() {
+    const mostrarEspecial = chkFirmaEspecialMenor ? chkFirmaEspecialMenor.checked : false;
+    const mostrarExtraordinaria = chkFirmaExtraordinariaMenor ? chkFirmaExtraordinariaMenor.checked : false;
 
-    if (wrapperFirmaEspecial) wrapperFirmaEspecial.style.display = mostrarEspecial ? 'flex' : 'none';
-    if (wrapperFirmaExtraordinaria) wrapperFirmaExtraordinaria.style.display = mostrarExtraordinaria ? 'flex' : 'none';
+    if (wrapperFirmaEspecialMenor) wrapperFirmaEspecialMenor.style.display = mostrarEspecial ? 'flex' : 'none';
+    if (wrapperFirmaExtraordinariaMenor) wrapperFirmaExtraordinariaMenor.style.display = mostrarExtraordinaria ? 'flex' : 'none';
 
-    if (wrapperFirmaVacio) {
-      wrapperFirmaVacio.style.display = (mostrarEspecial || mostrarExtraordinaria) ? 'block' : 'none';
+    if (wrapperFirmaVacioMenor) {
+      wrapperFirmaVacioMenor.style.display = (mostrarEspecial || mostrarExtraordinaria) ? 'block' : 'none';
     }
 
-    if (!mostrarExtraordinaria && firmaExtraordinaria) {
-      firmaExtraordinaria.value = '';
+    if (!mostrarExtraordinaria && firmaExtraordinariaMenor) {
+      firmaExtraordinariaMenor.value = '';
     }
   }
 
-  if (chkFirmaEspecial) {
-    chkFirmaEspecial.addEventListener('change', () => {
-      actualizarVisibilidadFirmas();
+  if (chkFirmaEspecialMenor) {
+    chkFirmaEspecialMenor.addEventListener('change', () => {
+      actualizarVisibilidadFirmasMenor();
       marcarUltimaModificacion();
     });
   }
 
-  if (chkFirmaExtraordinaria) {
-    chkFirmaExtraordinaria.addEventListener('change', () => {
-      actualizarVisibilidadFirmas();
+  if (chkFirmaExtraordinariaMenor) {
+    chkFirmaExtraordinariaMenor.addEventListener('change', () => {
+      actualizarVisibilidadFirmasMenor();
       marcarUltimaModificacion();
+    });
+  }
+
+  const chkFirmaEspecialMayor = document.getElementById('requiereFirmaEspecialMayor');
+  const chkFirmaExtraordinariaMayor = document.getElementById('requiereFirmaExtraordinariaMayor');
+  const wrapperFirmaEspecialMayor = document.getElementById('wrapperFirmaEspecialMayor');
+  const wrapperFirmaExtraordinariaMayor = document.getElementById('wrapperFirmaExtraordinariaMayor');
+  const wrapperFirmaVacioMayor = document.getElementById('wrapperFirmaVacioMayor');
+  const firmaExtraordinariaMayor = document.getElementById('firmaExtraordinariaMayor');
+
+  function actualizarVisibilidadFirmasMayor() {
+    const mostrarEspecial = chkFirmaEspecialMayor ? chkFirmaEspecialMayor.checked : false;
+    const mostrarExtraordinaria = chkFirmaExtraordinariaMayor ? chkFirmaExtraordinariaMayor.checked : false;
+
+    if (wrapperFirmaEspecialMayor) wrapperFirmaEspecialMayor.style.display = mostrarEspecial ? 'flex' : 'none';
+    if (wrapperFirmaExtraordinariaMayor) wrapperFirmaExtraordinariaMayor.style.display = mostrarExtraordinaria ? 'flex' : 'none';
+
+    if (wrapperFirmaVacioMayor) {
+      wrapperFirmaVacioMayor.style.display = (mostrarEspecial || mostrarExtraordinaria) ? 'block' : 'none';
+    }
+
+    if (!mostrarExtraordinaria && firmaExtraordinariaMayor) {
+      firmaExtraordinariaMayor.value = '';
+    }
+  }
+
+  if (chkFirmaEspecialMayor) {
+    chkFirmaEspecialMayor.addEventListener('change', () => {
+      actualizarVisibilidadFirmasMayor();
+      if (typeof marcarUltimaModificacion === 'function') marcarUltimaModificacion();
+    });
+  }
+
+  if (chkFirmaExtraordinariaMayor) {
+    chkFirmaExtraordinariaMayor.addEventListener('change', () => {
+      actualizarVisibilidadFirmasMayor();
+      if (typeof marcarUltimaModificacion === 'function') marcarUltimaModificacion();
     });
   }
 
@@ -1549,7 +1586,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (actaPosesion) actaPosesion.hidden = true;
     if (reciboSimple) reciboSimple.hidden = true;
     if (constanciaPosesion) constanciaPosesion.hidden = true;
-    if (firmas) firmas.hidden = false;
+    if (firmas) { firmas.hidden = false; firmas.style.display = ''; }
+    if (firmasMenor) { firmasMenor.hidden = true; firmasMenor.style.display = 'none'; }
+    if (firmasMayor) { firmasMayor.hidden = true; firmasMayor.style.display = 'none'; }
     if (tipoActa) tipoActa.hidden = false;
     if (generarActa) generarActa.hidden = false;
     if (tabCarga) tabCarga.hidden = true;
@@ -1603,7 +1642,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (actaPosesion) actaPosesion.hidden = true;
     if (reciboSimple) reciboSimple.hidden = true;
     if (constanciaPosesion) constanciaPosesion.hidden = true;
-    if (firmas) firmas.hidden = false;
+    if (firmas) { firmas.hidden = false; firmas.style.display = ''; }
+    if (firmasMenor) { firmasMenor.hidden = true; firmasMenor.style.display = 'none'; }
+    if (firmasMayor) { firmasMayor.hidden = true; firmasMayor.style.display = 'none'; }
     if (tabCarga) tabCarga.hidden = false;
     if (tabPagos) tabPagos.hidden = false;
 
@@ -1643,6 +1684,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const actaPosesion = document.getElementById('actaPosesion');
     const reciboSimple = document.getElementById('reciboSimple');
     const constanciaPosesion = document.getElementById('constanciaPosesion');
+    const firmasMenor = document.getElementById('firmasMenor');
+    const firmasMayor = document.getElementById('firmasMayor');
 
     if (dictamen) dictamen.hidden = true;
     if (dictamenQuash) dictamenQuash.hidden = false;
@@ -1658,7 +1701,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (actaPosesion) actaPosesion.hidden = true;
     if (reciboSimple) reciboSimple.hidden = true;
     if (constanciaPosesion) constanciaPosesion.hidden = true;
-    if (firmas) firmas.hidden = true;
+    if (firmas) { firmas.hidden = true; firmas.style.display = 'none'; }
+    if (firmasMenor) { firmasMenor.hidden = true; firmasMenor.style.display = 'none'; }
+    if (firmasMayor) { firmasMayor.hidden = true; firmasMayor.style.display = 'none'; }
     if (tabCarga) tabCarga.hidden = false;
     if (tabPagos) tabPagos.hidden = false;
 
@@ -4058,13 +4103,17 @@ window.addEventListener('load', () => {
     const ta = document.getElementById('tipoActa');
     const ga = document.getElementById('generarActa');
     const fir = document.getElementById('firmas');
+    const firmasMayor = document.getElementById('firmasMayor');
+    const firmasMenor = document.getElementById('firmasMenor');
 
     if (dic) { dic.hidden = true; dic.style.display = 'none'; }
     if (dq) { dq.hidden = false; dq.style.display = 'block'; }
     if (hist) { hist.hidden = true; hist.style.display = 'none'; }
     if (ta) { ta.hidden = true; ta.style.display = 'none'; }
     if (ga) { ga.hidden = true; ga.style.display = 'none'; }
-    if (fir) { fir.hidden = false; fir.style.display = 'block'; }
+    if (fir) { fir.hidden = true; fir.style.display = 'none'; }
+    if (firmasMayor) { firmasMayor.hidden = true; firmasMayor.style.display = 'none'; }
+    if (firmasMenor) { firmasMenor.hidden = true; firmasMenor.style.display = 'none'; }
 
     document.querySelectorAll('.tab[data-stage="DECISIONES"]').forEach(t => t.classList.remove('active'));
     const t = document.querySelector('.tab[data-tab="dictamen-quash"]');
