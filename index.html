@@ -342,11 +342,17 @@
             <section class="card">
               <div class="card-header">
                 <h2><span class="card-icon">🗂️</span> Información del Crédito</h2>
+                <button class="btn-caratula" onclick="alert('Visualizando Carátula de Comité Autorizada...')">
+                  📄 Visualizar Carátula de Comité Autorizada
+                </button>
               </div>
-              <div class="card-body">
+              <div id="credito_principal" class="card-body">
                 <div class="sub-block">
                   <div class="sub-block-header">
-                    <span class="sub-block-title">Datos del Crédito</span>
+                    <span class="sub-block-title">Crédito Principal</span>
+                    <button class="pill pill-primary" id="verSolicitudTop" onclick="alert('Visualizando Solicitud...')">
+                      <span class="pill-icon"><i class="fa fa-eye"></i></span> Solicitud de Crédito
+                    </button>
                     <!-- <button class="btn-edit">✏️ Editar</button> -->
                   </div>
                   <div class="field-grid cols-3">
@@ -378,12 +384,70 @@
                       <label>Tasa</label>
                       <div class="value">36%</div>
                     </div>
+                    <div class="field">
+                      <label>Fecha de Inicio</label>
+                      <div class="value">2026-11-22</div>
+                      <p style="font-size: smaller;">Nota: La fecha debe obtenerse desde Registro de Garantia y Otros
+                      </p>
+                    </div>
                   </div>
-                  <div style="margin-top: 16px;">
+                  <!-- <div style="margin-top: 16px;">
                     <button class="btn-caratula" onclick="alert('Visualizando Carátula de Comité Autorizada...')">
                       📄 Visualizar Carátula de Comité Autorizada
                     </button>
+                  </div> -->
+                </div>
+              </div>
+              <div id="credito_ampliacion" class="card-body">
+                <div class="sub-block">
+                  <div class="sub-block-header">
+                    <span class="sub-block-title">Crédito de Ampliacion</span>
+                    <button class="pill pill-primary" id="verSolicitudTop" onclick="alert('Visualizando Solicitud...')">
+                      <span class="pill-icon"><i class="fa fa-eye"></i></span> Solicitud de Ampliacion
+                    </button>
+                    <!-- <button class="btn-edit">✏️ Editar</button> -->
                   </div>
+                  <div class="field-grid cols-3">
+                    <div class="field">
+                      <label>Folio</label>
+                      <div class="value">10178</div>
+                    </div>
+                    <div class="field">
+                      <label>Monto Solicitado</label>
+                      <div class="value">$29,000.00</div>
+                    </div>
+                    <div class="field">
+                      <label>Plazo (Meses)</label>
+                      <div class="value">18 Meses</div>
+                    </div>
+                    <div class="field">
+                      <label>Periodicidad de Pagos</label>
+                      <div class="value">CATORCENAL</div>
+                    </div>
+                    <div class="field">
+                      <label>Régimen Fiscal</label>
+                      <div class="value">Persona Física</div>
+                    </div>
+                    <div class="field">
+                      <label>Producto</label>
+                      <div class="value">C-MOVIL</div>
+                    </div>
+                    <div class="field">
+                      <label>Tasa</label>
+                      <div class="value">36%</div>
+                    </div>
+                    <div class="field">
+                      <label>Fecha de Inicio</label>
+                      <div class="value">2026-11-22</div>
+                      <p style="font-size: smaller;">Nota: La fecha debe obtenerse desde Registro de Garantia y Otros
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <div style="margin-top: 16px;">
+                    <button class="btn-caratula" onclick="alert('Visualizando Carátula de Comité Autorizada...')">
+                      📄 Visualizar Carátula de Comité Autorizada
+                    </button>
+                  </div> -->
                 </div>
               </div>
             </section>
@@ -2383,107 +2447,117 @@
             <div class="card-body liberaciones-body">
               <!-- Columna izquierda -->
               <div class="liberaciones-izquierda">
-                <button class="btn-kit" onclick="mostrarListaKit()">Generar Kit Legal</button>
+                <h2>Generar Kit Legal</h2>
+                <button class="btn-kit" onclick="mostrarListaKit()">Credito Principal</button>
+                <button class="btn-kit" onclick="mostrarListaKit_soloAmpliacion()">Credito Ampliacion</button>
                 <!-- <button class="btn-kit" onclick="mostrarCargaKit()">Carga de Documentos Kit Legal</button> -->
               </div>
               <!-- Columna derecha: contenido dinámico -->
               <div class="liberaciones-derecha">
                 <!-- Contenedor para la lista de documentos (visible por defecto) -->
                 <div id="kitListaContainer">
-                  <div class="kit-header">
-                    <h3>Documentos del Kit Legal</h3>
-                    <button class="btn-zip" onclick="descargarZipCompleto()">Descargar ZIP completo</button>
+                  <div style="padding-right: 1rem;" class="kit-header">
+                    <h3>Documentacion</h3>
+                    <button class="btn-zip" onclick="descargarZipCompleto()">📦 Descargar
+                      ZIP completo</button>
                   </div>
-                  <div class="kit-lista">
-                    <!-- 11 documentos con ver y descargar -->
-                    <div class="kit-item"><span>Contrato</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Contrato')">Ver</button><button
-                          class="btn-descargar" onclick="descargarDocumentoKit('Contrato')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Pagare</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Pagare')">Ver</button><button
-                          class="btn-descargar" onclick="descargarDocumentoKit('Pagare')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Tabla de amortización</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Tabla de amortización')">Ver</button><button class="btn-descargar"
-                          onclick="descargarDocumentoKit('Tabla de amortización')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Caratula de comité</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Caratula de comité')">Ver</button><button
-                          class="btn-descargar" onclick="descargarDocumentoKit('Caratula de comité')">Descargar</button>
+                  <div class="kit-lista" style="display: none">
+                    <div id="kit_principal">
+                      <h3>Documentos del Kit Legal</h3>
+                      <!-- 11 documentos con ver y descargar -->
+                      <div class="kit-item"><span>Contrato</span>
+                        <div><button class="btn-ver" onclick="verDocumentoKit('Contrato')">Ver</button><button
+                            class="btn-descargar" onclick="descargarDocumentoKit('Contrato')">Descargar</button></div>
+                      </div>
+                      <div class="kit-item"><span>Pagare</span>
+                        <div><button class="btn-ver" onclick="verDocumentoKit('Pagare')">Ver</button><button
+                            class="btn-descargar" onclick="descargarDocumentoKit('Pagare')">Descargar</button></div>
+                      </div>
+                      <div class="kit-item"><span>Tabla de amortización</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Tabla de amortización')">Ver</button><button class="btn-descargar"
+                            onclick="descargarDocumentoKit('Tabla de amortización')">Descargar</button></div>
+                      </div>
+                      <div class="kit-item"><span>Caratula de Crédito</span>
+                        <div><button class="btn-ver" onclick="verDocumentoKit('Caratula de comité')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Caratula de comité')">Descargar</button>
+                        </div>
+                      </div>
+                      <div class="kit-item"><span>Presentación</span>
+                        <div><button class="btn-ver" onclick="verDocumentoKit('Presentación')">Ver</button><button
+                            class="btn-descargar" onclick="descargarDocumentoKit('Presentación')">Descargar</button>
+                        </div>
+                      </div>
+                      <div class="kit-item"><span>Solicitud de crédito</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Solicitud de crédito')">Ver</button><button class="btn-descargar"
+                            onclick="descargarDocumentoKit('Solicitud de crédito')">Descargar</button></div>
                       </div>
                     </div>
-                    <div class="kit-item"><span>Presentación</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Presentación')">Ver</button><button
-                          class="btn-descargar" onclick="descargarDocumentoKit('Presentación')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Solicitud de crédito</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Solicitud de crédito')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Solicitud de crédito')">Descargar</button></div>
-                    </div>
-                    <h3>Documentos Complementarios del Kit Legal</h3>
-                    <div class="kit-item"><span>Aclaración firmas por inconsistencias</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Aclaración firmas por inconsistencias')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Aclaración firmas por inconsistencias')">Descargar</button>
+                    <div id="kit_complementario" style="display: none">
+                      <h3>Documentos Complementarios del Kit Legal</h3>
+                      <div class="kit-item"><span>Aclaración firmas por inconsistencias</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Aclaración firmas por inconsistencias')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Aclaración firmas por inconsistencias')">Descargar</button>
+                        </div>
                       </div>
-                    </div>
-                    <div class="kit-item"><span>Acta de supervisión de la inversión</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Acta de supervisión de la inversión')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Acta de supervisión de la inversión')">Descargar</button>
+                      <div class="kit-item"><span>Acta de supervisión de la inversión</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Acta de supervisión de la inversión')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Acta de supervisión de la inversión')">Descargar</button>
+                        </div>
                       </div>
-                    </div>
-                    <div class="kit-item"><span>Reporte fotográfico</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Reporte fotográfico')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Reporte fotográfico')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Autorización entrega de vehículo y resguardo de llave</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Autorización entrega de vehículo y resguardo de llave')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Autorización entrega de vehículo y resguardo de llave')">Descargar</button>
+                      <div class="kit-item"><span>Reporte fotográfico</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Reporte fotográfico')">Ver</button><button class="btn-descargar"
+                            onclick="descargarDocumentoKit('Reporte fotográfico')">Descargar</button></div>
                       </div>
-                    </div>
-                    <div class="kit-item"><span>Carta consentimiento</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Carta consentimiento')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Carta consentimiento')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Endoso jurídico (cuando aplique)</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Endoso jurídico (cuando aplique)')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Endoso jurídico (cuando aplique)')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Carta aceptación de endoso (cuando aplique)</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Carta aceptación de endoso (cuando aplique)')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Carta aceptación de endoso (cuando aplique)')">Descargar</button>
+                      <div class="kit-item"><span>Autorización entrega de vehículo y resguardo de llave</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Autorización entrega de vehículo y resguardo de llave')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Autorización entrega de vehículo y resguardo de llave')">Descargar</button>
+                        </div>
                       </div>
-                    </div>
-                    <div class="kit-item"><span>Formato de sustitución garantía</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Formato de sustitución garantía')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Formato de sustitución garantía')">Descargar</button></div>
-                    </div>
-                    <div class="kit-item"><span>Constancia de recepción de garantía</span>
-                      <div><button class="btn-ver"
-                          onclick="verDocumentoKit('Constancia de recepción de garantía')">Ver</button><button
-                          class="btn-descargar"
-                          onclick="descargarDocumentoKit('Constancia de recepción de garantía')">Descargar</button>
+                      <div class="kit-item"><span>Carta consentimiento</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Carta consentimiento')">Ver</button><button class="btn-descargar"
+                            onclick="descargarDocumentoKit('Carta consentimiento')">Descargar</button></div>
                       </div>
-                    </div>
-                    <div class="kit-item"><span>Otros</span>
-                      <div><button class="btn-ver" onclick="verDocumentoKit('Otros')">Ver</button><button
-                          class="btn-descargar" onclick="descargarDocumentoKit('Otros')">Descargar</button></div>
+                      <div class="kit-item"><span>Endoso jurídico (cuando aplique)</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Endoso jurídico (cuando aplique)')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Endoso jurídico (cuando aplique)')">Descargar</button></div>
+                      </div>
+                      <div class="kit-item"><span>Carta aceptación de endoso (cuando aplique)</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Carta aceptación de endoso (cuando aplique)')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Carta aceptación de endoso (cuando aplique)')">Descargar</button>
+                        </div>
+                      </div>
+                      <div class="kit-item"><span>Formato de sustitución garantía</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Formato de sustitución garantía')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Formato de sustitución garantía')">Descargar</button></div>
+                      </div>
+                      <div class="kit-item"><span>Constancia de recepción de garantía</span>
+                        <div><button class="btn-ver"
+                            onclick="verDocumentoKit('Constancia de recepción de garantía')">Ver</button><button
+                            class="btn-descargar"
+                            onclick="descargarDocumentoKit('Constancia de recepción de garantía')">Descargar</button>
+                        </div>
+                      </div>
+                      <div class="kit-item"><span>Otros</span>
+                        <div><button class="btn-ver" onclick="verDocumentoKit('Otros')">Ver</button><button
+                            class="btn-descargar" onclick="descargarDocumentoKit('Otros')">Descargar</button></div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -5019,11 +5019,34 @@ window.addEventListener('load', () => {
     else alert('Historial de "' + nombre + '":\\n\\n' + estado.historial.join('\\n'));
   };
 
+  window.mostrarListaKit_soloAmpliacion = function () {
+    var lista = document.getElementById('kitListaContainer');
+    var carga = document.getElementById('kitCargaContainer');
+    var kitLista = document.querySelector('#kitListaContainer .kit-lista');
+    var principal = document.getElementById('kit_principal');
+    var complementario = document.getElementById('kit_complementario');
+    if (lista) lista.style.display = 'block';
+    if (carga) carga.style.display = 'none';
+    if (kitLista) kitLista.style.display = 'block';
+    if (principal) principal.style.display = 'block';
+    if (complementario) complementario.style.display = 'none';
+    var btns = document.querySelectorAll('.liberaciones-izquierda .btn-kit');
+    btns.forEach(btn => { btn.style.background = 'var(--bg-panel-2)'; btn.style.borderColor = 'var(--border)'; });
+    var btnGen = document.querySelector('.liberaciones-izquierda .btn-kit:first-child');
+    if (btnGen) { btnGen.style.background = 'var(--bg-card-header)'; btnGen.style.borderColor = 'var(--accent)'; }
+  };
+
   window.mostrarListaKit = function () {
     var lista = document.getElementById('kitListaContainer');
     var carga = document.getElementById('kitCargaContainer');
+    var kitLista = document.querySelector('#kitListaContainer .kit-lista');
+    var principal = document.getElementById('kit_principal');
+    var complementario = document.getElementById('kit_complementario');
     if (lista) lista.style.display = 'block';
     if (carga) carga.style.display = 'none';
+    if (kitLista) kitLista.style.display = 'block';
+    if (principal) principal.style.display = 'block';
+    if (complementario) complementario.style.display = 'block';
     var btns = document.querySelectorAll('.liberaciones-izquierda .btn-kit');
     btns.forEach(btn => { btn.style.background = 'var(--bg-panel-2)'; btn.style.borderColor = 'var(--border)'; });
     var btnGen = document.querySelector('.liberaciones-izquierda .btn-kit:first-child');
